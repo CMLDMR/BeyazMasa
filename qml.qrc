@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>ScriptFiles/LoginScreen.js</file>
+        <file>Login/Login.qml</file>
     </qresource>
 </RCC>
