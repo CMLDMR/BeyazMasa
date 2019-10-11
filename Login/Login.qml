@@ -2,6 +2,7 @@ import QtQuick 2.13
 
 Item {
 
+    id: loginScreenItem
     anchors.fill: parent
 
     Rectangle{
@@ -33,7 +34,7 @@ Item {
                     color: "black"
                     font.bold: true
                     font.family: "Tahoma"
-                    font.pointSize: 15
+                    font.pointSize: 24
                     anchors.centerIn: parent
                     opacity: 0
                 }
@@ -56,10 +57,11 @@ Item {
                 radius: 22
                 anchors.centerIn: parent
                 width: parent.width > 500 ? 500 : parent.width
-                height: 160
+                height: 170
                 border.color: "#b374bfb7"
                 border.width: 1
                 clip: true
+
 
                 Column{
                     anchors.fill: parent
@@ -126,16 +128,47 @@ Item {
                         }
                     }
 
+//                    Rectangle{
+//                        width: parent.width
+//                        height: 1
+//                        color: "black"
+//                    }
+
                     Rectangle {
-                        radius: 22
-                        implicitWidth: parent.width
-                        implicitHeight: 40
-                        color: "black"
-                        Text {
-                            text: qsTr("Giriş")
-                            color: "white"
+                        width: parent.width
+                        height: 50
+                        color: "transparent"
+                        Rectangle{
                             anchors.centerIn: parent
+                            width: parent.width
+                            height: parent.height
+//                            radius: 12
+                            color: "darkSlateGray"
+
+                            Text {
+                                text: qsTr("Giriş")
+                                color: "white"
+                                anchors.centerIn: parent
+                                font.bold: true
+                            }
+
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+
+                                onPressed: {
+                                    parent.color = "black"
+                                }
+                                onReleased: {
+                                    parent.color = "darkSlateGray"
+                                    loginScreenItem.destroy();
+                                }
+
+
+                            }
                         }
+
+
                     }
 
                 }
