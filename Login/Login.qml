@@ -75,6 +75,7 @@ Item {
                         implicitHeight: 55
                         color: "transparent"
                         TextInput{
+                            id: telefonNumarasiLine
                             anchors.centerIn: parent
                             horizontalAlignment: TextInput.AlignHCenter
                             verticalAlignment: TextInput.AlignVCenter
@@ -108,6 +109,7 @@ Item {
                         implicitHeight: 55
                         color: "transparent"
                         TextInput{
+                            id: passwordLine
                             anchors.centerIn: parent
                             horizontalAlignment: TextInput.AlignHCenter
                             verticalAlignment: TextInput.AlignVCenter
@@ -156,16 +158,18 @@ Item {
                             MouseArea{
                                 anchors.fill: parent
                                 cursorShape: "PointingHandCursor"
-
                                 onPressed: {
                                     parent.color = "black"
                                 }
                                 onReleased: {
                                     parent.color = "darkSlateGray"
-//                                    loginScreenItem.destroy();
-
-                                    Backend.message = "Şifreniz Yada Telefon Numaranız Hatalı";
-
+//                                    if( User.login(telefonNumarasiLine.text,passwordLine.text) )
+                                    if( User.login("05326778052","1") )
+                                    {
+                                        loginScreenItem.destroy();
+                                    }else{
+                                        Backend.message = "Şifreniz Yada Telefon Numaranız Hatalı";
+                                    }
                                 }
                             }
                         }
