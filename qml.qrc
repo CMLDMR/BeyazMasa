@@ -4,5 +4,7 @@
         <file>ScriptFiles/LoginScreen.js</file>
         <file>Login/Login.qml</file>
         <file>Comman/MessageDialog.qml</file>
+        <file>Login/PersonelQML.qml</file>
+        <file>MainMenu.qml</file>
     </qresource>
 </RCC>
