@@ -27,6 +27,8 @@ Window {
         Component.onCompleted: {
             LoginLoader.loadLoginScreen();
         }
+
+
     }
 
 
@@ -44,13 +46,38 @@ Window {
                 }else{
                     sprite.message = _message;
                     sprite.showDialog();
-                    console.log("Creating Object");
                 }
             } else if (component.status === Component.Error) {
                 // Error Handling
                 console.log("Error loading component:", component.errorString());
             }
 
+        }
+    }
+
+    Connections{
+        target: User
+        onLogined:{
+
+
+            var component = Qt.createComponent("qrc:/MainMenu.qml");
+
+            if (component.status === Component.Ready) {
+                var sprite = component.createObject(appWindow);
+                if (sprite === null) {
+                    // Error Handling
+                    console.log("Error creating object");
+                }else{
+//                    sprite.message = _message;
+//                    sprite.showDialog();
+                }
+            } else if (component.status === Component.Error) {
+                // Error Handling
+                console.log("Error loading component:", component.errorString());
+            }
+
+
+            LoginLoader.loadPersonelScreen();
         }
     }
 
