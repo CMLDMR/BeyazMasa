@@ -14,7 +14,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Base/db.cpp \
         Base/item.cpp \
+        Base/user.cpp \
         Comman/backend.cpp \
         main.cpp
 
@@ -36,5 +38,35 @@ win32:xml {
 }
 
 HEADERS += \
+    Base/db.h \
     Base/item.h \
+    Base/mongoheaders.h \
+    Base/user.h \
     Comman/backend.h
+
+
+
+windows{
+    message ("Platform Windows")
+    msvc{
+        message ("Compiler MSVC")
+        LIBS += -L$$PWD/msvc2017x86/lib/ -lbsoncxx
+        INCLUDEPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
+        DEPENDPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
+
+        LIBS += -L$$PWD/msvc2017x86/lib/ -lmongocxx
+
+        INCLUDEPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
+        DEPENDPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
+
+        INCLUDEPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
+        DEPENDPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
+
+    }
+}
+
+DISTFILES +=
+
+
+
+
