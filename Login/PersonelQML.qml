@@ -64,12 +64,12 @@ Item {
             anchors.left: personelBilgiRectID.right
             anchors.right: parent.right
             height: 30
-            radius: 5
+            radius: 0
             border.color: "black"
             Text {
-                text: qsTr("e-SERIK")
+                text: qsTr("Beyaz MASA")
                 anchors.centerIn: parent
-                font.bold: true
+                font.bold: false
                 font.family: "Tahoma"
                 font.pointSize: 12
             }
