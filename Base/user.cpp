@@ -1,4 +1,5 @@
 #include "user.h"
+#include <QUrl>
 
 User::User(DB *_db, QObject *parent) : QObject(parent) , Item()
 {
@@ -16,7 +17,6 @@ bool User::login(QString _mTel, QString _mPassword)
 
         if( val )
         {
-            std::cout << bsoncxx::to_json (val.value ().view ()) << std::endl;
             this->setDocumentView (val.value ().view ());
             emit logined();
             return true;
@@ -31,4 +31,54 @@ bool User::login(QString _mTel, QString _mPassword)
 
 
 
+}
+
+QString User::photoURL()
+{
+    auto element = this->element (KeyFotoid);
+    if( element )
+    {
+        auto url = this->downloadFile (element->get_oid ().value.to_string ().c_str ());
+        return QUrl::fromLocalFile (url).toString ();
+    }else{
+        return "";
+    }
+}
+
+QString User::AdSoyad()
+{
+    auto element = this->element (KeyAdSoyad);
+
+    if( element )
+    {
+        return QString::fromStdString (element->get_utf8 ().value.to_string());
+    }else{
+        return QString(KeyAdSoyad + " Bilgisi Eksik");
+    }
+
+
+}
+
+QString User::Statu()
+{
+    auto element = this->element (KeyStatu);
+
+    if( element )
+    {
+        return QString::fromStdString (element->get_utf8 ().value.to_string());
+    }else{
+        return QString(KeyStatu + " Bilgisi Eksik");
+    }
+}
+
+QString User::Birimi()
+{
+    auto element = this->element (KeyBirimi);
+
+    if( element )
+    {
+        return QString::fromStdString (element->get_utf8 ().value.to_string());
+    }else{
+        return QString(KeyBirimi + " Bilgisi Eksik");
+    }
 }
