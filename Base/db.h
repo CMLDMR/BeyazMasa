@@ -4,7 +4,7 @@
 #include "mongoheaders.h"
 #include "../url.h"
 #include <iostream>
-
+#include <QString>
 
 class DB
 {
@@ -14,6 +14,10 @@ public:
     DB(DB* _db);
 
     mongocxx::database* db();
+
+    QString downloadFile(const QString &fileOid , bool forceFilename = false);
+
+    bsoncxx::types::value uploadfile(QString filepath );
 
 private:
     mongocxx::database* mDB;
