@@ -15,7 +15,10 @@ public:
 
 
     void operator=(const document &value);
+    void operator=(const bsoncxx::document::view &view);
     void operator=(const Item &value);
+
+    void setDocumentView( const bsoncxx::document::view &view);
 
     bsoncxx::document::view view() const;
 

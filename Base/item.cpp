@@ -16,11 +16,31 @@ void Item::operator=(const bsoncxx::builder::basic::document &value)
     }
 }
 
+void Item::operator=(const bsoncxx::document::view &view)
+{
+    mDoc.clear ();
+
+    for( auto item : view )
+    {
+        this->append(item.key ().to_string().c_str (),item.get_value ());
+    }
+}
+
 void Item::operator=(const Item &value)
 {
     mDoc.clear ();
 
     for( auto item : value.view () )
+    {
+        this->append(item.key ().to_string().c_str (),item.get_value ());
+    }
+}
+
+void Item::setDocumentView(const bsoncxx::document::view &view)
+{
+    mDoc.clear ();
+
+    for( auto item : view )
     {
         this->append(item.key ().to_string().c_str (),item.get_value ());
     }
