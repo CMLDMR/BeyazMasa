@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Base/item.cpp \
+        Comman/backend.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -35,4 +36,5 @@ win32:xml {
 }
 
 HEADERS += \
-    Base/item.h
+    Base/item.h \
+    Comman/backend.h
