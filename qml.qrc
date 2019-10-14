@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>ScriptFiles/LoginScreen.js</file>
         <file>Login/Login.qml</file>
+        <file>Comman/MessageDialog.qml</file>
     </qresource>
 </RCC>

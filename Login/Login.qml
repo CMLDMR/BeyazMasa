@@ -1,4 +1,5 @@
 import QtQuick 2.13
+import "../ScriptFiles/LoginScreen.js" as LoginLoader
 
 Item {
 
@@ -161,22 +162,18 @@ Item {
                                 }
                                 onReleased: {
                                     parent.color = "darkSlateGray"
-                                    loginScreenItem.destroy();
+//                                    loginScreenItem.destroy();
+
+                                    Backend.message = "Şifreniz Yada Telefon Numaranız Hatalı";
+
                                 }
-
-
                             }
                         }
-
-
                     }
-
                 }
-
-
-
-
             }
+
+
 
             PropertyAnimation { id: animation;
                 target: loginFieldRect;
