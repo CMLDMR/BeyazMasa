@@ -1,6 +1,6 @@
 QT += quick
 
-CONFIG += c++11
+CONFIG += c++14
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -14,10 +14,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        Base/db.cpp \
-        Base/item.cpp \
-        Base/user.cpp \
         Comman/backend.cpp \
+        Dilekce/dilekcegirispage.cpp \
+        Dilekce/yenidilekce.cpp \
+        Login/personel.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -38,34 +38,40 @@ win32:xml {
 }
 
 HEADERS += \
-    Base/db.h \
-    Base/item.h \
-    Base/mongoheaders.h \
-    Base/user.h \
-    Comman/backend.h
+    Comman/backend.h \
+    Dilekce/dilekcegirispage.h \
+    Dilekce/yenidilekce.h \
+    Login/personel.h
 
 
 
 windows{
     message ("Platform Windows")
-    msvc{
-        message ("Compiler MSVC")
-        LIBS += -L$$PWD/msvc2017x86/lib/ -lbsoncxx
-        INCLUDEPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
-        DEPENDPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
+    !contains(QMAKE_TARGET.arch, x86_64) {
+        msvc{
+            message ("Compiler MSVC")
+            LIBS += -L$$PWD/msvc2017x86/lib/ -lbsoncxx
+            INCLUDEPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
+            DEPENDPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
+            LIBS += -L$$PWD/msvc2017x86/lib/ -lmongocxx
+            INCLUDEPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
+            DEPENDPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
+            INCLUDEPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
+            DEPENDPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
 
-        LIBS += -L$$PWD/msvc2017x86/lib/ -lmongocxx
+            LIBS += -L$$PWD/SerikBLDCore/lib/ -lSerikBLDCore
 
-        INCLUDEPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
-        DEPENDPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
-
-        INCLUDEPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
-        DEPENDPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
-
+            INCLUDEPATH += $$PWD/SerikBLDCore/include
+            DEPENDPATH += $$PWD/SerikBLDCore/include
+        }
     }
 }
 
 DISTFILES +=
+
+
+
+
 
 
 

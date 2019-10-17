@@ -6,5 +6,8 @@
         <file>Comman/MessageDialog.qml</file>
         <file>Login/PersonelQML.qml</file>
         <file>MainMenu.qml</file>
+        <file>Dilekce/DilekceGirisPage.qml</file>
+        <file>Dilekce/DilekceScripts.js</file>
+        <file>Dilekce/YeniDilekcePage.qml</file>
     </qresource>
 </RCC>

@@ -2,12 +2,17 @@
 #define DILEKCEGIRISPAGE_H
 
 #include <QObject>
+#include "db.h"
+#include "yenidilekce.h"
 
-class DilekceGirisPage : public QObject
+class DilekceGirisPage : public QObject , public DB
 {
     Q_OBJECT
 public:
     explicit DilekceGirisPage(QObject *parent = nullptr);
+
+
+    Q_INVOKABLE YeniDilekce* createYeniDilekce();
 
 signals:
 

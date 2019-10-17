@@ -6,9 +6,10 @@
 #include "../url.h"
 #include "mongocxx/instance.hpp"
 
-#include "Base/item.h"
-#include "Base/db.h"
-#include "Base/user.h"
+#include "item.h"
+#include "db.h"
+#include "Login/personel.h"
+#include "Dilekce/dilekcegirispage.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,8 +19,10 @@ int main(int argc, char *argv[])
 
     auto db = new DB();
 
-    auto user =new User(db);
+    auto user =new Personel();
 
+    qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
+    qmlRegisterInterface<YeniDilekce>("YeniDilekce");
 
     QGuiApplication app(argc, argv);
 

@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Layouts 1.13
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.13
+import "Dilekce/DilekceScripts.js" as Dilekce
 
 Item {
 
@@ -55,6 +56,7 @@ Item {
                         onReleased: {
                             parent.color = "darkSlateGray";
                             dilekceGirisMenuText.color = "white"
+                            Dilekce.loadDilekceGirisPage();
                         }
                     }
 
