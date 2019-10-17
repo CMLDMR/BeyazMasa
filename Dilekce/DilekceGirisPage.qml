@@ -1,11 +1,12 @@
 import QtQuick 2.13
 import serik.bel.tr.DilekceGirisPage 1.0
-
+import "DilekceScripts.js" as Dilekce
 
 Item {
 
     anchors.fill: parent
     anchors.topMargin: 30
+    anchors.leftMargin: 284
 
 
     DilekceGirisBackend{
@@ -14,9 +15,9 @@ Item {
 
 
     Rectangle{
-        width: parent.width > 1280 ? 1280 : parent.width
+        width: parent.width
         height: parent.height
-        color: "red"
+        color: "transparent"
         anchors.centerIn: parent
 
 
@@ -28,7 +29,10 @@ Item {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    var dilekce = dilekceGirisBackend.createYeniDilekce();
+//                    var dilekce = dilekceGirisBackend.createYeniDilekce();
+
+                    Dilekce.loadYeniDilekcePage();
+
 
                 }
             }
