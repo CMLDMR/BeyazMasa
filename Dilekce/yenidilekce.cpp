@@ -18,6 +18,7 @@ YeniDilekce::YeniDilekce(const YeniDilekce &dilekce)
 YeniDilekce::YeniDilekce(Dilekce *dilekce)
 {
     this->setDocumentView (dilekce->view ());
+
 }
 
 YeniDilekce::~YeniDilekce()
