@@ -9,11 +9,12 @@ Item {
 
     anchors.fill: parent
     anchors.topMargin: 50
+    anchors.leftMargin: 284
 
 
     Rectangle{
         id: menuroot
-        width: parent.width > 1024 ? 1024 : parent.width
+        width: parent.width
         height: parent.height
 
         color: "darkSlateGray"
