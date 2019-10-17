@@ -60,6 +60,7 @@ Item {
         }
 
         Rectangle{
+            id: beyazMasaRectID
             color: "white"
             anchors.left: personelBilgiRectID.right
             anchors.right: parent.right
