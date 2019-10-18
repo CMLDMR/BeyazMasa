@@ -9,5 +9,7 @@
         <file>Dilekce/DilekceGirisPage.qml</file>
         <file>Dilekce/DilekceScripts.js</file>
         <file>Dilekce/YeniDilekcePage.qml</file>
+        <file>TC/TCView.qml</file>
+        <file>TC/TCScript.js</file>
     </qresource>
 </RCC>
