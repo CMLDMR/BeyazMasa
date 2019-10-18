@@ -35,3 +35,8 @@ void YeniDilekce::operator=(Dilekce *dilekce)
 {
     this->setDocumentView (dilekce->view ());
 }
+
+bool YeniDilekce::save()
+{
+    return this->Update ();
+}
