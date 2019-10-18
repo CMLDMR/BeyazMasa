@@ -1,6 +1,6 @@
 #include "backend.h"
 
-Backend::Backend(QObject *parent) : QObject(parent)
+Backend::Backend(DB *_db, QObject *parent) : QObject(parent) , mDB(_db)
 {
 
 }
@@ -14,8 +14,39 @@ void Backend::setMessage(const QString &message)
 {
     if( mMessage == message )
     {
-//        return;
+        return;
     }
     mMessage = message;
     emit messageChanged (mMessage);
+}
+
+QJsonArray Backend::mahalleler() const
+{
+
+    QJsonArray array;
+
+    auto filter = document{};
+
+    try {
+        auto cursor = this->mDB->db ()->collection ("Mahalleler").find (filter.view ());
+
+        for( auto doc : cursor )
+        {
+            try {
+                auto item = QString::fromStdString (doc["Mahalle"].get_utf8 ().value.to_string());
+                array.append (item);
+            } catch (bsoncxx::exception &e) {
+                std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+                std::cout << str << std::endl;
+            }
+        }
+
+    } catch (mongocxx::exception &e) {
+        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+        std::cout << str << std::endl;
+    }
+
+    return array;
+
+
 }
