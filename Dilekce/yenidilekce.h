@@ -7,6 +7,8 @@
 class YeniDilekce : public QObject , public Dilekce
 {
     Q_OBJECT
+    Q_PROPERTY(int sayi READ sayi WRITE SetSayi)
+    Q_PROPERTY(QString konu READ konu WRITE SetKonu)
 public:
     explicit YeniDilekce(QObject *parent = nullptr);
     YeniDilekce(const YeniDilekce& dilekce);
@@ -15,6 +17,12 @@ public:
 
     void operator=( const Dilekce &dilekce);
     void operator=( Dilekce* dilekce);
+
+    Q_INVOKABLE bool save();
+
+
+
+
 
 
 signals:
