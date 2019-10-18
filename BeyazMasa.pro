@@ -18,6 +18,7 @@ SOURCES += \
         Dilekce/dilekcegirispage.cpp \
         Dilekce/yenidilekce.cpp \
         Login/personel.cpp \
+        TC/tcitem.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -41,7 +42,8 @@ HEADERS += \
     Comman/backend.h \
     Dilekce/dilekcegirispage.h \
     Dilekce/yenidilekce.h \
-    Login/personel.h
+    Login/personel.h \
+    TC/tcitem.h
 
 
 
