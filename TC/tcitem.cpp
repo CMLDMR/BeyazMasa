@@ -45,6 +45,22 @@ bool TCItem::cepTelefonuCheck(const QString &mCepTelefonu)
     }
 }
 
+bool TCItem::loadItem()
+{
+    return this->LoadTC ();
+}
+
+QString TCItem::tcOid()
+{
+    auto oid = this->oid ();
+    if( oid )
+    {
+        return QString::fromStdString (oid.value ().to_string ());
+    }else{
+        return "";
+    }
+}
+
 
 
 void TCItem::testView()
