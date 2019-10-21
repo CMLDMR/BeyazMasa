@@ -3,10 +3,7 @@ function func() {
 }
 
 function loadTCView(){
-
-
     var component = Qt.createComponent("qrc:/TC/TCView.qml");
-
     if (component.status === Component.Ready) {
         var sprite = component.createObject(appWindow);
         if (sprite === null) {
@@ -19,5 +16,5 @@ function loadTCView(){
         // Error Handling
         console.log("Error loading component:", component.errorString());
     }
-
 }
+
