@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.13
 import QtQuick.Dialogs 1.3
 import serik.bel.tr.DilekceItem 1.0
+import serik.bel.tr.DilekceManagerPage 1.0
 import serik.bel.tr.TCItem 1.0
 import "../TC/TCScript.js" as TCView
 
@@ -14,6 +15,7 @@ Item {
     anchors.topMargin: 50
     anchors.leftMargin: 284
     property int componentHeight: 30
+    property DilekceManagerPage dilekceManager: DilekceManagerPage{}
 
     DilekceItem{
         id: yeniDilekceID
@@ -740,7 +742,7 @@ Item {
                                 yeniDilekceID.saatMSecStartofDay = Backend.mSecStartOfDay;
                                 yeniDilekceID.tcoid = tcOid.text
                                 yeniDilekceID.dilekceFilePath = taranmisDilekceText.text
-                                if( yeniDilekceID.save() ){
+                                if( dilekceManager.saveDilekce(yeniDilekceID) ){
                                     Backend.message = "Dilekçe Başarılı Bir Şekilde Kayıt Edildi";
                                 }else{
                                     Backend.message = "Dilekçe Kayıt Edilemedi";
