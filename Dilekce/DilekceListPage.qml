@@ -49,7 +49,7 @@ Item {
         Rectangle{
             anchors.top: screenTitleRect.bottom
             width: parent.width
-            height: 60
+            height: 80
             color: "orange"
             id: sorguEkraniRectID
             property int rectDivider: 5
@@ -65,75 +65,139 @@ Item {
 
             Row{
                 anchors.fill: parent
+                anchors.bottomMargin: 20
                 spacing: 0
 
 
                 Rectangle{
                     color: "slategray"
-                    width: parent.width/sorguEkraniRectID.rectDivider
+                    width: parent.width/3
                     height: parent.height
-                    TextInput{
-                        id: byTelefonNumrasiInputID
-                        width: parent.width
-                        height: parent.height
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        font.family: "Tahoma"
-                        font.pointSize: 9
-                        font.bold: true
-                        color: "white"
-                        Text {
-                            text: qsTr("Telefon ile Sorgulama")
-                            anchors.centerIn: parent
-                            color: "white"
-                            opacity: 0.5
-                            font.bold: true
+                    Column{
+                        anchors.fill: parent
+                        TextInput{
+                            id: byTCNOInputID
+                            width: parent.width
+                            height: parent.height/3*2
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                             font.family: "Tahoma"
                             font.pointSize: 9
-                            visible: !parent.text
-                        }
+                            font.bold: true
+                            color: "white"
+                            Text {
+                                text: qsTr("TC ile Sorgulama")
+                                anchors.centerIn: parent
+                                color: "white"
+                                opacity: 0.5
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize: 9
+                                visible: !parent.text
+                            }
 
-                        layer.enabled: true
-                        layer.effect: DropShadow{
-                            color: "black"
-                            radius: 3
-                            samples: 5
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                        Rectangle{
+                            width: parent.width
+                            height: parent.height/3
+                            color: "coral"
+                            Text {
+                                text: qsTr("Listele")
+                                color: "white"
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize : 8
+                                anchors.centerIn: parent
+                                layer.enabled: true
+                                layer.effect: DropShadow{
+                                    color: "black"
+                                    radius: 3
+                                    samples: 5
+                                }
+                            }
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+                                onClicked: {
+                                    dilekceManager.dilekceListByTCNO(byTCNOInputID.text);
+                                }
+                            }
                         }
                     }
+
+
                 }
 
 
                 Rectangle{
                     color: "darkcyan"
-                    width: parent.width/sorguEkraniRectID.rectDivider
+                    width: parent.width/3
                     height: parent.height
-                    TextInput{
-                        width: parent.width
-                        height: parent.height
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        font.family: "Tahoma"
-                        font.pointSize: 9
-                        font.bold: true
-                        color: "white"
-                        Text {
-                            text: qsTr("Telefon ile Sorgulama")
-                            anchors.centerIn: parent
-                            color: "white"
-                            opacity: 0.5
-                            font.bold: true
+                    Column{
+                        anchors.fill: parent
+                        TextInput{
+                            id: byTelefonNumarasiID
+                            width: parent.width
+                            height: parent.height/3*2
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                             font.family: "Tahoma"
                             font.pointSize: 9
-                            visible: !parent.text
-                        }
+                            font.bold: true
+                            color: "white"
+                            Text {
+                                text: qsTr("Telefon ile Sorgulama")
+                                anchors.centerIn: parent
+                                color: "white"
+                                opacity: 0.5
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize: 9
+                                visible: !parent.text
+                            }
 
-                        layer.enabled: true
-                        layer.effect: DropShadow{
-                            color: "black"
-                            radius: 3
-                            samples: 5
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                        Rectangle{
+                            width: parent.width
+                            height: parent.height/3
+                            color: "coral"
+                            Text {
+                                text: qsTr("Listele")
+                                color: "white"
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize : 9
+                                anchors.centerIn: parent
+                                layer.enabled: true
+                                layer.effect: DropShadow{
+                                    color: "black"
+                                    radius: 3
+                                    samples: 5
+                                }
+                            }
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+                                onClicked: {
+                                    dilekceManager.dilekceListByTelefon(byTelefonNumarasiID.text);
+                                }
+                            }
                         }
                     }
+
+
 
 
                 }
@@ -141,101 +205,183 @@ Item {
 
                 Rectangle{
                     color: "seagreen"
-                    width: parent.width/sorguEkraniRectID.rectDivider
+                    width: parent.width/3
                     height: parent.height
-                    TextInput{
-                        width: parent.width
-                        height: parent.height
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        font.family: "Tahoma"
-                        font.pointSize: 9
-                        font.bold: true
-                        color: "white"
-                        Text {
-                            text: qsTr("Ad Soyad ile Sorgulama")
-                            anchors.centerIn: parent
-                            color: "white"
-                            opacity: 0.5
-                            font.bold: true
-                            font.family: "Tahoma"
-                            font.pointSize: 9
-                            visible: !parent.text
-                        }
-
-                        layer.enabled: true
-                        layer.effect: DropShadow{
-                            color: "black"
-                            radius: 3
-                            samples: 5
-                        }
-                    }
-                }
-
-                Rectangle{
-                    color: "dimgray"
-                    width: parent.width/sorguEkraniRectID.rectDivider
-                    height: parent.height
-                    TextInput{
-                        width: parent.width
-                        height: parent.height
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        font.family: "Tahoma"
-                        font.pointSize: 9
-                        font.bold: true
-                        color: "white"
-                        Text {
-                            text: qsTr("Sayı ile Sorgulama")
-                            anchors.centerIn: parent
-                            color: "white"
-                            opacity: 0.5
-                            font.bold: true
-                            font.family: "Tahoma"
-                            font.pointSize: 9
-                            visible: !parent.text
-                        }
-
-                        layer.enabled: true
-                        layer.effect: DropShadow{
-                            color: "black"
-                            radius: 3
-                            samples: 5
-                        }
-                    }
-                }
-
-                Rectangle{
-                    color: "cadetblue"
-                    width: parent.width/sorguEkraniRectID.rectDivider
-                    height: parent.height
-                    Text {
-                        text: qsTr("Sorgula")
-                        anchors.centerIn: parent
-                        color: "white"
-                        opacity: 1
-                        font.bold: true
-                        font.family: "Tahoma"
-                        font.pointSize: 9
-                        layer.enabled: true
-                        layer.effect: DropShadow{
-                            color: "black"
-                            radius: 3
-                            samples: 5
-                        }
-                    }
-
-                    MouseArea{
+                    Column{
                         anchors.fill: parent
-                        cursorShape: "PointingHandCursor"
-                        onClicked: {
-                            dilekceManager.dilekceListByTelefon(byTelefonNumrasiInputID.text);
+                        TextInput{
+                            id: byDilekceSayiID
+                            width: parent.width
+                            height: parent.height/3*2
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            font.family: "Tahoma"
+                            font.pointSize: 9
+                            font.bold: true
+                            color: "white"
+                            Text {
+                                text: qsTr("Sayı ile Sorgulama")
+                                anchors.centerIn: parent
+                                color: "white"
+                                opacity: 0.5
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize: 9
+                                visible: !parent.text
+                            }
+
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                        Rectangle{
+                            width: parent.width
+                            height: parent.height/3
+                            color: "coral"
+                            Text {
+                                text: qsTr("Listele")
+                                color: "white"
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize : 9
+                                anchors.centerIn: parent
+                                layer.enabled: true
+                                layer.effect: DropShadow{
+                                    color: "black"
+                                    radius: 3
+                                    samples: 5
+                                }
+                            }
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+                                onClicked: {
+                                    dilekceManager.dilekceListBySayi(parseInt(byDilekceSayiID.text));
+                                }
+                            }
                         }
                     }
 
 
+                }
+
+
+            }
+
+
+
+            Rectangle{
+                width: parent
+                height: 20
+                anchors.left: parent.left
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                color: "cadetblue"
+
+                Row{
+                    anchors.fill: parent
+                    Rectangle{
+                        width: parent.width/sorguEkraniRectID.rectDivider
+                        height: parent.height
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Konu")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
+                    Rectangle{
+                        width: parent.width/sorguEkraniRectID.rectDivider
+                        height: parent.height
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Sayı")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
+                    Rectangle{
+                        width: parent.width/sorguEkraniRectID.rectDivider
+                        height: parent.height
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Tarih")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
+                    Rectangle{
+                        width: parent.width/sorguEkraniRectID.rectDivider
+                        height: parent.height
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Birim")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
+
+                    Rectangle{
+                        width: parent.width/sorguEkraniRectID.rectDivider
+                        height: parent.height
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Durum")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
                 }
             }
+
         }
 
         Rectangle{
@@ -246,6 +392,9 @@ Item {
             anchors.bottomMargin: 30
             color: "darkslategray"
             clip: true
+
+
+
             ScrollView{
                 anchors.fill: parent
                 clip: true
@@ -267,6 +416,7 @@ Item {
                                     width: parent.width/sorguEkraniRectID.rectDivider
                                     height: parent.height
                                     color: "coral"
+                                    clip: true
                                     Text {
                                         text: modelData.konu
                                         color: "white"
@@ -274,6 +424,9 @@ Item {
                                         font.family: "Tahoma"
                                         font.pointSize : 9
                                         anchors.centerIn: parent
+                                        width: parent.width
+                                        wrapMode: Text.WordWrap
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
                                 Rectangle{
@@ -293,6 +446,7 @@ Item {
                                     width: parent.width/sorguEkraniRectID.rectDivider
                                     height: parent.height
                                     color: "dimgray"
+                                    clip: true
                                     Text {
                                         text: modelData.tarihText
                                         color: "white"
@@ -300,12 +454,16 @@ Item {
                                         font.family: "Tahoma"
                                         font.pointSize : 9
                                         anchors.centerIn: parent
+                                        width: parent.width
+                                        wrapMode: Text.WordWrap
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
                                 Rectangle{
                                     width: parent.width/sorguEkraniRectID.rectDivider
                                     height: parent.height
                                     color: "blueviolet"
+                                    clip: true
                                     Text {
                                         text: modelData.birim
                                         color: "white"
@@ -313,6 +471,9 @@ Item {
                                         font.family: "Tahoma"
                                         font.pointSize : 9
                                         anchors.centerIn: parent
+                                        width: parent.width
+                                        wrapMode: Text.WordWrap
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
                                 Rectangle{
