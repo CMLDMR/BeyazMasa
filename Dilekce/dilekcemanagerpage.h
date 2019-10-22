@@ -2,8 +2,9 @@
 #define DILEKCEMANAGERPAGE_H
 
 #include <QObject>
+#include "dilekcemanager.h"
 
-class DilekceManagerPage : public QObject
+class DilekceManagerPage : public QObject , public DilekceManager
 {
     Q_OBJECT
 public:
