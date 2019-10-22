@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         Comman/backend.cpp \
         Dilekce/dilekcegirispage.cpp \
+        Dilekce/dilekcemanagerpage.cpp \
         Dilekce/yenidilekce.cpp \
         Login/personel.cpp \
         TC/tcitem.cpp \
@@ -41,6 +42,7 @@ win32:xml {
 HEADERS += \
     Comman/backend.h \
     Dilekce/dilekcegirispage.h \
+    Dilekce/dilekcemanagerpage.h \
     Dilekce/yenidilekce.h \
     Login/personel.h \
     TC/tcitem.h
