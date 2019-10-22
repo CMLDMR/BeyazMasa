@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "db.h"
-#include "yenidilekce.h"
+#include "dilekceitem.h"
 
 class DilekceGirisPage : public QObject , public DB
 {
