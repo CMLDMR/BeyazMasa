@@ -27,6 +27,32 @@ void DilekceManagerPage::dilekceListByTelefon(const QString &telefon)
     emit dilekceListChanged ();
 }
 
+void DilekceManagerPage::dilekceListByTCNO(const QString &tcno)
+{
+    this->mDilekceItemlist.clear ();
+    auto cursor = this->findByTCNO (tcno);
+    for( auto doc : cursor )
+    {
+        DilekceItem item;
+        item = doc;
+        this->mDilekceItemlist.append (std::move(item));
+    }
+    emit dilekceListChanged ();
+}
+
+void DilekceManagerPage::dilekceListBySayi(const int &sayi)
+{
+    this->mDilekceItemlist.clear ();
+    auto cursor = this->findBySayi (sayi);
+    for( auto doc : cursor )
+    {
+        DilekceItem item;
+        item = doc;
+        this->mDilekceItemlist.append (std::move(item));
+    }
+    emit dilekceListChanged ();
+}
+
 bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 {
     auto item = qobject_cast<DilekceItem*>(_item);

@@ -17,6 +17,9 @@ public:
 
     QQmlListProperty<DilekceItem> dilekceList();
     Q_INVOKABLE void dilekceListByTelefon( const QString &telefon);
+    Q_INVOKABLE void dilekceListByTCNO( const QString &tcno);
+    Q_INVOKABLE void dilekceListBySayi( const int &sayi );
+
     QList<DilekceItem> mDilekceItemlist;
 
 
