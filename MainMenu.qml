@@ -57,7 +57,7 @@ Item {
                         onReleased: {
                             parent.color = "darkSlateGray";
                             dilekceGirisMenuText.color = "white"
-                            Dilekce.loadDilekceGirisPage();
+                            Dilekce.loadYeniDilekcePage();
                         }
                     }
 
@@ -78,23 +78,47 @@ Item {
                         color: "white"
                         font.bold: true
                     }
-
                     MouseArea{
                         cursorShape: "PointingHandCursor"
                         anchors.fill: parent
-
                         onPressed: {
                             parent.color = "white";
                             sikayetGirisMenuText.color = "black"
                         }
-
                         onReleased: {
                             parent.color = "darkSlateGray";
                             sikayetGirisMenuText.color = "white"
                         }
                     }
+                }
 
-
+                Rectangle{
+                    id: dilekceList
+                    width: 200
+                    height: 100
+                    color: "darkSlateGray"
+                    radius: 5
+                    border.color: "white"
+                    Text {
+                        id: dilekceListMenuText
+                        text: qsTr("Dilekçe Sorgulama")
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.bold: true
+                    }
+                    MouseArea{
+                        cursorShape: "PointingHandCursor"
+                        anchors.fill: parent
+                        onPressed: {
+                            parent.color = "white";
+                            dilekceListMenuText.color = "black"
+                        }
+                        onReleased: {
+                            parent.color = "darkSlateGray";
+                            dilekceListMenuText.color = "white"
+                            Dilekce.loadDilekceListPage();
+                        }
+                    }
                 }
 
 
