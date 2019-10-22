@@ -1,12 +1,17 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtGraphicalEffects 1.0
+import serik.bel.tr.DilekceManagerPage 1.0
 
 Item {
 
     anchors.fill: parent
     anchors.topMargin: 30
     id: dilekceListItem
+
+    property DilekceManagerPage dilekceManager: DilekceManagerPage{}
+
+
 
     MouseArea{
         anchors.fill: parent
@@ -68,6 +73,7 @@ Item {
                     width: parent.width/sorguEkraniRectID.rectDivider
                     height: parent.height
                     TextInput{
+                        id: byTelefonNumrasiInputID
                         width: parent.width
                         height: parent.height
                         horizontalAlignment: Text.AlignHCenter
@@ -223,7 +229,7 @@ Item {
                         anchors.fill: parent
                         cursorShape: "PointingHandCursor"
                         onClicked: {
-
+                            dilekceManager.dilekceListByTelefon(byTelefonNumrasiInputID.text);
                         }
                     }
 
@@ -248,7 +254,8 @@ Item {
                     anchors.fill: parent
                     spacing: 2
                     Repeater{
-                        model: 25
+                        id: dilekceListModel
+                        model: dilekceManager.dilekceList
                         width: parent.width
                         Rectangle{
                             width: parent.width
@@ -261,7 +268,7 @@ Item {
                                     height: parent.height
                                     color: "coral"
                                     Text {
-                                        text: qsTr("Konu")
+                                        text: modelData.konu
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -274,7 +281,7 @@ Item {
                                     height: parent.height
                                     color: "slategray"
                                     Text {
-                                        text: qsTr("Sayı")
+                                        text: modelData.sayi
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -287,7 +294,7 @@ Item {
                                     height: parent.height
                                     color: "dimgray"
                                     Text {
-                                        text: qsTr("Tarih")
+                                        text: modelData.tarihText
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -300,7 +307,7 @@ Item {
                                     height: parent.height
                                     color: "blueviolet"
                                     Text {
-                                        text: qsTr("Birim")
+                                        text: modelData.birim
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
