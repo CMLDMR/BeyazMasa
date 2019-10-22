@@ -2,7 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.13
 import QtQuick.Dialogs 1.3
-import serik.bel.tr.YeniDilekce 1.0
+import serik.bel.tr.DilekceItem 1.0
 import serik.bel.tr.TCItem 1.0
 import "../TC/TCScript.js" as TCView
 
@@ -15,7 +15,7 @@ Item {
     anchors.leftMargin: 284
     property int componentHeight: 30
 
-    YeniDilekce{
+    DilekceItem{
         id: yeniDilekceID
     }
 
@@ -306,6 +306,7 @@ Item {
                         Row{
                             anchors.fill: parent
                             ComboBox{
+                                id: gidecekBirim
                                 width: parent.width
                                 height: parent.height
                                 model: Backend.birimler
@@ -330,6 +331,7 @@ Item {
                         Row{
                             anchors.fill: parent
                             ComboBox{
+                                id: icerikTipiID
                                 width: parent.width
                                 height: parent.height
                                 model: ["Numarataj","Büz Koyma","Dal Budama"]
@@ -369,7 +371,7 @@ Item {
                                 text: qsTr("Taranmış Dilekçeyi Seçiniz");
                                 color: "gray"
                                 anchors.centerIn: parent
-                                font.pointSize: 11
+                                font.pointSize: 10
                             }
 
                             FileDialog {
@@ -377,7 +379,6 @@ Item {
                                 title: "Please choose a file"
                                 folder: shortcuts.home
                                 onAccepted: {
-//                                    console.log("You chose: " + fileDialog.fileUrls)
                                     taranmisDilekceText.text = fileDialog.fileUrl
                                 }
                                 onRejected: {
@@ -395,6 +396,9 @@ Item {
                         }
                     }
 
+
+
+                    // EKLER ALANI
                     Row{
                         width: parent.width/2
                         spacing: 5
@@ -413,12 +417,13 @@ Item {
                                     id: ekSelectionRect
                                     width: parent.width
                                     height: componentHeight
-                                    color: "white"
+                                    color: "DarkCyan"
                                     radius: 5
 
                                     Text {
                                         text: qsTr("Ek Varsa Ekleyiniz");
-                                        color: "gray"
+                                        color: "white"
+                                        font.bold: true
                                         anchors.centerIn: parent
                                         font.pointSize: 11
                                     }
@@ -429,7 +434,6 @@ Item {
                                         folder: shortcuts.home
                                         onAccepted: {
                                             yeniDilekceID.addEk(fileDialogEkler.fileUrl);
-//                                            ekSelectionMainRect.height = yeniDilekceID.ekList.length * (componentHeight+3) + componentHeight
                                         }
                                         onRejected: {
                                             console.log("Canceled")
@@ -462,7 +466,6 @@ Item {
                                                 height: componentHeight
                                                 Text {
                                                     text: modelData
-                                                    anchors.fill: parent
                                                     anchors.centerIn: parent
                                                 }
                                             }
@@ -472,7 +475,7 @@ Item {
                                                 height: componentHeight
                                                 color: "darkSlateGray"
                                                 Text {
-                                                    text: qsTr("X")
+                                                    text: qsTr("Kaldır")
                                                     anchors.centerIn: parent
                                                     color: "white"
                                                     font.bold: true
@@ -482,7 +485,6 @@ Item {
                                                     anchors.fill: parent
                                                     onClicked: {
                                                         if( yeniDilekceID.deleteEk(modelData) ){
-//                                                            ekSelectionMainRect.height = yeniDilekceID.ekList.length * (componentHeight+3) + componentHeight
                                                         }
                                                     }
                                                 }
@@ -491,9 +493,6 @@ Item {
                                         }
 
 
-                                    }
-                                    Component.onCompleted: {
-//                                        ekSelectionMainRect.height = yeniDilekceID.ekList.length * componentHeight + componentHeight
                                     }
 
                                 }
@@ -515,6 +514,140 @@ Item {
                     }
                 }
 
+
+                Row{
+                    width: parent.width
+                    spacing: 5
+                    Rectangle{
+                        width: parent.width
+                        height: componentHeight
+                        color: "white"
+                        radius: 5
+
+                        Row{
+                            anchors.fill: parent
+                            Rectangle{
+                                width: parent.width/4
+                                height: componentHeight
+                                Text {
+                                    id: bilgilendirilecekBirimler
+                                    text: qsTr("Bilgilendirilecek Birimler");
+                                    color: "gray"
+                                    anchors.centerIn: parent
+                                    font.pointSize: 11
+                                }
+                            }
+
+                            Rectangle{
+                                width: parent.width/2
+                                height: componentHeight
+                                ComboBox{
+                                    id: bilgiBirimSelectSource
+                                    anchors.fill: parent
+                                    model: Backend.birimler
+                                }
+                            }
+
+                            Rectangle{
+                                width: parent.width/4
+                                height: componentHeight
+                                color: "DarkCyan"
+                                Text {
+                                    text: qsTr("Ekle");
+                                    color: "white"
+                                    anchors.centerIn: parent
+                                    font.pointSize: 11
+
+                                }
+
+                                MouseArea{
+                                    anchors.fill: parent
+                                    cursorShape: "PointingHandCursor"
+                                    onClicked: {
+                                        yeniDilekceID.addBilgiBirim(bilgiBirimSelectSource.currentText);
+                                    }
+                                }
+                            }
+                        }
+
+
+
+
+                    }
+                }
+
+                Row{
+                    width: parent.width
+                    spacing: 5
+                    Rectangle{
+                        id: bilgiBirimListRect
+                        width: parent.width
+                        height: yeniDilekceID.bilgiBirim.length * ( componentHeight + 3 )
+                        color: "transparent"
+                        radius: 5
+                        clip: true
+
+                        Column{
+                            anchors.fill: parent
+                            spacing: 3
+
+                            Repeater{
+                                id: bilgilendirilecekBirimlist
+                                model: yeniDilekceID.bilgiBirim
+
+                                Rectangle{
+                                    width: parent.width
+                                    height: componentHeight
+                                    color: "transparent"
+
+                                    Row{
+                                        anchors.fill: parent
+
+                                        Rectangle{
+                                            width: parent.width/8*7
+                                            height: componentHeight
+                                            color: "transparent"
+                                            Text {
+                                                text: modelData
+                                                anchors.centerIn: parent
+                                                color: "white"
+                                                font.bold: true
+                                            }
+                                        }
+
+                                        Rectangle{
+                                            width: parent.width/8
+                                            height: componentHeight
+                                            color: "red"
+                                            Text {
+                                                text: "Kaldır"
+                                                anchors.centerIn: parent
+                                                color: "white"
+                                                font.bold: true
+                                            }
+                                            MouseArea{
+                                                anchors.fill: parent
+                                                cursorShape: "PointingHandCursor"
+                                                onClicked: {
+                                                    yeniDilekceID.deleteBilgiBirim(modelData);
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+
+                                }
+
+
+                            }
+
+
+                        }
+                    }
+                }
+
+
                 Row{
                     width: parent.width
                     spacing: 5
@@ -524,6 +657,7 @@ Item {
                         color: "white"
                         radius: 5
                         TextInput{
+                            id: icerikID
                             width: parent.width
                             height: parent.height
                             horizontalAlignment: TextInput.AlignLeft
@@ -567,9 +701,50 @@ Item {
                             anchors.fill: parent
                             cursorShape: "PointingHandCursor"
                             onClicked: {
+                                if( taranmisDilekceText.text === "Taranmış Dilekçeyi Seçiniz" )
+                                {
+                                    Backend.message = "Taranmış Bir Dilekçeyi Seçmediniz";
+                                    return;
+                                }
+
+                                if( gidecekBirim.currentText === "Başkanlık" )
+                                {
+                                    Backend.message = "Gidecek Birimi Seçmediniz";
+                                    return;
+                                }
+
+                                if( _dilekceSayi.text.length === 0 )
+                                {
+                                    Backend.message = "Dilekçeye Sayı Vermediniz";
+                                    return;
+                                }
+
+                                if( _dilekceKonu.text.length === 0 )
+                                {
+                                    Backend.message = "Dilekçe Konusunu Yazmadınız";
+                                    return;
+                                }
+
+                                if( tcOid.text.length !== 24 )
+                                {
+                                    Backend.message = "TC Bilgileri Hatalı";
+                                    return;
+                                }
+
                                 yeniDilekceID.sayi = parseInt(_dilekceSayi.text)
                                 yeniDilekceID.konu = _dilekceKonu.text
-                                yeniDilekceID.save();
+                                yeniDilekceID.birim = gidecekBirim.currentText
+                                yeniDilekceID.icerikTipi = icerikTipiID.currentText
+                                yeniDilekceID.icerik = icerikID.text
+                                yeniDilekceID.tarihJulianDay = Backend.currentJulianDay;
+                                yeniDilekceID.saatMSecStartofDay = Backend.mSecStartOfDay;
+                                yeniDilekceID.tcoid = tcOid.text
+                                yeniDilekceID.dilekceFilePath = taranmisDilekceText.text
+                                if( yeniDilekceID.save() ){
+                                    Backend.message = "Dilekçe Başarılı Bir Şekilde Kayıt Edildi";
+                                }else{
+                                    Backend.message = "Dilekçe Kayıt Edilemedi";
+                                }
                             }
                         }
 
