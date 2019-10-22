@@ -5,10 +5,10 @@ DilekceGirisPage::DilekceGirisPage(QObject *parent) : QObject(parent) , DB()
 
 }
 
-YeniDilekce *DilekceGirisPage::createYeniDilekce()
+DilekceItem *DilekceGirisPage::createYeniDilekce()
 {
 
-    YeniDilekce* mYeniDilekce = new YeniDilekce();
+    DilekceItem* mYeniDilekce = new DilekceItem();
 
     return std::move(mYeniDilekce);
 

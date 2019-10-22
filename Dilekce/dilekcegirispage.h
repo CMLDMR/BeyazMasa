@@ -12,7 +12,7 @@ public:
     explicit DilekceGirisPage(QObject *parent = nullptr);
 
 
-    Q_INVOKABLE YeniDilekce* createYeniDilekce();
+    Q_INVOKABLE DilekceItem* createYeniDilekce();
 
 signals:
 

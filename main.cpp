@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     auto user =new Personel();
 
     qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
-    qmlRegisterType <YeniDilekce>("serik.bel.tr.YeniDilekce",1,0,"YeniDilekce");
+    qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
     qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
 
 
