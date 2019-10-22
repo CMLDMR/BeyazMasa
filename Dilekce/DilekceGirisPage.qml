@@ -29,11 +29,7 @@ Item {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-//                    var dilekce = dilekceGirisBackend.createYeniDilekce();
-
                     Dilekce.loadYeniDilekcePage();
-
-
                 }
             }
         }
