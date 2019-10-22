@@ -11,5 +11,6 @@
         <file>Dilekce/YeniDilekcePage.qml</file>
         <file>TC/TCView.qml</file>
         <file>TC/TCScript.js</file>
+        <file>Dilekce/DilekceListPage.qml</file>
     </qresource>
 </RCC>
