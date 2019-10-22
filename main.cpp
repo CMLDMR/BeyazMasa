@@ -11,6 +11,8 @@
 #include "Login/personel.h"
 #include "Dilekce/dilekcegirispage.h"
 #include "TC/tcitem.h"
+#include "Dilekce/dilekceitem.h"
+#include "Dilekce/dilekcemanagerpage.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,7 +27,10 @@ int main(int argc, char *argv[])
     qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
     qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
     qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
+    qmlRegisterType <DilekceManagerPage>("serik.bel.tr.DilekceManagerPage",1,0,"DilekceManagerPage");
 
+//    qmlRegisterType<DilekceItem>();
+//    qmlRegisterInterface<QList<DilekceItem*>>("DilekceItemList");
 
     QGuiApplication app(argc, argv);
 
