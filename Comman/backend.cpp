@@ -1,4 +1,7 @@
 #include "backend.h"
+#include <QDate>
+
+
 
 Backend::Backend(DB *_db, QObject *parent) : QObject(parent) , mDB(_db)
 {
@@ -77,4 +80,14 @@ QJsonArray Backend::birimler() const
     }
 
     return array;
+}
+
+int Backend::currentJulianDay()
+{
+    return QDate::currentDate ().toJulianDay ();
+}
+
+int Backend::mSecStartOfDay()
+{
+    return QTime::currentTime ().msecsSinceStartOfDay ();
 }
