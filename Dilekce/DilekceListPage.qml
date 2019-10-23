@@ -9,7 +9,7 @@ Item {
     anchors.topMargin: 30
     id: dilekceListItem
 
-    property DilekceManagerPage dilekceManager: DilekceManagerPage{}
+    property DilekceManagerPage dilekceManager : Backend.createDilekceManager();
 
 
 
@@ -19,12 +19,12 @@ Item {
 
 
     Rectangle{
-        color: "red"
+        color: "transparent"
         anchors.leftMargin: 284
         anchors.fill: parent
 
         Rectangle{
-            color: "green"
+            color: "dimgray"
             width: parent.width
             height: 30
             anchors.top: parent.top
@@ -274,7 +274,7 @@ Item {
 
 
             Rectangle{
-                width: parent
+                width: parent.width
                 height: 20
                 anchors.left: parent.left
                 anchors.bottom: parent.bottom
