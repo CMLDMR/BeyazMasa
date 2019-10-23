@@ -4,6 +4,7 @@
 #include <QObject>
 #include "db.h"
 #include <QJsonArray>
+#include "Dilekce/dilekcemanagerpage.h"
 
 class Backend : public QObject
 {
@@ -14,7 +15,7 @@ class Backend : public QObject
     Q_PROPERTY (int currentJulianDay READ currentJulianDay )
     Q_PROPERTY (int mSecStartOfDay READ mSecStartOfDay )
 public:
-    explicit Backend(DB* _db , QObject *parent = nullptr);
+    explicit Backend(DataBase* _db , QObject *parent = nullptr);
 
     QString message() const;
     void setMessage(const QString &message);
@@ -25,6 +26,8 @@ public:
     int currentJulianDay();
     int mSecStartOfDay();
 
+    Q_INVOKABLE DilekceManagerPage* createDilekceManager();
+
 
 signals:
     void messageChanged(QString _message);
@@ -34,7 +37,7 @@ public slots:
 private:
     QString mMessage;
 
-    DB* mDB;
+    DataBase* mDB;
 };
 
 #endif // BACKEND_H

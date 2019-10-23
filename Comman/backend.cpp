@@ -3,7 +3,7 @@
 
 
 
-Backend::Backend(DB *_db, QObject *parent) : QObject(parent) , mDB(_db)
+Backend::Backend(DataBase *_db, QObject *parent) : QObject(parent) , mDB(_db)
 {
 
 }
@@ -90,4 +90,9 @@ int Backend::currentJulianDay()
 int Backend::mSecStartOfDay()
 {
     return QTime::currentTime ().msecsSinceStartOfDay ();
+}
+
+DilekceManagerPage *Backend::createDilekceManager()
+{
+    return new DilekceManagerPage(this->mDB);
 }
