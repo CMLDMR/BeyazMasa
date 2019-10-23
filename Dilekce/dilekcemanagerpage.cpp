@@ -5,8 +5,25 @@
 DilekceManagerPage::DilekceManagerPage(QObject *parent) : QObject(parent) , DilekceManager ()
 {
 
+    std::cout << "Dilekce Manager Construction" << std::endl;
 
+}
 
+DilekceManagerPage::DilekceManagerPage(DataBase *db)
+    :DilekceManager (db)
+{
+
+}
+
+DilekceManagerPage::DilekceManagerPage(const DilekceManagerPage &other)
+    :DilekceManager (other)
+{
+
+}
+
+DilekceManagerPage *DilekceManagerPage::createManager(DataBase* db)
+{
+    return new DilekceManagerPage(db);
 }
 
 QQmlListProperty<DilekceItem> DilekceManagerPage::dilekceList()
@@ -35,6 +52,7 @@ void DilekceManagerPage::dilekceListByTCNO(const QString &tcno)
     {
         DilekceItem item;
         item = doc;
+        std::cout << "TCNO: " << bsoncxx::to_json (item.view ());
         this->mDilekceItemlist.append (std::move(item));
     }
     emit dilekceListChanged ();

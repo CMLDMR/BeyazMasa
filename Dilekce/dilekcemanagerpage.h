@@ -5,6 +5,7 @@
 #include "dilekcemanager.h"
 #include "dilekceitem.h"
 #include <QQmlListProperty>
+#include "Comman/database.h"
 
 
 class DilekceManagerPage : public QObject , public DilekceManager
@@ -14,6 +15,10 @@ class DilekceManagerPage : public QObject , public DilekceManager
 
 public:
     explicit DilekceManagerPage(QObject *parent = nullptr);
+    DilekceManagerPage(DataBase *db);
+    DilekceManagerPage(const DilekceManagerPage &other);
+
+    Q_INVOKABLE DilekceManagerPage* createManager(DataBase* db);
 
     QQmlListProperty<DilekceItem> dilekceList();
     Q_INVOKABLE void dilekceListByTelefon( const QString &telefon);
@@ -44,7 +49,7 @@ private:
     static void clearListPtr(QQmlListProperty<DilekceItem> *property);
 };
 
-
+Q_DECLARE_METATYPE(DilekceManagerPage)
 
 
 //class Storage : public QObject , public DilekceManager
