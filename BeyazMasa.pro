@@ -19,8 +19,9 @@ SOURCES += \
         Dilekce/dilekcegirispage.cpp \
         Dilekce/dilekceitem.cpp \
         Dilekce/dilekcemanagerpage.cpp \
-        Login/personel.cpp \
+        Login/puser.cpp \
         TC/tcitem.cpp \
+        TC/tcmanagerpage.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -46,8 +47,9 @@ HEADERS += \
     Dilekce/dilekcegirispage.h \
     Dilekce/dilekceitem.h \
     Dilekce/dilekcemanagerpage.h \
-    Login/personel.h \
-    TC/tcitem.h
+    Login/puser.h \
+    TC/tcitem.h \
+    TC/tcmanagerpage.h
 
 
 
@@ -56,24 +58,45 @@ windows{
     !contains(QMAKE_TARGET.arch, x86_64) {
         msvc{
             message ("Compiler MSVC")
-            LIBS += -L$$PWD/msvc2017x86/lib/ -lbsoncxx
-            INCLUDEPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
-            DEPENDPATH += $$PWD/msvc2017x86/include/bsoncxx/v_noabi
-            LIBS += -L$$PWD/msvc2017x86/lib/ -lmongocxx
-            INCLUDEPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
-            DEPENDPATH += $$PWD/msvc2017x86/include/mongocxx/v_noabi
+
+            win32: LIBS += -L$$PWD/../../../../Mongo/msvc2017x86/lib/ -lbsoncxx
+
+            INCLUDEPATH += $$PWD/../../../../Mongo/msvc2017x86/include/bsoncxx/v_noabi
+            DEPENDPATH += $$PWD/../../../../Mongo/msvc2017x86/include/bsoncxx/v_noabi
+
+
+            win32: LIBS += -L$$PWD/../../../../Mongo/msvc2017x86/lib/ -lmongocxx
+
+            INCLUDEPATH += $$PWD/../../../../Mongo/msvc2017x86/include/mongocxx/v_noabi
+            DEPENDPATH += $$PWD/../../../../Mongo/msvc2017x86/include/mongocxx/v_noabi
+
+
+
             INCLUDEPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
             DEPENDPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
 
-            LIBS += -L$$PWD/SerikBLDCore/lib/ -lSerikBLDCore
 
-            INCLUDEPATH += $$PWD/SerikBLDCore/include
-            DEPENDPATH += $$PWD/SerikBLDCore/include
+            win32: LIBS += -LC:/SerikBLDCoreRelease/MSVC2017X86/lib/ -lSerikBLDCore
+
+            INCLUDEPATH += C:/SerikBLDCoreRelease/MSVC2017X86/include
+            DEPENDPATH += C:/SerikBLDCoreRelease/MSVC2017X86/include
+
+
+#            LIBS += -L$$PWD/SerikBLDCore/lib/ -lSerikBLDCore
+
+#            INCLUDEPATH += $$PWD/SerikBLDCore/include
+#            DEPENDPATH += $$PWD/SerikBLDCore/include
         }
     }
 }
 
+
+
 DISTFILES +=
+
+
+
+
 
 
 
