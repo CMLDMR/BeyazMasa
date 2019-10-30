@@ -16,9 +16,15 @@ public:
 
     Q_INVOKABLE bool tcCheck( const QString& mTC );
 
+    Q_INVOKABLE bool cepTelefonuCheck( const QString& mCepTelefonu );
+
+    Q_INVOKABLE bool saveTCItem(TCItem *item );
+
     Q_INVOKABLE TCItem *loadByTC(const QString &mTCNO);
 
     Q_INVOKABLE TCItem* loadByTel( const QString &mTel );
+
+    Q_INVOKABLE QString generatePassword() const;
 
 signals:
 
