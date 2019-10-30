@@ -18,11 +18,16 @@ class TCItem : public QObject , public TC
 public:
     explicit TCItem(QObject *parent = nullptr);
     TCItem( const TCItem &other);
+    TCItem( TCItem&& other);
+    TCItem( TC* other);
 
-    Q_INVOKABLE bool tcCheck( const QString& mTC );
-    Q_INVOKABLE bool cepTelefonuCheck( const QString& mCepTelefonu );
+    TCItem& operator=( const TCItem &other );
+    TCItem& operator=( TCItem &&other);
 
-    Q_INVOKABLE bool loadItem();
+//    Q_INVOKABLE bool tcCheck( const QString& mTC );
+//    Q_INVOKABLE bool cepTelefonuCheck( const QString& mCepTelefonu );
+
+//    Q_INVOKABLE bool loadItem();
 
     Q_INVOKABLE QString tcOid();
 
