@@ -76,7 +76,20 @@ TCItem *TCManagerPage::loadByTel(const QString &mTel)
         return new TCItem(val.value());
     }else{
         return nullptr;
-    }}
+    }
+}
+
+TCItem *TCManagerPage::loadByOid(const QString &mOid)
+{
+    auto val = this->Load_byOID (mOid.toStdString ());
+
+    if( val )
+    {
+        return new TCItem(val.value());
+    }else{
+        return nullptr;
+    }
+}
 
 QString TCManagerPage::generatePassword() const
 {

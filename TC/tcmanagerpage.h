@@ -24,6 +24,8 @@ public:
 
     Q_INVOKABLE TCItem* loadByTel( const QString &mTel );
 
+    Q_INVOKABLE TCItem* loadByOid( const QString &mOid );
+
     Q_INVOKABLE QString generatePassword() const;
 
 signals:
