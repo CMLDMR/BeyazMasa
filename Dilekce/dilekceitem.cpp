@@ -45,11 +45,17 @@ DilekceItem &DilekceItem::operator=(const DilekceItem other)
     return *this;
 }
 
-//bool DilekceItem::setDurumAcik()
-//{
-//    this->setDurumAcik ();
-//}
+QString DilekceItem::dilekceID()
+{
+    auto val = this->oid ();
 
+    if( val )
+    {
+        return QString::fromStdString (val.value ().to_string ());
+    }else{
+        return "";
+    }
+}
 
 QJsonArray DilekceItem::ekList() const
 {

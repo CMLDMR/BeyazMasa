@@ -33,6 +33,7 @@ public:
     DilekceItem& operator=( DilekceItem&& other );
     DilekceItem& operator=( const DilekceItem other );
 
+    Q_INVOKABLE QString dilekceID();
 
 
 
