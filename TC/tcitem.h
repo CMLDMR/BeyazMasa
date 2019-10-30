@@ -24,13 +24,8 @@ public:
     TCItem& operator=( const TCItem &other );
     TCItem& operator=( TCItem &&other);
 
-//    Q_INVOKABLE bool tcCheck( const QString& mTC );
-//    Q_INVOKABLE bool cepTelefonuCheck( const QString& mCepTelefonu );
-
-//    Q_INVOKABLE bool loadItem();
 
     Q_INVOKABLE QString tcOid();
-
 
     Q_INVOKABLE void testView();
 
