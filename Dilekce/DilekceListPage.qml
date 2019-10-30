@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtGraphicalEffects 1.0
 import serik.bel.tr.DilekceManagerPage 1.0
+import "DilekceScripts.js" as Dilekce
 
 Item {
 
@@ -77,6 +78,7 @@ Item {
                         anchors.fill: parent
                         TextInput{
                             id: byTCNOInputID
+                            text: "23827260044" // TODO: Bu Satır Silinecek
                             width: parent.width
                             height: parent.height/3*2
                             horizontalAlignment: Text.AlignHCenter
@@ -488,6 +490,17 @@ Item {
                                         font.pointSize : 9
                                         anchors.centerIn: parent
                                     }
+                                }
+                            }
+
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+                                onClicked: {
+
+                                    Dilekce.loadYeniDilekceFullView(modelData.dilekceID());
+
+
                                 }
                             }
                         }
