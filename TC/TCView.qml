@@ -3,11 +3,15 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
 import serik.bel.tr.TCItem 1.0
+import serik.bel.tr.TCManagerPage 1.0
+
 
 Item {
 
     anchors.fill: parent
     id: yeniTCKaydetID
+
+    property TCManagerPage tcManager: Backend.createTCManager();
 
 
     TCItem{
@@ -268,25 +272,28 @@ Item {
                     tcItem.CepTelefonu = textInputTelefon.text
                     tcItem.Mahalle = comboBoxMahalle.currentText
                     tcItem.TamAdres = textInputAdres.text
-                    tcItem.Password = ""
+                    tcItem.Password = tcManager.generatePassword();
                     tcItem.CalismaSMS = switchSMSGonderID.checked
-
-                    var a = tcItem.tcCheck(textInputTC.text);
+                    var a = tcManager.tcCheck(textInputTC.text);
                     if( a )
                     {
                         Backend.message = "Bu TC Kayıtlı";
                     }else{
-                        a = tcItem.cepTelefonuCheck(textInputTelefon.text)
-                        if( a )
+                        var b  = tcManager.cepTelefonuCheck(textInputTelefon.text)
+                        if( b )
                         {
                             Backend.message = "Bu Telefon Numarası Kayıtlı";
                         }else{
+                            console.log("testView");
                             tcItem.testView();
-                            yeniTCKaydetID.destroy();
+                            if( tcManager.saveTCItem(tcItem) ){
+                                Backend.message = "TC Bilgileri Başarılı Bir Şekilde Kayıt Edildi.\nŞifre: " + tcItem.Password;
+                                yeniTCKaydetID.destroy();
+                            }else{
+                                Backend.message = "TC Bilgileri Kayıt Edilemedi";
+                            }
                         }
                     }
-
-
                 }
             }
 

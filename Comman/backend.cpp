@@ -15,10 +15,6 @@ QString Backend::message() const
 
 void Backend::setMessage(const QString &message)
 {
-    if( mMessage == message )
-    {
-        return;
-    }
     mMessage = message;
     emit messageChanged (mMessage);
 }
