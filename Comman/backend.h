@@ -5,6 +5,7 @@
 #include "db.h"
 #include <QJsonArray>
 #include "Dilekce/dilekcemanagerpage.h"
+#include "TC/tcmanagerpage.h"
 
 class Backend : public QObject
 {
@@ -27,6 +28,7 @@ public:
     int mSecStartOfDay();
 
     Q_INVOKABLE DilekceManagerPage* createDilekceManager();
+    Q_INVOKABLE TCManagerPage* createTCManager();
 
 
 signals:

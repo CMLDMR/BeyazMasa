@@ -96,3 +96,8 @@ DilekceManagerPage *Backend::createDilekceManager()
 {
     return new DilekceManagerPage(this->mDB);
 }
+
+TCManagerPage *Backend::createTCManager()
+{
+    return new TCManagerPage(this->mDB);
+}
