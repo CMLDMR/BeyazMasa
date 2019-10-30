@@ -1,10 +1,11 @@
-#ifndef PERSONEL_H
-#define PERSONEL_H
+#ifndef PUSER_H
+#define PPUSER_H
 
 #include <QObject>
 #include "user.h"
+#include "Comman/database.h"
 
-class Personel : public QObject , public User
+class PUser : public QObject , public User
 {
     Q_OBJECT
     Q_PROPERTY(QString adsoyad READ adSoyad)
@@ -13,7 +14,8 @@ class Personel : public QObject , public User
 
 
 public:
-    explicit Personel( QObject *parent = nullptr);
+    explicit PUser( QObject *parent = nullptr);
+    PUser( DataBase* _db );
 
     Q_INVOKABLE bool login( const QString &_mTel ,const QString &_mPassword );
 

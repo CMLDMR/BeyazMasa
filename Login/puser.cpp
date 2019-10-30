@@ -1,13 +1,18 @@
-#include "personel.h"
+#include "puser.h"
 #include <QUrl>
 
 
-Personel::Personel(QObject *parent) : QObject(parent)
+PUser::PUser(QObject *parent) : QObject(parent)
 {
 
 }
 
-bool Personel::login(const QString &_mTel, const QString &_mPassword)
+PUser::PUser(DataBase *_db) : User (_db->db ())
+{
+
+}
+
+bool PUser::login(const QString &_mTel, const QString &_mPassword)
 {
     if( this->Login (_mTel.toStdString (),_mPassword.toStdString ()) ){
         emit logined();
@@ -17,23 +22,23 @@ bool Personel::login(const QString &_mTel, const QString &_mPassword)
     }
 }
 
-QString Personel::photoURL()
+QString PUser::photoURL()
 {
     auto fileName = this->PhotoFilePath ();
     return QUrl::fromLocalFile (QString::fromStdString (fileName)).toString ();
 }
 
-QString Personel::adSoyad()
+QString PUser::adSoyad()
 {
     return this->AdSoyad ().c_str ();
 }
 
-QString Personel::statu()
+QString PUser::statu()
 {
-    return this->Statu ().c_str ();
+    return QString::fromStdString (this->Statu ());
 }
 
-QString Personel::birimi()
+QString PUser::birimi()
 {
     return Birimi ().c_str ();
 }
