@@ -12,5 +12,7 @@
         <file>TC/TCView.qml</file>
         <file>TC/TCScript.js</file>
         <file>Dilekce/DilekceListPage.qml</file>
+        <file>Dilekce/DilekceFullView.qml</file>
+        <file>TC/TCComponent.qml</file>
     </qresource>
 </RCC>
