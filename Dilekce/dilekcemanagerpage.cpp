@@ -67,6 +67,20 @@ void DilekceManagerPage::dilekceListBySayi(const int &sayi)
     emit dilekceListChanged ();
 }
 
+DilekceItem *DilekceManagerPage::loadByOid(const QString &moid)
+{
+    auto val = this->LoadDilekce (moid.toStdString ());
+    if( val )
+    {
+        val.value ()->printView ();
+        DilekceItem *item = new DilekceItem();
+        item->setDocumentView (val.value ()->view ());
+        return item;
+    }else{
+        return nullptr;
+    }
+}
+
 bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 {
     auto item = qobject_cast<DilekceItem*>(_item);

@@ -29,6 +29,7 @@ public:
 
 
 
+    Q_INVOKABLE DilekceItem* loadByOid( const QString &moid );
 
 
     Q_INVOKABLE bool saveDilekce(DilekceItem *_item );
