@@ -4,6 +4,7 @@ import QtGraphicalEffects 1.13
 import QtQuick.Dialogs 1.3
 import serik.bel.tr.DilekceItem 1.0
 import serik.bel.tr.DilekceManagerPage 1.0
+import serik.bel.tr.TCManagerPage 1.0
 import serik.bel.tr.TCItem 1.0
 import "../TC/TCScript.js" as TCView
 
@@ -15,7 +16,10 @@ Item {
     anchors.topMargin: 50
     anchors.leftMargin: 284
     property int componentHeight: 30
-    property DilekceManagerPage dilekceManager: DilekceManagerPage{}
+    property DilekceManagerPage dilekceManager: Backend.createDilekceManager();
+
+    property TCManagerPage tcManager: Backend.createTCManager();
+
 
     DilekceItem{
         id: yeniDilekceID
@@ -24,7 +28,6 @@ Item {
     property var tcno: ""
     property var telefonno: ""
     property var address: ""
-    property TCItem tcObject: TCItem{}
 
 
 
@@ -148,11 +151,12 @@ Item {
                                 onTextChanged: {
                                     if( text.length === 11 )
                                     {
-                                        tcObject.TCNO = text;
-                                        if( tcObject.loadItem() ){
-                                            adSoyadInput.text = tcObject.AdSoyad;
-                                            telefonNumarasiInput.text = tcObject.CepTelefonu;
-                                            tcOid.text = tcObject.tcOid();
+                                        var tcVar = tcManager.loadByTC(text);
+                                        if( tcVar )
+                                        {
+                                            adSoyadInput.text = tcVar.AdSoyad;
+                                            telefonNumarasiInput.text = tcVar.CepTelefonu;
+                                            tcOid.text = tcVar.tcOid();
                                         }else{
                                             adSoyadInput.text = "";
                                             telefonNumarasiInput.text = "";
@@ -246,13 +250,14 @@ Item {
                                     anchors.centerIn: parent
                                 }
                                 onTextChanged: {
-                                    if( text.length === 11 )
+                                    if( telefonNumarasiInput.text.length === 11 )
                                     {
-                                        tcObject.CepTelefonu = text;
-                                        if( tcObject.loadItem() ){
-                                            adSoyadInput.text = tcObject.AdSoyad;
-                                            tcInput.text = tcObject.TCNO;
-                                            tcOid.text = tcObject.tcOid();
+                                        var tcVar = tcManager.loadByTel(text);
+                                        if( tcVar )
+                                        {
+                                            adSoyadInput.text = tcVar.AdSoyad;
+                                            tcInput.text = tcVar.TCNO;
+                                            tcOid.text = tcVar.tcOid();
                                         }else{
                                             adSoyadInput.text = "";
                                             tcInput.text = "";
@@ -353,8 +358,6 @@ Item {
                     }
 
                 }
-
-
 
                 Row{
                     width: parent.width
@@ -516,7 +519,6 @@ Item {
                     }
                 }
 
-
                 Row{
                     width: parent.width
                     spacing: 5
@@ -649,7 +651,6 @@ Item {
                     }
                 }
 
-
                 Row{
                     width: parent.width
                     spacing: 5
@@ -679,7 +680,6 @@ Item {
                         }
                     }
                 }
-
 
                 Row{
                     width: parent.width
@@ -744,6 +744,7 @@ Item {
                                 yeniDilekceID.dilekceFilePath = taranmisDilekceText.text
                                 if( dilekceManager.saveDilekce(yeniDilekceID) ){
                                     Backend.message = "Dilekçe Başarılı Bir Şekilde Kayıt Edildi";
+                                    yeniDilekcePageID.destroy();
                                 }else{
                                     Backend.message = "Dilekçe Kayıt Edilemedi";
                                 }
@@ -752,7 +753,6 @@ Item {
 
                     }
                 }
-
 
                 Row{
                     width: parent.width
@@ -781,11 +781,6 @@ Item {
 
                     }
                 }
-
-
-
-
-
 
             }
 
