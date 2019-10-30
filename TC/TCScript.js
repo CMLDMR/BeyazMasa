@@ -1,7 +1,3 @@
-function func() {
-
-}
-
 function loadTCView(){
     var component = Qt.createComponent("qrc:/TC/TCView.qml");
     if (component.status === Component.Ready) {
