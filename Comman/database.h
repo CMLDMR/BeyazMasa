@@ -11,6 +11,8 @@ public:
     explicit DataBase(QObject *parent = nullptr);
     DataBase( const DataBase &db );
 
+
+
 signals:
 
 public slots:
