@@ -284,8 +284,8 @@ Item {
                         {
                             Backend.message = "Bu Telefon Numarası Kayıtlı";
                         }else{
-                            console.log("testView");
-                            tcItem.testView();
+//                            console.log("testView");
+//                            tcItem.testView();
                             if( tcManager.saveTCItem(tcItem) ){
                                 Backend.message = "TC Bilgileri Başarılı Bir Şekilde Kayıt Edildi.\nŞifre: " + tcItem.Password;
                                 yeniTCKaydetID.destroy();
