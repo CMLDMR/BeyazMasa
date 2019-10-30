@@ -28,9 +28,10 @@ public:
     DilekceItem(const DilekceItem&& dilekce);
     ~DilekceItem();
 
-    void operator=( const Dilekce &dilekce);
+    DilekceItem& operator=( const Dilekce &dilekce);
     void operator=( Dilekce* dilekce);
-
+    DilekceItem& operator=( DilekceItem&& other );
+    DilekceItem& operator=( const DilekceItem other );
 
 
 

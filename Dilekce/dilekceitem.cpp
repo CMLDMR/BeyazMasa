@@ -4,12 +4,11 @@
 
 DilekceItem::DilekceItem(QObject *parent) : QObject(parent) , Dilekce ()
 {
-    this->SetSayi (-1);
+    this->SetDurum (DilekceDurum::Acik);
 }
 
 DilekceItem::DilekceItem(const DilekceItem &dilekce)
 {
-    std::cout << "copy Cosntructor" << std::endl;
     this->setDocumentView (dilekce.view ());
 }
 
@@ -23,15 +22,33 @@ DilekceItem::~DilekceItem()
     std::cout << "Destrutor of ~DilekceItem" << std::endl;
 }
 
-void DilekceItem::operator=(const Dilekce &dilekce)
+DilekceItem& DilekceItem::operator=(const Dilekce &dilekce)
 {
     this->setDocumentView (dilekce.view ());
+    return *this;
 }
 
 void DilekceItem::operator=(Dilekce *dilekce)
 {
     this->setDocumentView (dilekce->view ());
 }
+
+DilekceItem &DilekceItem::operator=(DilekceItem &&other)
+{
+    this->setDocumentView (other.view ());
+    return *this;
+}
+
+DilekceItem &DilekceItem::operator=(const DilekceItem other)
+{
+    this->setDocumentView (other.view ());
+    return *this;
+}
+
+//bool DilekceItem::setDurumAcik()
+//{
+//    this->setDurumAcik ();
+//}
 
 
 QJsonArray DilekceItem::ekList() const
