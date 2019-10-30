@@ -9,11 +9,12 @@
 
 #include "item.h"
 #include "db.h"
-#include "Login/personel.h"
+#include "Login/puser.h"
 #include "Dilekce/dilekcegirispage.h"
 #include "TC/tcitem.h"
 #include "Dilekce/dilekceitem.h"
 #include "Dilekce/dilekcemanagerpage.h"
+#include "TC/tcmanagerpage.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,13 +24,14 @@ int main(int argc, char *argv[])
 
     auto db = new DataBase();
     auto backend = new Backend(db);
-    auto user =new Personel();
+    auto user = new PUser(db);
 
     qmlRegisterType<DataBase>();
     qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
     qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
     qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
     qmlRegisterType <DilekceManagerPage>("serik.bel.tr.DilekceManagerPage",1,0,"DilekceManagerPage");
+    qmlRegisterType <TCManagerPage>("serik.bel.tr.TCManagerPage",1,0,"TCManagerPage");
 
 //    qmlRegisterInterface<QList<DilekceItem*>>("DilekceItemList");
 
