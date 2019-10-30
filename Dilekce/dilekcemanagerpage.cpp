@@ -4,9 +4,6 @@
 
 DilekceManagerPage::DilekceManagerPage(QObject *parent) : QObject(parent) , DilekceManager ()
 {
-
-    std::cout << "Dilekce Manager Construction" << std::endl;
-
 }
 
 DilekceManagerPage::DilekceManagerPage(DataBase *db)
@@ -21,10 +18,10 @@ DilekceManagerPage::DilekceManagerPage(const DilekceManagerPage &other)
 
 }
 
-DilekceManagerPage *DilekceManagerPage::createManager(DataBase* db)
-{
-    return new DilekceManagerPage(db);
-}
+//DilekceManagerPage *DilekceManagerPage::createManager(DataBase* db)
+//{
+//    return new DilekceManagerPage(db);
+//}
 
 QQmlListProperty<DilekceItem> DilekceManagerPage::dilekceList()
 {
@@ -52,7 +49,6 @@ void DilekceManagerPage::dilekceListByTCNO(const QString &tcno)
     {
         DilekceItem item;
         item = doc;
-        std::cout << "TCNO: " << bsoncxx::to_json (item.view ());
         this->mDilekceItemlist.append (std::move(item));
     }
     emit dilekceListChanged ();
@@ -74,12 +70,10 @@ void DilekceManagerPage::dilekceListBySayi(const int &sayi)
 bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 {
     auto item = qobject_cast<DilekceItem*>(_item);
-
-    for( auto doc : item->bilgiBirimList ())
+    for( auto doc : item->bilgiBirimList () )
     {
         item->AddBilgiBirim (doc.toString ());
     }
-
     for( auto doc : item->ekList ())
     {
         auto fOid = this->uploadfile ( doc.toString ().toStdString ().c_str ());
@@ -90,8 +84,8 @@ bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 
     item->SetDilekceOid (tOid.get_oid ().value.to_string ().c_str () );
 
+    return this->insertDilekce (item);
 
-    return this->insertDilekce (_item);
 }
 
 void DilekceManagerPage::appendList(QQmlListProperty<DilekceItem> *property, DilekceItem *note)

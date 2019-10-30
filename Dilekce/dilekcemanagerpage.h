@@ -18,7 +18,7 @@ public:
     DilekceManagerPage(DataBase *db);
     DilekceManagerPage(const DilekceManagerPage &other);
 
-    Q_INVOKABLE DilekceManagerPage* createManager(DataBase* db);
+//    Q_INVOKABLE DilekceManagerPage* createManager(DataBase* db);
 
     QQmlListProperty<DilekceItem> dilekceList();
     Q_INVOKABLE void dilekceListByTelefon( const QString &telefon);
