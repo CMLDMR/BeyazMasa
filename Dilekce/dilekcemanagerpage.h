@@ -6,6 +6,9 @@
 #include "dilekceitem.h"
 #include <QQmlListProperty>
 #include "Comman/database.h"
+#include "dilekcecevap.h"
+#include "dilekceaciklama.h"
+#include <QJsonObject>
 
 
 class DilekceManagerPage : public QObject , public DilekceManager
@@ -18,12 +21,11 @@ public:
     DilekceManagerPage(DataBase *db);
     DilekceManagerPage(const DilekceManagerPage &other);
 
-//    Q_INVOKABLE DilekceManagerPage* createManager(DataBase* db);
-
     QQmlListProperty<DilekceItem> dilekceList();
     Q_INVOKABLE void dilekceListByTelefon( const QString &telefon);
     Q_INVOKABLE void dilekceListByTCNO( const QString &tcno);
     Q_INVOKABLE void dilekceListBySayi( const int &sayi );
+    Q_INVOKABLE QString downloadFilePath( const QString &fileOid );
 
     QList<DilekceItem> mDilekceItemlist;
 
@@ -31,6 +33,11 @@ public:
 
     Q_INVOKABLE DilekceItem* loadByOid( const QString &moid );
 
+    Q_INVOKABLE QJsonArray ekFilePathList(QVariant dilekceItem);
+    Q_INVOKABLE QJsonArray gorevliList( DilekceItem* item );
+    Q_INVOKABLE QJsonArray aciklamalar( DilekceItem* item );
+    Q_INVOKABLE QJsonObject cevap( DilekceItem* item );
+    Q_INVOKABLE QJsonArray cevapEkList( QJsonArray oidList );
 
     Q_INVOKABLE bool saveDilekce(DilekceItem *_item );
 

@@ -1,6 +1,8 @@
 #include "dilekcemanagerpage.h"
 #include <QVector>
 #include <QUrl>
+#include <QJsonArray>
+#include <QJsonObject>
 
 DilekceManagerPage::DilekceManagerPage(QObject *parent) : QObject(parent) , DilekceManager ()
 {
@@ -67,18 +69,120 @@ void DilekceManagerPage::dilekceListBySayi(const int &sayi)
     emit dilekceListChanged ();
 }
 
+QString DilekceManagerPage::downloadFilePath(const QString &fileOid)
+{
+    return this->TaranmisDilekcePath (fileOid);
+}
+
 DilekceItem *DilekceManagerPage::loadByOid(const QString &moid)
 {
     auto val = this->LoadDilekce (moid.toStdString ());
     if( val )
     {
-        val.value ()->printView ();
+//        val.value ()->printView ();
         DilekceItem *item = new DilekceItem();
         item->setDocumentView (val.value ()->view ());
         return item;
     }else{
         return nullptr;
     }
+}
+
+QJsonArray DilekceManagerPage::ekFilePathList(QVariant dilekceItem)
+{
+    QJsonArray array;
+
+    auto itemlist = dilekceItem.value<DilekceItem*>();
+
+    int ekCount = 1;
+    for( auto item : itemlist->EkOidList () )
+    {
+        auto val = this->downloadFilePath (item);
+        QJsonObject obj;
+        obj.insert ("ad",QString("EK %1").arg (ekCount++));
+        obj.insert ("url",QUrl::fromLocalFile (val).toString ());
+        array.append (obj);
+    }
+    return array;
+}
+
+QJsonArray DilekceManagerPage::gorevliList(DilekceItem *item)
+{
+
+    QJsonArray array;
+
+    auto itemlist = item->GorevliList ();
+
+    for( auto _item : itemlist )
+    {
+        QJsonObject obj;
+        obj.insert ("ad",_item.AdSoyad ());
+        auto val = this->downloadFilePath (_item.FotoOid ());
+        obj.insert ("url",QUrl::fromLocalFile (val).toString ());
+        array.append (obj);
+    }
+
+    return array;
+
+}
+
+QJsonArray DilekceManagerPage::aciklamalar(DilekceItem *item)
+{
+    QJsonArray array;
+    auto dilekceoid = item->oid ();
+    if( dilekceoid )
+    {
+        auto itemlist = this->findAciklama (dilekceoid.value ().to_string ());
+        for( auto aciklama : itemlist )
+        {
+            QJsonObject obj;
+            obj.insert ("saat",aciklama.Saat ());
+            obj.insert ("tarih",aciklama.Tarih ());
+            obj.insert ("person",aciklama.PersonelName ());
+            obj.insert ("aciklama",aciklama.Aciklama ());
+            array.append (obj);
+        }
+    }
+    return array;
+}
+
+QJsonObject DilekceManagerPage::cevap(DilekceItem *item)
+{
+    QJsonObject obj;
+
+
+
+    auto cevapOidStr = item->cevapOid ();
+
+    if( cevapOidStr.isEmpty () )
+    {
+        return obj;
+    }
+
+    auto val = this->LoadDilekceCevap (cevapOidStr.toStdString () );
+
+    if( val )
+    {
+        auto cevapItem = val.value ();
+        auto filePath = this->downloadFilePath (cevapItem->cevapOid ());
+        obj.insert ("url",QUrl::fromLocalFile (filePath).toString ());
+        obj.insert ("personel",cevapItem->personelName ());
+        obj.insert ("saat",cevapItem->saat ());
+        obj.insert ("tarih",cevapItem->Tarih ());
+    }
+
+    return obj;
+}
+
+QJsonArray DilekceManagerPage::cevapEkList(QJsonArray oidList)
+{
+    QJsonArray array;
+    for( auto item : oidList )
+    {
+        auto val = this->downloadFilePath (item.toString ());
+        array.append (QUrl::fromLocalFile (val).toString ());
+    }
+    return array;
 }
 
 bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
