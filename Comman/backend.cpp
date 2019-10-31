@@ -1,6 +1,6 @@
 #include "backend.h"
 #include <QDate>
-
+#include <QUrl>
 
 
 Backend::Backend(DataBase *_db, QObject *parent) : QObject(parent) , mDB(_db)
@@ -96,4 +96,9 @@ DilekceManagerPage *Backend::createDilekceManager()
 TCManagerPage *Backend::createTCManager()
 {
     return new TCManagerPage(this->mDB);
+}
+
+QString Backend::localFileUrl(const QString &filePath)
+{
+    return QUrl::fromLocalFile (filePath).toString ();
 }

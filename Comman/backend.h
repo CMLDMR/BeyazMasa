@@ -21,6 +21,9 @@ public:
     QString message() const;
     void setMessage(const QString &message);
 
+
+
+
     QJsonArray mahalleler() const;
     QJsonArray birimler() const;
 
@@ -30,6 +33,8 @@ public:
     Q_INVOKABLE DilekceManagerPage* createDilekceManager();
     Q_INVOKABLE TCManagerPage* createTCManager();
 
+
+    Q_INVOKABLE QString localFileUrl( const QString &filePath );
 
 signals:
     void messageChanged(QString _message);
