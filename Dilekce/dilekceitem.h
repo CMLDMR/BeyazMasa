@@ -31,13 +31,20 @@ public:
     DilekceItem& operator=( const Dilekce &dilekce);
     void operator=( Dilekce* dilekce);
     DilekceItem& operator=( DilekceItem&& other );
-    DilekceItem& operator=( const DilekceItem other );
+    DilekceItem& operator=( const DilekceItem &other );
 
+    /// dilekce document _id bilgisi
     Q_INVOKABLE QString dilekceID();
 
+    Q_INVOKABLE QString taranmisDilekceOid();
+
+    Q_INVOKABLE bool durum();
+
+    Q_INVOKABLE QJsonArray cevapEkList();
 
 
-
+    //////////////////////
+    // BU Alanda Dilekce Kaydı Yapılırken Kullanılan Fonksiyonlar
     Q_INVOKABLE QJsonArray ekList() const;
     Q_INVOKABLE void addEk( const QString &ekPath );
     Q_INVOKABLE bool deleteEk( const QString &ekPath );
@@ -48,6 +55,8 @@ public:
 
     QString dilekceFilePath() const;
     void setDilekceFilePath(const QString &dilekceFilePath);
+    ////////////////////////
+
 
 signals:
     void ekListChanged();

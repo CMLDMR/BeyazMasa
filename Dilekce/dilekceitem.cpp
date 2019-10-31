@@ -39,7 +39,7 @@ DilekceItem &DilekceItem::operator=(DilekceItem &&other)
     return *this;
 }
 
-DilekceItem &DilekceItem::operator=(const DilekceItem other)
+DilekceItem &DilekceItem::operator=(const DilekceItem &other)
 {
     this->setDocumentView (other.view ());
     return *this;
@@ -55,6 +55,35 @@ QString DilekceItem::dilekceID()
     }else{
         return "";
     }
+}
+
+QString DilekceItem::taranmisDilekceOid()
+{
+    return this->dilekceOid ();
+}
+
+bool DilekceItem::durum()
+{
+    auto Durum = this->Durum ();
+
+    if( Durum == DilekceDurum::Acik )
+    {
+        return false;
+    }else{
+        return true;
+    }
+}
+
+QJsonArray DilekceItem::cevapEkList()
+{
+    std::cout << "dilekce Cevap Eklist Count: " << this->EkOidList ().count () << std::endl;
+
+    QJsonArray array;
+    for( auto item : this->EkOidList () )
+    {
+        array.append (item);
+    }
+    return array;
 }
 
 QJsonArray DilekceItem::ekList() const
