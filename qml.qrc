@@ -14,5 +14,9 @@
         <file>Dilekce/DilekceListPage.qml</file>
         <file>Dilekce/DilekceFullView.qml</file>
         <file>TC/TCComponent.qml</file>
+        <file>Talep/Talep.qml</file>
+        <file>Talep/TalepScript.js</file>
+        <file>Talep/TalepMenu.qml</file>
+        <file>Talep/YeniTalep.qml</file>
     </qresource>
 </RCC>

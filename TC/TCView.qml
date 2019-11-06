@@ -308,6 +308,7 @@ Item {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 0
                 onClicked: {
+                    tcManager.destroy();
                     yeniTCKaydetID.destroy();
                 }
             }

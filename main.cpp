@@ -35,6 +35,56 @@ int main(int argc, char *argv[])
 
 //    qmlRegisterInterface<QList<DilekceItem*>>("DilekceItemList");
 
+//    auto testDoc = document{};
+
+//    try {
+//        testDoc.append (kvp("_id",bsoncxx::oid{"5db2b6249193561f30008296"}));
+//    } catch (bsoncxx::exception &e) {
+//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+//        std::cout << str << std::endl;
+//    }
+
+//    try {
+//        testDoc.append (kvp("int64",bsoncxx::types::b_int64{20191012121212321}));
+//    } catch (bsoncxx::exception &e) {
+//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+//        std::cout << str << std::endl;
+//    }
+
+//    try {
+//        testDoc.append (kvp("int32",bsoncxx::types::b_int32{234}));
+//    } catch (bsoncxx::exception &e) {
+//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+//        std::cout << str << std::endl;
+//    }
+
+//    try {
+//        testDoc.append (kvp("utf8",bsoncxx::types::b_utf8{"234"}));
+//    } catch (bsoncxx::exception &e) {
+//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+//        std::cout << str << std::endl;
+//    }
+
+
+///*
+// *  binary_sub_type sub_type;
+//    uint32_t size;
+//    const uint8_t* bytes;
+//*/
+
+
+//    QByteArray ar("CEMALDEMIR");
+//    std::cout << (const uint8_t*)(ar.data ()) << std::endl;
+
+//    try {
+//        testDoc.append (kvp("binary",bsoncxx::types::b_binary {bsoncxx::binary_sub_type::k_binary,static_cast<uint32_t>(ar.size ()),(const uint8_t*)(ar.data ())}));
+//    } catch (bsoncxx::exception &e) {
+//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+//        std::cout << str << std::endl;
+//    }
+
+//    std::cout << bsoncxx::to_json (testDoc.view ()) << std::endl;
+
 
 
     QGuiApplication app(argc, argv);

@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.13
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.13
 import "Dilekce/DilekceScripts.js" as Dilekce
+import "Talep/TalepScript.js" as TalepManager
 
 Item {
 
@@ -73,7 +74,7 @@ Item {
                     border.color: "white"
                     Text {
                         id: sikayetGirisMenuText
-                        text: qsTr("Şikayet/Talep Giriş")
+                        text: qsTr("Talepler")
                         anchors.centerIn: parent
                         color: "white"
                         font.bold: true
@@ -81,6 +82,9 @@ Item {
                     MouseArea{
                         cursorShape: "PointingHandCursor"
                         anchors.fill: parent
+                        onEntered: {
+                            talepleranimationID.start();
+                        }
                         onPressed: {
                             parent.color = "white";
                             sikayetGirisMenuText.color = "black"
@@ -88,6 +92,19 @@ Item {
                         onReleased: {
                             parent.color = "darkSlateGray";
                             sikayetGirisMenuText.color = "white"
+                            TalepManager.loadTalepManager();
+                        }
+                    }
+
+                    PropertyAnimation{
+                        id: talepleranimationID
+                        target: sikayetGirisMenu
+                        property: "color"
+                        from:"darkslategray"
+                        to: "white"
+                        duration: 250
+                        onStopped: {
+                            sikayetGirisMenuText.color = "black"
                         }
                     }
                 }

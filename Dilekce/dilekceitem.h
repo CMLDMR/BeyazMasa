@@ -45,6 +45,7 @@ public:
 
     //////////////////////
     // BU Alanda Dilekce Kaydı Yapılırken Kullanılan Fonksiyonlar
+    // Veri Tabanına İşlem Yapmıyor.
     Q_INVOKABLE QJsonArray ekList() const;
     Q_INVOKABLE void addEk( const QString &ekPath );
     Q_INVOKABLE bool deleteEk( const QString &ekPath );
