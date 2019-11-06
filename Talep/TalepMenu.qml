@@ -23,12 +23,6 @@ Item {
                     font.family: "Tahoma"
                     font.pointSize : 11
                     anchors.centerIn: parent
-//                    layer.enabled: true
-//                    layer.effect: DropShadow{
-//                        color: "gray"
-//                        radius: 3
-//                        samples: 5
-//                    }
                 }
 
                 MouseArea{
