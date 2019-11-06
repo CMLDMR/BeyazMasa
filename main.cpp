@@ -15,6 +15,8 @@
 #include "Dilekce/dilekceitem.h"
 #include "Dilekce/dilekcemanagerpage.h"
 #include "TC/tcmanagerpage.h"
+#include "Talep/talepmanagerpage.h"
+#include "Talep/talepitem.h"
 
 int main(int argc, char *argv[])
 {
@@ -32,6 +34,9 @@ int main(int argc, char *argv[])
     qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
     qmlRegisterType <DilekceManagerPage>("serik.bel.tr.DilekceManagerPage",1,0,"DilekceManagerPage");
     qmlRegisterType <TCManagerPage>("serik.bel.tr.TCManagerPage",1,0,"TCManagerPage");
+
+    qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
+    qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
 
 //    qmlRegisterInterface<QList<DilekceItem*>>("DilekceItemList");
 
