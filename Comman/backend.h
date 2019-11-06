@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include "Dilekce/dilekcemanagerpage.h"
 #include "TC/tcmanagerpage.h"
+#include "Talep/talepmanagerpage.h"
 
 class Backend : public QObject
 {
@@ -32,6 +33,7 @@ public:
 
     Q_INVOKABLE DilekceManagerPage* createDilekceManager();
     Q_INVOKABLE TCManagerPage* createTCManager();
+    Q_INVOKABLE TalepManagerPage* createTalepManager();
 
 
     Q_INVOKABLE QString localFileUrl( const QString &filePath );

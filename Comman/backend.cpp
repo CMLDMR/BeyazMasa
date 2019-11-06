@@ -98,6 +98,11 @@ TCManagerPage *Backend::createTCManager()
     return new TCManagerPage(this->mDB);
 }
 
+TalepManagerPage *Backend::createTalepManager()
+{
+    return new TalepManagerPage(this->mDB);
+}
+
 QString Backend::localFileUrl(const QString &filePath)
 {
     return QUrl::fromLocalFile (filePath).toString ();
