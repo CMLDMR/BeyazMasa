@@ -3,12 +3,17 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.12
 import "TalepScript.js" as TalepManager
 import serik.bel.tr.TCManagerPage 1.0
-
+import serik.bel.tr.TalepItem 1.0
+import serik.bel.tr.TalepManagerPage 1.0
 Item {
     anchors.fill: parent
     id: yeniTalepID
 
     property TCManagerPage tcManager: Backend.createTCManager();
+    property TalepManagerPage talepManager: Backend.createTalepManager();
+
+    property TalepItem yeniTalepItem: TalepItem{}
+
 
 
     property var adsoyad: ""
@@ -40,10 +45,10 @@ Item {
         PropertyAnimation{
             target: topRectID
             id: topRectIDAnimationDestoyID
-            property: "width"
+            property: "opacity"
             to: 0
-            from: yeniTalepID.width
-            duration: 250
+            from: 1
+            duration: 500
             onStopped: {
                 yeniTalepID.destroy();
             }
@@ -344,6 +349,7 @@ Item {
                             height: 50
                             color: "transparent"
                             ComboBox{
+                                id: mahalleComboBoxID
                                 width: parent.width
                                 height: parent.height
                                 model: Backend.mahalleler
@@ -457,7 +463,30 @@ Item {
                     anchors.fill: parent
                     cursorShape: "PointingHandCursor"
                     onClicked: {
-                        topRectIDAnimationDestoyID.start();
+
+                        if( tcoid.length !== 24)
+                        {
+                            Backend.message = "TC Hatalı Lütfen TC Giriniz";
+                            return;
+                        }
+
+                        if( mahalleComboBoxID.currentText === "NULL" )
+                        {
+                            Backend.message = "Mahalle Seçmediniz";
+                            return;
+                        }
+
+
+                        yeniTalepItem.tcOid = tcoid;
+                        yeniTalepItem.mahalle = mahalleComboBoxID.currentText;
+
+                        if( talepManager.insertTalepItem(yeniTalepItem) )
+                        {
+                            topRectIDAnimationDestoyID.start();
+                        }else{
+                            Backend.message = "Talep Kayıt Edilemedi";
+                        }
+
                     }
                 }
             }
