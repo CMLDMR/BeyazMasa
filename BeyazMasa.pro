@@ -22,6 +22,8 @@ SOURCES += \
         Login/puser.cpp \
         TC/tcitem.cpp \
         TC/tcmanagerpage.cpp \
+        Talep/talepitem.cpp \
+        Talep/talepmanagerpage.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -49,7 +51,9 @@ HEADERS += \
     Dilekce/dilekcemanagerpage.h \
     Login/puser.h \
     TC/tcitem.h \
-    TC/tcmanagerpage.h
+    TC/tcmanagerpage.h \
+    Talep/talepitem.h \
+    Talep/talepmanagerpage.h
 
 
 
