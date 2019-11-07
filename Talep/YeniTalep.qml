@@ -5,6 +5,7 @@ import "TalepScript.js" as TalepManager
 import serik.bel.tr.TCManagerPage 1.0
 import serik.bel.tr.TalepItem 1.0
 import serik.bel.tr.TalepManagerPage 1.0
+
 Item {
     anchors.fill: parent
     id: yeniTalepID
@@ -13,6 +14,57 @@ Item {
     property TalepManagerPage talepManager: Backend.createTalepManager();
 
     property TalepItem yeniTalepItem: TalepItem{}
+
+
+    function saveTalep(){
+
+        yeniTalepItem.Durum = (TalepItem.Tamamlandi);
+
+        print( yeniTalepItem.Durum );
+        print( yeniTalepItem.DurumStr );
+
+        if( tcoid.length !== 24)
+        {
+            Backend.message = "TC Hatalı Lütfen TC Giriniz";
+            return;
+        }
+
+        if( mahalleComboBoxID.currentText === "NULL" )
+        {
+            Backend.message = "Mahalle Seçmediniz";
+            return;
+        }
+
+
+        if( tamAdresInputID.text.length === 0 )
+        {
+            Backend.message = "Tam Adresi Girmediniz";
+            return;
+        }
+
+        if( mesajAlaniTextinputID.text.length <= 50 )
+        {
+            Backend.message = "Konu Alanı 50 Karakterden Az Olamaz";
+            return;
+        }
+
+        yeniTalepItem.setDate(Backend.currentJulianDay);
+        yeniTalepItem.setTime(Backend.mSecStartOfDay);
+        yeniTalepItem.konu = mesajAlaniTextinputID.text;
+        yeniTalepItem.adres = tamAdresInputID.text;
+        yeniTalepItem.tcOid = tcoid;
+        yeniTalepItem.mahalle = mahalleComboBoxID.currentText;
+
+
+        if( talepManager.insertTalepItem(yeniTalepItem) )
+        {
+            topRectIDAnimationDestoyID.start();
+        }else{
+            Backend.message = "Talep Kayıt Edilemedi";
+        }
+
+
+    }
 
 
 
@@ -362,6 +414,7 @@ Item {
                             color: "transparent"
 
                             TextInput{
+                                id: tamAdresInputID
                                 width: parent.width
                                 height: parent.height
                                 horizontalAlignment: Text.AlignHCenter
@@ -463,30 +516,7 @@ Item {
                     anchors.fill: parent
                     cursorShape: "PointingHandCursor"
                     onClicked: {
-
-                        if( tcoid.length !== 24)
-                        {
-                            Backend.message = "TC Hatalı Lütfen TC Giriniz";
-                            return;
-                        }
-
-                        if( mahalleComboBoxID.currentText === "NULL" )
-                        {
-                            Backend.message = "Mahalle Seçmediniz";
-                            return;
-                        }
-
-
-                        yeniTalepItem.tcOid = tcoid;
-                        yeniTalepItem.mahalle = mahalleComboBoxID.currentText;
-
-                        if( talepManager.insertTalepItem(yeniTalepItem) )
-                        {
-                            topRectIDAnimationDestoyID.start();
-                        }else{
-                            Backend.message = "Talep Kayıt Edilemedi";
-                        }
-
+                        saveTalep();
                     }
                 }
             }
