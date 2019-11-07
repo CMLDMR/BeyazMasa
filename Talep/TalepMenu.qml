@@ -5,6 +5,7 @@ Item {
 
 
     signal yeniTalepActivated();
+    signal tcnoCompleted(string tcno);
 
     Rectangle{
         width: parent.width
@@ -36,20 +37,34 @@ Item {
             Rectangle{
                 width: parent.width/2
                 height: parent.height
-                Text {
-                    text: qsTr("TCNO Listele")
-                    color: "darkslategray"
-                    font.bold: false
+
+                TextInput{
+                    width: parent.width
+                    height: parent.height
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.bold: true
                     font.family: "Tahoma"
-                    font.pointSize : 11
-                    anchors.centerIn: parent
-//                    layer.enabled: true
-//                    layer.effect: DropShadow{
-//                        color: "gray"
-//                        radius: 3
-//                        samples: 5
-//                    }
+                    font.pointSize: 11
+                    Text {
+                        text: qsTr("TCNO Listele")
+                        color: "darkslategray"
+                        font.bold: false
+                        font.family: "Tahoma"
+                        font.pointSize : 11
+                        anchors.centerIn: parent
+                        visible: !parent.text
+                    }
+
+                    onTextChanged: {
+                        if( text.length === 11 )
+                        {
+                            tcnoCompleted(text);
+                        }
+                    }
                 }
+
+
             }
         }
 
