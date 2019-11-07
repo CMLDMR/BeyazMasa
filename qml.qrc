@@ -18,5 +18,6 @@
         <file>Talep/TalepScript.js</file>
         <file>Talep/TalepMenu.qml</file>
         <file>Talep/YeniTalep.qml</file>
+        <file>Talep/TalepListItem.qml</file>
     </qresource>
 </RCC>
