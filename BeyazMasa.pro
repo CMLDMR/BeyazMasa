@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         Comman/backend.cpp \
         Comman/database.cpp \
+        Comman/managerpage.cpp \
         Dilekce/dilekcegirispage.cpp \
         Dilekce/dilekceitem.cpp \
         Dilekce/dilekcemanagerpage.cpp \
@@ -46,6 +47,7 @@ win32:xml {
 HEADERS += \
     Comman/backend.h \
     Comman/database.h \
+    Comman/managerpage.h \
     Dilekce/dilekcegirispage.h \
     Dilekce/dilekceitem.h \
     Dilekce/dilekcemanagerpage.h \
