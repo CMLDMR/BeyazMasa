@@ -66,3 +66,40 @@ function loadYeniTalepPage(){
     }
 
 }
+
+
+function loadTalepView(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepView.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
+
+function loadAciklamaScreen(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepAciklamaEkle.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
