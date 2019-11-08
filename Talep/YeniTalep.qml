@@ -18,11 +18,6 @@ Item {
 
     function saveTalep(){
 
-        yeniTalepItem.Durum = (TalepItem.Tamamlandi);
-
-        print( yeniTalepItem.Durum );
-        print( yeniTalepItem.DurumStr );
-
         if( tcoid.length !== 24)
         {
             Backend.message = "TC Hatalı Lütfen TC Giriniz";
@@ -54,6 +49,8 @@ Item {
         yeniTalepItem.adres = tamAdresInputID.text;
         yeniTalepItem.tcOid = tcoid;
         yeniTalepItem.mahalle = mahalleComboBoxID.currentText;
+        yeniTalepItem.Durum = TalepItem.DevamEdiyor;
+        yeniTalepItem.Kaynak = TalepItem.BEYAZMASA;
 
 
         if( talepManager.insertTalepItem(yeniTalepItem) )
