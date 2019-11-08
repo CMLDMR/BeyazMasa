@@ -22,6 +22,8 @@ public:
     Q_INVOKABLE bool insertTalepItem( TalepItem* item );
 
     Q_INVOKABLE void find();
+
+    Q_INVOKABLE TalepItem *findOne( const QString &talepOid );
 };
 
 #endif // TALEPMANAGERPAGE_H

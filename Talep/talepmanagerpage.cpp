@@ -32,3 +32,13 @@ void TalepManagerPage::find()
 
 }
 
+TalepItem* TalepManagerPage::findOne(const QString &talepOid)
+{
+    Talep filter;
+    filter.setOid (talepOid.toStdString ());
+    auto val = this->findOneTalep (filter);
+    TalepItem* item = new TalepItem();
+    item->setDocumentView (val.view ());
+    return item;
+}
+
