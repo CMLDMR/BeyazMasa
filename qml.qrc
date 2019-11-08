@@ -19,5 +19,7 @@
         <file>Talep/TalepMenu.qml</file>
         <file>Talep/YeniTalep.qml</file>
         <file>Talep/TalepListItem.qml</file>
+        <file>Talep/TalepView.qml</file>
+        <file>Talep/TalepAciklamaEkle.qml</file>
     </qresource>
 </RCC>
