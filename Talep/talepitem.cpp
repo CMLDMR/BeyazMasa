@@ -25,7 +25,10 @@ TalepItem &TalepItem::operator=(const TalepItem &other)
 TalepItem &TalepItem::operator=(TalepItem &&other)
 {
     this->setDocumentView (other.view ());
-    return *this;}
+    return *this;
+}
+
+
 
 void TalepItem::setTime(const int &mStartOfDay)
 {
@@ -37,14 +40,27 @@ void TalepItem::setDate(const int &julianDay)
     this->setJulianDay (julianDay);
 }
 
+
+
 void TalepItem::setQMLDurum(const DurumKey &durum)
 {
-    auto durumStr = QMetaEnum::fromType<DurumKey>().valueToKey(durum);
-    this->setDurum (durumStr);
+    auto metalVal = QMetaEnum::fromType<DurumKey>();
+    this->setDurum (metalVal.valueToKey (durum));
 }
 
 TalepItem::DurumKey TalepItem::durumQML() const
 {
-    auto _durum = QMetaEnum::fromType<DurumKey>().keyToValue (this->durum ().toStdString ().c_str ());
-    return static_cast<DurumKey>(_durum);
+    auto metalVal = QMetaEnum::fromType<DurumKey>();
+    return static_cast<DurumKey>(metalVal.keyToValue (this->durum ().toStdString ().c_str ()));
+}
+
+void TalepItem::setQMLKaynak(const TalepItem::Kaynak &kaynak)
+{
+    auto metalVal = QMetaEnum::fromType<Kaynak>();
+    this->setKaynak (metalVal.valueToKey (kaynak));}
+
+TalepItem::Kaynak TalepItem::kaynakQML() const
+{
+    auto metalVal = QMetaEnum::fromType<Kaynak>();
+    return static_cast<Kaynak>(metalVal.keyToValue (this->kaynak ().toStdString ().c_str ()));
 }
