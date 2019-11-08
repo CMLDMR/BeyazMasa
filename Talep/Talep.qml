@@ -73,6 +73,9 @@ Item {
                             anchors.fill: parent
                             TalepListItem{
                                 talepItem: modelData
+                                onClickTalep: {
+                                    TalepManager.loadTalepView(talepoid);
+                                }
                             }
                         }
                     }
