@@ -23,6 +23,7 @@ SOURCES += \
         Login/puser.cpp \
         TC/tcitem.cpp \
         TC/tcmanagerpage.cpp \
+        Talep/talepevent.cpp \
         Talep/talepitem.cpp \
         Talep/talepmanagerpage.cpp \
         main.cpp
@@ -54,6 +55,7 @@ HEADERS += \
     Login/puser.h \
     TC/tcitem.h \
     TC/tcmanagerpage.h \
+    Talep/talepevent.h \
     Talep/talepitem.h \
     Talep/talepmanagerpage.h
 
