@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     auto backend = new Backend(db);
     auto user = new PUser(db);
 
-    qmlRegisterType<DataBase>();
+    qmlRegisterType <DataBase>();
     qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
     qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
     qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
@@ -37,59 +37,6 @@ int main(int argc, char *argv[])
 
     qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
     qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
-
-//    qmlRegisterInterface<QList<DilekceItem*>>("DilekceItemList");
-
-//    auto testDoc = document{};
-
-//    try {
-//        testDoc.append (kvp("_id",bsoncxx::oid{"5db2b6249193561f30008296"}));
-//    } catch (bsoncxx::exception &e) {
-//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
-//        std::cout << str << std::endl;
-//    }
-
-//    try {
-//        testDoc.append (kvp("int64",bsoncxx::types::b_int64{20191012121212321}));
-//    } catch (bsoncxx::exception &e) {
-//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
-//        std::cout << str << std::endl;
-//    }
-
-//    try {
-//        testDoc.append (kvp("int32",bsoncxx::types::b_int32{234}));
-//    } catch (bsoncxx::exception &e) {
-//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
-//        std::cout << str << std::endl;
-//    }
-
-//    try {
-//        testDoc.append (kvp("utf8",bsoncxx::types::b_utf8{"234"}));
-//    } catch (bsoncxx::exception &e) {
-//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
-//        std::cout << str << std::endl;
-//    }
-
-
-///*
-// *  binary_sub_type sub_type;
-//    uint32_t size;
-//    const uint8_t* bytes;
-//*/
-
-
-//    QByteArray ar("CEMALDEMIR");
-//    std::cout << (const uint8_t*)(ar.data ()) << std::endl;
-
-//    try {
-//        testDoc.append (kvp("binary",bsoncxx::types::b_binary {bsoncxx::binary_sub_type::k_binary,static_cast<uint32_t>(ar.size ()),(const uint8_t*)(ar.data ())}));
-//    } catch (bsoncxx::exception &e) {
-//        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
-//        std::cout << str << std::endl;
-//    }
-
-//    std::cout << bsoncxx::to_json (testDoc.view ()) << std::endl;
-
 
 
     QGuiApplication app(argc, argv);
