@@ -11,6 +11,8 @@ class PUser : public QObject , public User
     Q_PROPERTY(QString adsoyad READ adSoyad)
     Q_PROPERTY(QString statu READ statu)
     Q_PROPERTY(QString birimi READ birimi)
+    Q_PROPERTY(QString UserOid READ UserOid)
+
 
 
 public:
@@ -24,6 +26,7 @@ public:
     QString adSoyad();
     QString statu();
     QString birimi();
+
 
 signals:
     void logined();
