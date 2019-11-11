@@ -1,4 +1,4 @@
-#ifndef TALEPMANAGERPAGE_H
+﻿#ifndef TALEPMANAGERPAGE_H
 #define TALEPMANAGERPAGE_H
 
 #include <QObject>
@@ -9,11 +9,14 @@
 #include <QJsonArray>
 #include "talepitem.h"
 #include "Comman/managerpage.h"
+#include "talepevent.h"
 
 class TalepManagerPage : public ManagerPage<TalepItem> , public TalepManager
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<TalepItem> list READ list NOTIFY listChanged )
+    Q_PROPERTY(QQmlListProperty<TalepEvent> eventList READ eventList NOTIFY eventListUpdated )
+
 
 public:
     explicit TalepManagerPage(QObject *parent = nullptr);
@@ -24,6 +27,26 @@ public:
     Q_INVOKABLE void find();
 
     Q_INVOKABLE TalepItem *findOne( const QString &talepOid );
+
+    Q_INVOKABLE bool insertTalepEvent(TalepEvent *event );
+
+    QQmlListProperty<TalepEvent> eventList();
+
+    Q_INVOKABLE void updateEventList( const QString& talepOid );
+
+    Q_INVOKABLE QString uploadFile( const QString& fileUrl );
+
+    Q_INVOKABLE QString downloadFileUrl( const QString& fileOid );
+
+
+
+
+signals:
+    void eventListUpdated();
+
+private:
+    QList<TalepEvent*> mEventList_Ptr;
+
 };
 
 #endif // TALEPMANAGERPAGE_H
