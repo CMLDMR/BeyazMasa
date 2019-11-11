@@ -26,3 +26,18 @@ TalepEvent &TalepEvent::operator=(TalepEvent &&other)
     this->setDocumentView (other.view ());
     return *this;
 }
+
+void TalepEvent::setEventType(TalepEvent::EventType type)
+{
+    this->setType (static_cast<TalepSubItem::ItemType>(type));
+}
+
+TalepEvent::EventType TalepEvent::eventType() const
+{
+    return static_cast<EventType>(type ());
+}
+
+QString TalepEvent::eventTypeStr() const
+{
+    return QMetaEnum::fromType<EventType>().valueToKey (static_cast<EventType>(this->type ()));
+}
