@@ -6,11 +6,15 @@ import serik.bel.tr.TalepManagerPage 1.0
 import serik.bel.tr.TalepItem 1.0
 import serik.bel.tr.TCManagerPage 1.0
 import serik.bel.tr.TCItem 1.0
+import serik.bel.tr.TalepEvent 1.0
 
 Item {
 
     anchors.fill: parent
     id: aciklamaEkleDialogID
+    property string talepOid
+    property TalepEvent talepEvent: TalepEvent{}
+    property TalepManagerPage talepManager: Backend.createTalepManager();
 
     Rectangle
     {
@@ -66,6 +70,7 @@ Item {
                 height: parent.height-130
                 color: "transparent"
                 TextInput{
+                    id: aciklamainputTextID
                     padding: 15
                     width: parent.width
                     height: parent.height
@@ -109,6 +114,31 @@ Item {
                         samples: 5
                     }
                 }
+
+                MouseArea{
+                    anchors.fill: parent
+                    cursorShape: "PointingHandCursor"
+                    onClicked: {
+
+
+                        talepEvent.Type = TalepEvent.Aciklama;
+                        talepEvent.talepOid = talepOid;
+                        talepEvent.Aciklama = aciklamainputTextID.text;
+                        talepEvent.personelName = User.adsoyad;
+                        talepEvent.personelOid = User.UserOid;
+
+                        if( talepManager.insertTalepEvent(talepEvent) )
+                        {
+                            Backend.message = "Açıklama Eklendi";
+                            closeUpAciklamaEkleDialog.start();
+                        }else{
+                            Backend.message = "! Açıklama Eklenemedi";
+                        }
+
+
+                    }
+                }
+
             }
 
             Rectangle{
