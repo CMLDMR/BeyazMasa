@@ -103,3 +103,77 @@ function loadAciklamaScreen(talepoid)
         console.log("Error loading component:", component.errorString());
     }
 }
+
+
+function loadFotografEkleScreen(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepFotografEkle.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
+
+function loadPdfEkleScreen(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepPdfEkle.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
+
+function loadKonumEkleScreen(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepKonumEkle.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
+
+function loadSmsGonderScreen(talepoid)
+{
+    var component = Qt.createComponent("qrc:/Talep/TalepSmsGonder.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+        }else{
+
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+    }
+}
+
