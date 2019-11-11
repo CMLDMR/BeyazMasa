@@ -6,6 +6,7 @@ import serik.bel.tr.TalepManagerPage 1.0
 import serik.bel.tr.TalepItem 1.0
 import serik.bel.tr.TCManagerPage 1.0
 import serik.bel.tr.TCItem 1.0
+import serik.bel.tr.TalepEvent 1.0
 
 
 Item {
@@ -34,8 +35,8 @@ Item {
 
         Column{
             anchors.fill: parent
-            anchors.bottomMargin: 100
-            spacing: 5
+            anchors.bottomMargin: 85
+            spacing: 10
 
 
 
@@ -50,7 +51,7 @@ Item {
                     clip: true
                     Column{
                         anchors.fill: parent
-                        spacing: 5
+                        spacing: 10
                         padding: 5
 
                         //TC Bilgileri
@@ -351,25 +352,40 @@ Item {
 
                         //Talep Açıklamaları
                         Repeater{
-                            model: 5
+                            id: eventListRepeaterID
+                            model: talepManager.eventList;
                             Rectangle{
-                                width: parent.width
+                                width: parent.width-parent.padding*2
                                 height: 100
-                                color: "orange"
-                                Text {
-                                    text: qsTr("Açıklamalar")
-                                    color: "white"
-                                    font.bold: true
-                                    font.family: "Tahoma"
-                                    font.pointSize : 9
-                                    anchors.centerIn: parent
-                                    layer.enabled: true
-                                    layer.effect: DropShadow{
-                                        color: "black"
-                                        radius: 3
-                                        samples: 5
+                                color: "lightgray"
+                                TalepEventItem{
+                                    talepEvent: modelData;
+                                    Component.onCompleted: {
+                                        if( talepEvent.Type === TalepEvent.Fotograf )
+                                        {
+                                            parent.color = "orange"
+                                        }
+                                        if( talepEvent.Type === TalepEvent.Pdf )
+                                        {
+                                            parent.color = "steelblue"
+                                        }
+                                        if( talepEvent.Type === TalepEvent.Sms )
+                                        {
+                                            parent.color = "crimson"
+                                        }
                                     }
                                 }
+                                radius: 5
+                                layer.enabled: true
+                                layer.effect: DropShadow{
+                                    samples: 6
+                                    radius: 3
+                                    color: "black"
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                talepManager.updateEventList(talepOid);
                             }
                         }
 
@@ -517,7 +533,7 @@ Item {
                     height: parent.height
                     color: "slategray"
                     Text {
-                        text: qsTr("Dosya Ekle")
+                        text: qsTr("Diğer Ekle")
                         color: "white"
                         font.bold: true
                         font.family: "Tahoma"
@@ -530,10 +546,59 @@ Item {
                             samples: 5
                         }
                     }
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            dosyaEkleMenu.popup();
+                        }
+                    }
+
+                    Menu{
+                        id: dosyaEkleMenu
+                        MenuItem {
+                            text: "Sms Gönder"
+                            onClicked: {
+                                TalepManager.loadSmsGonderScreen(talepOid)
+                            }
+                        }
+                        MenuItem {
+                            text: "Fotoğraf Ekle"
+                            onClicked: {
+                                TalepManager.loadFotografEkleScreen(talepOid)
+                            }
+                        }
+                        MenuItem {
+                            text: "Pdf Ekle"
+                            onClicked: {
+                                TalepManager.loadPdfEkleScreen(talepOid)
+                            }
+                        }
+//                        MenuItem {
+//                            text: "Konum Ekle"
+//                            onClicked: {
+//                                TalepManager.loadKonumEkleScreen(talepOid)
+//                            }
+//                        }
+                        MenuItem {
+                            text: "Video Ekle"
+                            onClicked: {
+                                Backend.message = "Video Ekleme Şuanda Kullanılamıyor"
+                            }
+                        }
+                    }
                 }
 
 
             }
+
+            layer.enabled: true
+            layer.effect: DropShadow {
+                samples: 6
+                radius: 3
+                color: "black"
+            }
+
         }
 
 
@@ -572,12 +637,12 @@ Item {
 
 
     Component.onCompleted: {
-
         talepItem = talepManager.findOne(talepOid);
-
         tcItem = tcManager.loadByOid(talepItem.tcOid);
-
     }
+
+
+
 
 
 
