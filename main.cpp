@@ -17,6 +17,7 @@
 #include "TC/tcmanagerpage.h"
 #include "Talep/talepmanagerpage.h"
 #include "Talep/talepitem.h"
+#include "Talep/talepevent.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
     qmlRegisterType <TCManagerPage>("serik.bel.tr.TCManagerPage",1,0,"TCManagerPage");
 
     qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
+    qmlRegisterType <TalepEvent>("serik.bel.tr.TalepEvent",1,0,"TalepEvent");
     qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
 
 
