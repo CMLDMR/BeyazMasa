@@ -21,5 +21,11 @@
         <file>Talep/TalepListItem.qml</file>
         <file>Talep/TalepView.qml</file>
         <file>Talep/TalepAciklamaEkle.qml</file>
+        <file>Talep/TalepEventItem.qml</file>
+        <file>Talep/TalepFotografEkle.qml</file>
+        <file>file/icon/adobe-acrobat-pdf-file-document-512.png</file>
+        <file>Talep/TalepPdfEkle.qml</file>
+        <file>Talep/TalepKonumEkle.qml</file>
+        <file>Talep/TalepSmsGonder.qml</file>
     </qresource>
 </RCC>
