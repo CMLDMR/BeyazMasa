@@ -18,11 +18,16 @@ bool TalepManagerPage::insertTalepItem( TalepItem *item )
     return this->insertTalep(item);
 }
 
+bool TalepManagerPage::updateTalepItem(TalepItem *item)
+{
+    return this->updateTalep (item);
+}
+
 
 void TalepManagerPage::find()
 {
     auto val = this->findTalep (Talep());
-
+    this->clearModel ();
     for( auto item : val )
     {
         TalepItem item_;
