@@ -43,7 +43,10 @@ Item {
                 width: parent.width
                 height: 50
                 onYeniTalepActivated: {
-                    TalepManager.loadYeniTalepPage();
+                    var result = TalepManager.loadYeniTalepPage();
+                    result.added.connect(function(){
+                        talepManeger.find();
+                    });
                 }
 
                 onTcnoCompleted: {
@@ -74,7 +77,10 @@ Item {
                             TalepListItem{
                                 talepItem: modelData
                                 onClickTalep: {
-                                    TalepManager.loadTalepView(talepoid);
+                                    var result = TalepManager.loadTalepView(talepoid);
+                                    result.updated.connect(function(){
+                                        talepManeger.find();
+                                    });
                                 }
                             }
                         }
