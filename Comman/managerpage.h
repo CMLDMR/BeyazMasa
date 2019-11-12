@@ -33,6 +33,8 @@ public:
 
     void insertModel(T item);
 
+    void clearModel();
+
 
 
 private:
@@ -77,6 +79,12 @@ void ManagerPage<T>::insertModel(T item)
 {
     mItemlist.append (item);
     emit listChanged();
+}
+
+template<typename T>
+void ManagerPage<T>::clearModel()
+{
+    mItemlist.clear ();
 }
 
 
