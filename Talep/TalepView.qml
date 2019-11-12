@@ -75,7 +75,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: tcItem.AdSoyad
+                                        text: "AdSoyad: " + tcItem.AdSoyad
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -94,7 +94,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: tcItem.CepTelefonu
+                                        text: "Telefon: "+tcItem.CepTelefonu
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -113,7 +113,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: tcItem.Mahalle
+                                        text: "Mahalle: "+tcItem.Mahalle
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -134,7 +134,7 @@ Item {
                                     height: parent.height
                                     color: talepItem.KaynakColor
                                     Text {
-                                        text: talepItem.KaynakStr
+                                        text: "Talep Kanalı: "+talepItem.KaynakStr
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -190,6 +190,79 @@ Item {
                                         }
                                     }
                                 }
+
+                                Rectangle{
+                                    width: parent.width
+                                    height: 30
+                                    color: "transparent"
+                                    border.color: "#4c000000"
+                                    Row{
+                                        anchors.fill: parent
+                                        Rectangle{
+                                            width: parent.width * 0.35
+                                            height: parent.height
+                                            color: "transparent"
+                                            Text {
+                                                text: qsTr("Görevli Birim")
+                                                color: "white"
+                                                font.bold: true
+                                                font.family: "Tahoma"
+                                                font.pointSize : 9
+                                                anchors.centerIn: parent
+                                                layer.enabled: true
+                                                layer.effect: DropShadow{
+                                                    color: "black"
+                                                    radius: 3
+                                                    samples: 5
+                                                }
+                                            }
+                                        }
+                                        Rectangle{
+                                            width: parent.width * 0.65
+                                            height: parent.height
+                                            ComboBox{
+                                                id: gorevliBirimComboBox
+                                                anchors.fill: parent
+                                                model: Backend.birimler
+                                                property bool changedProperty: false
+                                                Component.onCompleted: {
+                                                    updateBirimComboBox();
+                                                    changedProperty = true;
+                                                }
+
+                                                onCurrentTextChanged: {
+                                                    if( changedProperty )
+                                                    {
+                                                        talepItem.Birim = currentText;
+                                                        if( talepManager.updateTalepItem(talepItem) )
+                                                        {
+                                                            Backend.message = "Birim Değiştirildi."
+                                                            updateBirimComboBox();
+                                                        }else{
+                                                            Backend.message = "! Birim Değiştirilemedi";
+                                                        }
+                                                    }
+                                                }
+
+                                                function updateBirimComboBox(){
+                                                    for( var i = 0 ; i < count ; i++ )
+                                                    {
+                                                        if( textAt(i) === talepItem.Birim )
+                                                        {
+                                                            currentIndex = i;
+                                                            changedProperty = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+
+
 
                                 // Tarih Saat Mahalle
                                 Rectangle{
