@@ -18,6 +18,7 @@ Item {
     property string talepOid
     property TalepEvent talepEvent: TalepEvent{}
     property TalepManagerPage talepManager: Backend.createTalepManager();
+    signal updated()
 
     Rectangle
     {
@@ -150,7 +151,7 @@ Item {
                             return;
                         }
 
-                        var fotoOid = talepManager.uploadPhoto(fotografImgID.source)
+                        var fotoOid = talepManager.uploadFile(fotografImgID.source)
 
                         talepEvent.FotoOid = fotoOid;
                         talepEvent.talepOid = talepOid;
@@ -162,6 +163,7 @@ Item {
                         {
                             Backend.message = "Fotoğraf Eklendi";
                             closeUpAciklamaEkleDialog.start();
+                            updated();
                         }else{
                             Backend.message = "! Fotoğraf Eklenemedi";
                         }
