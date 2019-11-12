@@ -22,6 +22,7 @@ class TalepItem : public QObject , public Talep
     Q_PROPERTY (Kaynak Kaynak READ kaynakQML WRITE setQMLKaynak  NOTIFY qmlKaynakChanged)
     Q_PROPERTY (QString KaynakStr READ kaynak  NOTIFY qmlKaynakChanged)
     Q_PROPERTY (QString KaynakColor READ kaynakColor NOTIFY qmlKaynakChanged)
+    Q_PROPERTY (QString Birim READ birim WRITE setBirim NOTIFY birimChanged )
 
 public:
     explicit TalepItem(QObject *parent = nullptr);
@@ -72,6 +73,7 @@ signals:
     void konuChanged();
     void qmlDurumChanged();
     void qmlKaynakChanged();
+    void birimChanged();
 
 public slots:
 
