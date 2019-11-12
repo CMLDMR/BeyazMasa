@@ -48,23 +48,19 @@ function loadTalepManager(){
 
 
 function loadYeniTalepPage(){
-
-
     var component = Qt.createComponent("qrc:/Talep/YeniTalep.qml");
-
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID);
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
         // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
-
 }
 
 
@@ -75,32 +71,30 @@ function loadTalepView(talepoid)
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
         // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
 function loadAciklamaScreen(talepoid)
 {
     var component = Qt.createComponent("qrc:/Talep/TalepAciklamaEkle.qml");
-
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
-        // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
@@ -112,14 +106,13 @@ function loadFotografEkleScreen(talepoid)
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
-        // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
@@ -130,14 +123,13 @@ function loadPdfEkleScreen(talepoid)
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite
         }
     } else if (component.status === Component.Error) {
-        // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
@@ -148,14 +140,13 @@ function loadKonumEkleScreen(talepoid)
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
-        // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
@@ -166,14 +157,14 @@ function loadSmsGonderScreen(talepoid)
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
         if (sprite === null) {
-            // Error Handling
-            console.log("Error creating object");
+            return null;
         }else{
-
+            return sprite;
         }
     } else if (component.status === Component.Error) {
         // Error Handling
         console.log("Error loading component:", component.errorString());
+        return null;
     }
 }
 
