@@ -10,18 +10,18 @@ class TalepItem : public QObject , public Talep
 {
     Q_OBJECT
     Q_PROPERTY (QString oid READ oid)
-    Q_PROPERTY (QString tcOid READ tcOid WRITE setTCOID)
-    Q_PROPERTY (QString mahalle READ mahalle WRITE setMahalle)
-    Q_PROPERTY (QString adres READ adres WRITE setAddress)
-    Q_PROPERTY (QString konu READ konu WRITE setKonu)
+    Q_PROPERTY (QString tcOid READ tcOid WRITE setTCOID NOTIFY tcOidChanged)
+    Q_PROPERTY (QString mahalle READ mahalle WRITE setMahalle NOTIFY mahalleChanged)
+    Q_PROPERTY (QString adres READ adres WRITE setAddress NOTIFY adresChanged)
+    Q_PROPERTY (QString konu READ konu WRITE setKonu NOTIFY konuChanged)
     Q_PROPERTY (QString saat READ saat)
     Q_PROPERTY (QString tarih READ tarih)
-    Q_PROPERTY (DurumKey Durum READ durumQML WRITE setQMLDurum )
-    Q_PROPERTY (QString DurumStr READ durum )
-    Q_PROPERTY (QString DurumColor READ durumColor )
-    Q_PROPERTY (Kaynak Kaynak READ kaynakQML WRITE setQMLKaynak )
-    Q_PROPERTY (QString KaynakStr READ kaynak )
-    Q_PROPERTY (QString KaynakColor READ kaynakColor )
+    Q_PROPERTY (DurumKey Durum READ durumQML WRITE setQMLDurum  NOTIFY qmlDurumChanged)
+    Q_PROPERTY (QString DurumStr READ durum  NOTIFY qmlDurumChanged)
+    Q_PROPERTY (QString DurumColor READ durumColor NOTIFY qmlDurumChanged)
+    Q_PROPERTY (Kaynak Kaynak READ kaynakQML WRITE setQMLKaynak  NOTIFY qmlKaynakChanged)
+    Q_PROPERTY (QString KaynakStr READ kaynak  NOTIFY qmlKaynakChanged)
+    Q_PROPERTY (QString KaynakColor READ kaynakColor NOTIFY qmlKaynakChanged)
 
 public:
     explicit TalepItem(QObject *parent = nullptr);
@@ -66,6 +66,12 @@ public:
 
 
 signals:
+    void tcOidChanged();
+    void mahalleChanged();
+    void adresChanged();
+    void konuChanged();
+    void qmlDurumChanged();
+    void qmlKaynakChanged();
 
 public slots:
 

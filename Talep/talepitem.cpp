@@ -46,6 +46,7 @@ void TalepItem::setQMLDurum(const DurumKey &durum)
 {
     auto metalVal = QMetaEnum::fromType<DurumKey>();
     this->setDurum (metalVal.valueToKey (durum));
+    emit qmlDurumChanged ();
 }
 
 TalepItem::DurumKey TalepItem::durumQML() const
@@ -57,7 +58,9 @@ TalepItem::DurumKey TalepItem::durumQML() const
 void TalepItem::setQMLKaynak(const TalepItem::Kaynak &kaynak)
 {
     auto metalVal = QMetaEnum::fromType<Kaynak>();
-    this->setKaynak (metalVal.valueToKey (kaynak));}
+    this->setKaynak (metalVal.valueToKey (kaynak));
+    emit qmlKaynakChanged ();
+}
 
 TalepItem::Kaynak TalepItem::kaynakQML() const
 {
