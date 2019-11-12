@@ -14,6 +14,7 @@ Item {
     property TalepManagerPage talepManager: Backend.createTalepManager();
 
     property TalepItem yeniTalepItem: TalepItem{}
+    signal added()
 
 
     function saveTalep(){
@@ -56,6 +57,7 @@ Item {
         if( talepManager.insertTalepItem(yeniTalepItem) )
         {
             topRectIDAnimationDestoyID.start();
+
         }else{
             Backend.message = "Talep Kayıt Edilemedi";
         }
@@ -99,6 +101,7 @@ Item {
             from: 1
             duration: 500
             onStopped: {
+                added();
                 yeniTalepID.destroy();
             }
         }
