@@ -19,6 +19,7 @@ Item {
     property TalepManagerPage talepManager: Backend.createTalepManager();
     property TCManagerPage tcManager: Backend.createTCManager();
     property TCItem tcItem
+    signal updated();
 
     Rectangle{
         gradient: Gradient {
@@ -388,29 +389,9 @@ Item {
                                 talepManager.updateEventList(talepOid);
                             }
                         }
-
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
-
             }
-
-
         }
 
         // İşlem
@@ -439,6 +420,22 @@ Item {
                             samples: 5
                         }
                     }
+                    MouseArea{
+                        anchors.fill: parent
+                        cursorShape: "PointingHandCursor"
+                        onClicked: {
+                            var oldDurum = talepItem.Durum;
+                            talepItem.Durum = TalepItem.Tamamlandi;
+                            if( talepManager.updateTalepItem(talepItem) )
+                            {
+                                Backend.message = "Durum Değiştirildi."
+                                updated();
+                            }else{
+                                Backend.message = "Durum Değiştirilemedi";
+                                talepItem.Durum = oldDurum;
+                            }
+                        }
+                    }
                 }
 
                 Rectangle{
@@ -459,6 +456,23 @@ Item {
                             samples: 5
                         }
                     }
+                    MouseArea{
+                        anchors.fill: parent
+                        cursorShape: "PointingHandCursor"
+                        onClicked: {
+                            var oldDurum = talepItem.Durum;
+                            talepItem.Durum = TalepItem.RedEdildi;
+                            if( talepManager.updateTalepItem(talepItem) )
+                            {
+                                Backend.message = "Durum Değiştirildi."
+                                updated();
+                            }else{
+                                Backend.message = "Durum Değiştirilemedi";
+                                talepItem.Durum = oldDurum;
+                            }
+                        }
+                    }
+
                 }
 
                 Rectangle{
@@ -479,6 +493,22 @@ Item {
                             samples: 5
                         }
                     }
+                    MouseArea{
+                        anchors.fill: parent
+                        cursorShape: "PointingHandCursor"
+                        onClicked: {
+                            var oldDurum = talepItem.Durum;
+                            talepItem.Durum = TalepItem.DevamEdiyor;
+                            if( talepManager.updateTalepItem(talepItem) )
+                            {
+                                Backend.message = "Durum Değiştirildi."
+                                updated();
+                            }else{
+                                Backend.message = "Durum Değiştirilemedi";
+                                talepItem.Durum = oldDurum;
+                            }
+                        }
+                    }
                 }
 
                 Rectangle{
@@ -497,6 +527,22 @@ Item {
                             color: "black"
                             radius: 3
                             samples: 5
+                        }
+                    }
+                    MouseArea{
+                        anchors.fill: parent
+                        cursorShape: "PointingHandCursor"
+                        onClicked: {
+                            var oldDurum = talepItem.Durum;
+                            talepItem.Durum = TalepItem.Beklemede;
+                            if( talepManager.updateTalepItem(talepItem) )
+                            {
+                                Backend.message = "Durum Değiştirildi."
+                                updated();
+                            }else{
+                                Backend.message = "Durum Değiştirilemedi";
+                                talepItem.Durum = oldDurum;
+                            }
                         }
                     }
                 }
@@ -523,7 +569,25 @@ Item {
                         anchors.fill: parent
                         cursorShape: "PointingHandCursor"
                         onClicked: {
-                            TalepManager.loadAciklamaScreen(talepItem.oid);
+                            if( talepItem.Durum === TalepItem.Tamamlandi )
+                            {
+                                Backend.message = "Bu Talep/Şikayet Tamamlandı. Açıklama Eklemek için Tekrar Açın"
+                            }else{
+                                var result = TalepManager.loadAciklamaScreen(talepItem.oid);
+
+                                if( result !== null )
+                                {
+                                    result.updated.connect(function(){
+                                        console.log("Açıklama Updated: " + talepOid );
+                                        talepManager.updateEventList(talepOid);
+                                        updated();
+                                    });
+                                }else{
+                                    Backend.message = "Açıklama Ekranı Yüklenemiyor";
+                                }
+
+                            }
+
                         }
                     }
                 }
@@ -559,27 +623,64 @@ Item {
                         MenuItem {
                             text: "Sms Gönder"
                             onClicked: {
-                                TalepManager.loadSmsGonderScreen(talepOid)
+                                if( talepItem.Durum === TalepItem.Tamamlandi )
+                                {
+                                    Backend.message = "Bu Talep/Şikayet Tamamlandı. Sms Göndermek için Tekrar Açın"
+                                }else{
+                                    var result = TalepManager.loadSmsGonderScreen(talepOid)
+
+                                    if( result !== null )
+                                    {
+                                        result.updated.connect(function(){
+                                            talepManager.updateEventList(talepOid);
+                                            updated();
+                                        });
+                                    }else{
+                                        Backend.message = "Açıklama Ekranı Yüklenemiyor";
+                                    }
+                                }
                             }
                         }
                         MenuItem {
                             text: "Fotoğraf Ekle"
                             onClicked: {
-                                TalepManager.loadFotografEkleScreen(talepOid)
+                                if( talepItem.Durum === TalepItem.Tamamlandi )
+                                {
+                                    Backend.message = "Bu Talep/Şikayet Tamamlandı. Fotoğraf Eklemek için Tekrar Açın"
+                                }else{
+                                    var result = TalepManager.loadFotografEkleScreen(talepOid)
+                                    if( result !== null )
+                                    {
+                                        result.updated.connect(function(){
+                                            talepManager.updateEventList(talepOid);
+                                            updated();
+                                        });
+                                    }else{
+                                        Backend.message = "Açıklama Ekranı Yüklenemiyor";
+                                    }
+                                }
                             }
                         }
                         MenuItem {
                             text: "Pdf Ekle"
                             onClicked: {
-                                TalepManager.loadPdfEkleScreen(talepOid)
+                                if( talepItem.Durum === TalepItem.Tamamlandi )
+                                {
+                                    Backend.message = "Bu Talep/Şikayet Tamamlandı. Pdf Eklemek için Tekrar Açın"
+                                }else{
+                                    var result = TalepManager.loadPdfEkleScreen(talepOid)
+                                    if( result !== null )
+                                    {
+                                        result.updated.connect(function(){
+                                            talepManager.updateEventList(talepOid);
+                                            updated();
+                                        });
+                                    }else{
+                                        Backend.message = "Açıklama Ekranı Yüklenemiyor";
+                                    }
+                                }
                             }
                         }
-//                        MenuItem {
-//                            text: "Konum Ekle"
-//                            onClicked: {
-//                                TalepManager.loadKonumEkleScreen(talepOid)
-//                            }
-//                        }
                         MenuItem {
                             text: "Video Ekle"
                             onClicked: {
