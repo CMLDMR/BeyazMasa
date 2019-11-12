@@ -578,7 +578,6 @@ Item {
                                 if( result !== null )
                                 {
                                     result.updated.connect(function(){
-                                        console.log("Açıklama Updated: " + talepOid );
                                         talepManager.updateEventList(talepOid);
                                         updated();
                                     });
