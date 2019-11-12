@@ -14,6 +14,8 @@ Item {
     property TalepEvent talepEvent: TalepEvent{}
     property TalepManagerPage talepManager: Backend.createTalepManager();
 
+    signal updated()
+
     Rectangle
     {
         id: aciklamaEkleRectID
@@ -163,6 +165,7 @@ Item {
                         {
                             Backend.message = "Sms Gönderildi";
                             closeUpAciklamaEkleDialog.start();
+                            updated();
                         }else{
                             Backend.message = "! Sms Gönderilemedi";
                         }
