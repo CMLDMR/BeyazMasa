@@ -18,6 +18,7 @@ Item {
     property string talepOid
     property TalepEvent talepEvent: TalepEvent{}
     property TalepManagerPage talepManager: Backend.createTalepManager();
+    signal updated()
 
     Rectangle
     {
@@ -162,6 +163,7 @@ Item {
                         {
                             Backend.message = "PDF Eklendi";
                             closeUpAciklamaEkleDialog.start();
+                            updated();
                         }else{
                             Backend.message = "! PDF Eklenemedi";
                         }
