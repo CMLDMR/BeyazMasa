@@ -431,22 +431,25 @@ Item {
                             Rectangle{
                                 width: parent.width-parent.padding*2
                                 height: 100
-                                color: "lightgray"
+//                                color: "lightgray"
                                 TalepEventItem{
                                     talepEvent: modelData;
                                     Component.onCompleted: {
-                                        if( talepEvent.Type === TalepEvent.Fotograf )
-                                        {
-                                            parent.color = "orange"
-                                        }
-                                        if( talepEvent.Type === TalepEvent.Pdf )
-                                        {
-                                            parent.color = "steelblue"
-                                        }
-                                        if( talepEvent.Type === TalepEvent.Sms )
-                                        {
-                                            parent.color = "crimson"
-                                        }
+
+                                        parent.color = talepEvent.typeColor;
+
+//                                        if( talepEvent.Type === TalepEvent.Fotograf )
+//                                        {
+//                                            parent.color = "orange"
+//                                        }
+//                                        if( talepEvent.Type === TalepEvent.Pdf )
+//                                        {
+//                                            parent.color = "steelblue"
+//                                        }
+//                                        if( talepEvent.Type === TalepEvent.Sms )
+//                                        {
+//                                            parent.color = "crimson"
+//                                        }
                                     }
                                 }
                                 radius: 5
