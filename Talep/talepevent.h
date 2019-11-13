@@ -18,6 +18,7 @@ class TalepEvent : public QObject , public TalepSubItem
     Q_PROPERTY (QString FotoOid READ fotografOid WRITE setFotograf )
     Q_PROPERTY (QString PdfOid READ pdfOid WRITE setPdf )
     Q_PROPERTY (QString sms READ sms WRITE setSms )
+    Q_PROPERTY (QString typeColor READ typeColor )
 
 public:
     explicit TalepEvent(QObject *parent = nullptr);
