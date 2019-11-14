@@ -5,8 +5,11 @@ import serik.bel.tr.TalepEvent 1.0
 
 Item {
 
-    anchors.fill: parent
+//    anchors.fill: parent
+    width: parent.width
+    height: aciklamaAdText.height > fotoid.height ? aciklamaAdText.height+25 : fotoid.height
     property TalepEvent talepEvent
+    id: eventItemID
 
 
 
@@ -15,6 +18,7 @@ Item {
         color: "transparent"
 
         Text {
+            id: logid
             text: talepEvent.personelName + " / " + talepEvent.tarih + " " + talepEvent.saat +" -- " + talepEvent.TypeStr
             color: "white"
             font.bold: false
@@ -33,12 +37,16 @@ Item {
 
         Text {
             id: aciklamaAdText
+            padding: 5
+            anchors.top: logid.bottom
             color: "white"
             font.bold: true
             font.family: "Tahoma"
             font.pointSize : 9
             anchors.centerIn: parent
             textFormat: Text.RichText
+            width: parent.width
+            wrapMode: Text.WordWrap
             layer.enabled: true
             layer.effect: DropShadow{
                 color: "black"
@@ -55,6 +63,12 @@ Item {
                 {
                     aciklamaAdText.text = talepEvent.sms
                 }
+                if( talepEvent.Type === TalepEvent.Log )
+                {
+                    aciklamaAdText.text = talepEvent.log
+                }
+
+
             }
 
         }
@@ -75,6 +89,14 @@ Item {
                     fotoid.source = "qrc:/file/icon/adobe-acrobat-pdf-file-document-512.png"
                     fotoid.pdfurl = talepManager.downloadFileUrl(talepEvent.PdfOid)
                 }
+
+                if( talepEvent.Type === TalepEvent.Pdf  || talepEvent.Type === TalepEvent.Fotograf )
+                {
+                    fotoid.height = 100
+                }else{
+                    fotoid.height = 0
+                }
+
             }
             MouseArea{
                 anchors.fill: parent
@@ -91,8 +113,15 @@ Item {
                     }
                 }
             }
-
         }
     }
+
+    Component.onCompleted: {
+        console.log("fotoheight: " + fotoid.height );
+        console.log("aciklamaheight: " + aciklamaAdText.height );
+        console.log("Height: " + height );
+    }
+
+
 
 }
