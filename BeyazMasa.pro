@@ -100,7 +100,9 @@ windows{
 
 
 
-DISTFILES +=
+DISTFILES += \
+    docs/3D Logo2.png \
+    docs/serik.html
 
 
 
