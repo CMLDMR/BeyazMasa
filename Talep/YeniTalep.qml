@@ -144,9 +144,9 @@ Item {
                     Text {
                         text: qsTr("Yeni Talep/Şikayet Gir")
                         color: "white"
-                        font.bold: true
+                        font.bold: false
                         font.family: "Tahoma"
-                        font.pointSize : 9
+                        font.pointSize : 12
                         anchors.centerIn: parent
                         layer.enabled: true
                         layer.effect: DropShadow{
@@ -185,6 +185,7 @@ Item {
                                 font.bold: true
                                 font.family: "Tahoma"
                                 font.pointSize: 9
+                                text: tcno
                                 Text {
                                     text: qsTr("TCNO Giriniz")
                                     visible: !parent.text
@@ -268,7 +269,7 @@ Item {
                             height: parent.height
                             color: "transparent"
 
-                            Text {
+                            TextInput {
                                 id: cepTelefonuID
                                 text: telefonno
                                 color: "white"
@@ -301,6 +302,29 @@ Item {
                                         samples: 5
                                     }
                                 }
+
+                                onTextChanged: {
+                                    if( text.length === 11 )
+                                    {
+                                        var tcVar = tcManager.loadByTel(text);
+                                        if( tcVar )
+                                        {
+                                            adsoyad = tcVar.AdSoyad;
+                                            tcno = tcVar.TCNO;
+                                            tcoid = tcVar.tcOid();
+                                        }else{
+                                            adsoyad = "";
+                                            tcno = "";
+                                            tcoid = "";
+                                        }
+                                    }else{
+                                        adsoyad = "";
+                                        tcno = "";
+                                        tcoid = "";
+                                    }
+                                }
+
+
                             }
 
                         }
