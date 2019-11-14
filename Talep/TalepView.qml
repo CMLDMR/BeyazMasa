@@ -19,6 +19,7 @@ Item {
     property TalepManagerPage talepManager: Backend.createTalepManager();
     property TCManagerPage tcManager: Backend.createTCManager();
     property TCItem tcItem
+    property TalepEvent talepEvent: TalepEvent{}
     signal updated();
 
     Rectangle{
@@ -430,28 +431,15 @@ Item {
                             model: talepManager.eventList;
                             Rectangle{
                                 width: parent.width-parent.padding*2
-                                height: 100
-//                                color: "lightgray"
                                 TalepEventItem{
+                                    id: itemEvent
                                     talepEvent: modelData;
                                     Component.onCompleted: {
-
                                         parent.color = talepEvent.typeColor;
-
-//                                        if( talepEvent.Type === TalepEvent.Fotograf )
-//                                        {
-//                                            parent.color = "orange"
-//                                        }
-//                                        if( talepEvent.Type === TalepEvent.Pdf )
-//                                        {
-//                                            parent.color = "steelblue"
-//                                        }
-//                                        if( talepEvent.Type === TalepEvent.Sms )
-//                                        {
-//                                            parent.color = "crimson"
-//                                        }
                                     }
                                 }
+                                height: itemEvent.height
+
                                 radius: 5
                                 layer.enabled: true
                                 layer.effect: DropShadow{
@@ -459,6 +447,8 @@ Item {
                                     radius: 3
                                     color: "black"
                                 }
+
+
                             }
 
                             Component.onCompleted: {
@@ -504,6 +494,21 @@ Item {
                             talepItem.Durum = TalepItem.Tamamlandi;
                             if( talepManager.updateTalepItem(talepItem) )
                             {
+
+                                talepEvent.Type = TalepEvent.Log;
+                                talepEvent.talepOid = talepOid;
+                                talepEvent.log = "Talep/Şikayet Doğrunlandı ve Tamamlandı.";
+                                talepEvent.personelName = User.adsoyad;
+                                talepEvent.personelOid = User.UserOid;
+
+                                if( talepManager.insertTalepEvent(talepEvent) )
+                                {
+                                    Backend.message = "Log Eklendi";
+                                    talepManager.updateEventList(talepOid);
+                                    updated();
+                                }else{
+                                    Backend.message = "! Log Eklenemedi";
+                                }
                                 Backend.message = "Durum Değiştirildi."
                                 updated();
                             }else{
