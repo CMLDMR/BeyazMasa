@@ -38,6 +38,7 @@ Item {
             font.family: "Tahoma"
             font.pointSize : 9
             anchors.centerIn: parent
+            textFormat: Text.RichText
             layer.enabled: true
             layer.effect: DropShadow{
                 color: "black"
