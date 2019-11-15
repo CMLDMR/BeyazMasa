@@ -740,8 +740,10 @@ Item {
                                 yeniDilekceID.icerik = icerikID.text
                                 yeniDilekceID.tarihJulianDay = Backend.currentJulianDay;
                                 yeniDilekceID.saatMSecStartofDay = Backend.mSecStartOfDay;
-                                yeniDilekceID.tcoid = tcOid.text
-                                yeniDilekceID.dilekceFilePath = taranmisDilekceText.text
+                                yeniDilekceID.tcoid = tcOid.text;
+                                yeniDilekceID.dilekceFilePath = taranmisDilekceText.text;
+                                yeniDilekceID.yil = Backend.currentYil;
+                                yeniDilekceID.ay = Backend.currentAy;
                                 if( dilekceManager.saveDilekce(yeniDilekceID) ){
                                     Backend.message = "Dilekçe Başarılı Bir Şekilde Kayıt Edildi";
                                     yeniDilekcePageID.destroy();
