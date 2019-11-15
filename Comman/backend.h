@@ -16,6 +16,8 @@ class Backend : public QObject
     Q_PROPERTY(QJsonArray birimler READ birimler )
     Q_PROPERTY (int currentJulianDay READ currentJulianDay )
     Q_PROPERTY (int mSecStartOfDay READ mSecStartOfDay )
+    Q_PROPERTY (int currentYil READ currentYil )
+    Q_PROPERTY (QString currentAy READ currentAy )
 public:
     explicit Backend(DataBase* _db , QObject *parent = nullptr);
 
@@ -30,6 +32,8 @@ public:
 
     int currentJulianDay();
     int mSecStartOfDay();
+    int currentYil() const;
+    QString currentAy() const;
 
     Q_INVOKABLE DilekceManagerPage* createDilekceManager();
     Q_INVOKABLE TCManagerPage* createTCManager();

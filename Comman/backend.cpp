@@ -88,6 +88,16 @@ int Backend::mSecStartOfDay()
     return QTime::currentTime ().msecsSinceStartOfDay ();
 }
 
+int Backend::currentYil() const
+{
+    return QDate::currentDate ().year ();
+}
+
+QString Backend::currentAy() const
+{
+    return QDate::currentDate ().toString ("MMMM");
+}
+
 DilekceManagerPage *Backend::createDilekceManager()
 {
     return new DilekceManagerPage(this->mDB);
