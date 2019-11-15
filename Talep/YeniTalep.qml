@@ -52,6 +52,9 @@ Item {
         yeniTalepItem.mahalle = mahalleComboBoxID.currentText;
         yeniTalepItem.Durum = TalepItem.DevamEdiyor;
         yeniTalepItem.Kaynak = TalepItem.BEYAZMASA;
+        yeniTalepItem.Ay = Backend.currentAy;
+        yeniTalepItem.Yil = Backend.currentYil;
+
 
 
         if( talepManager.insertTalepItem(yeniTalepItem) )

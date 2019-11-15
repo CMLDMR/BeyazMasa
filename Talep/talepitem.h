@@ -23,6 +23,8 @@ class TalepItem : public QObject , public Talep
     Q_PROPERTY (QString KaynakStr READ kaynak  NOTIFY qmlKaynakChanged)
     Q_PROPERTY (QString KaynakColor READ kaynakColor NOTIFY qmlKaynakChanged)
     Q_PROPERTY (QString Birim READ birim WRITE setBirim NOTIFY birimChanged )
+    Q_PROPERTY (QString Ay WRITE setAy )
+    Q_PROPERTY (int Yil WRITE setYil )
 
 public:
     explicit TalepItem(QObject *parent = nullptr);
