@@ -22,6 +22,8 @@ class DilekceItem : public QObject , public Dilekce
     Q_PROPERTY (QJsonArray ekList READ ekList NOTIFY ekListChanged )
     Q_PROPERTY (QJsonArray bilgiBirim READ bilgiBirimList NOTIFY bilgiBirimChanged )
     Q_PROPERTY (QString dilekceFilePath READ dilekceFilePath WRITE setDilekceFilePath )
+    Q_PROPERTY (QString ay WRITE setAy )
+    Q_PROPERTY (int yil WRITE setYil )
 public:
     explicit DilekceItem(QObject *parent = nullptr);
     DilekceItem(const DilekceItem& dilekce);
