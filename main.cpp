@@ -25,7 +25,21 @@ int main(int argc, char *argv[])
 
     mongocxx::instance ins{};
 
-    auto db = new DataBase();
+
+    mongocxx::client* mClient;
+    try {
+        mClient = new mongocxx::client(mongocxx::uri(_url));
+    } catch (mongocxx::exception &e) {
+        std::string str = "ERROR: " + std::to_string(__LINE__) + " " + __FUNCTION__ + " " + e.what();
+        std::cout << str << std::endl;
+    }
+
+    auto _db = mClient->database (DB__);
+
+    auto __mDBbase =new SerikBLDCore::DB(&_db);
+
+
+    auto db = DataBase::createDataBase (__mDBbase);
     auto backend = new Backend(db);
     auto user = new PUser(db);
 
