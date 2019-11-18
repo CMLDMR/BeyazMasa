@@ -2,9 +2,9 @@
 #include <boost/optional.hpp>
 #include <QUrl>
 
-DilekceItem::DilekceItem(QObject *parent) : QObject(parent) , Dilekce ()
+DilekceItem::DilekceItem(QObject *parent) : QObject(parent) , SerikBLDCore::Dilekce ()
 {
-    this->SetDurum (DilekceDurum::Acik);
+    this->SetDurum (SerikBLDCore::DilekceDurum::Acik);
 }
 
 DilekceItem::DilekceItem(const DilekceItem &dilekce)
@@ -66,7 +66,7 @@ bool DilekceItem::durum()
 {
     auto Durum = this->Durum ();
 
-    if( Durum == DilekceDurum::Acik )
+    if( Durum == SerikBLDCore::DilekceDurum::Acik )
     {
         return false;
     }else{

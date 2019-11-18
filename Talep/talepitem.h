@@ -6,7 +6,7 @@
 
 
 
-class TalepItem : public QObject , public Talep
+class TalepItem : public QObject , public SerikBLDCore::Talep
 {
     Q_OBJECT
     Q_PROPERTY (QString oid READ oid)

@@ -5,7 +5,7 @@
 #include "db.h"
 #include "dilekceitem.h"
 
-class DilekceGirisPage : public QObject , public DB
+class DilekceGirisPage : public QObject , public SerikBLDCore::DB
 {
     Q_OBJECT
 public:

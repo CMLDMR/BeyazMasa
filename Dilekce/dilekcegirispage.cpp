@@ -1,6 +1,6 @@
 #include "dilekcegirispage.h"
 #include "memory"
-DilekceGirisPage::DilekceGirisPage(QObject *parent) : QObject(parent) , DB()
+DilekceGirisPage::DilekceGirisPage(QObject *parent) : QObject(parent) , SerikBLDCore::DB()
 {
 
 }

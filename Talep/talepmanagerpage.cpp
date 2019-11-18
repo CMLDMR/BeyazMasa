@@ -26,7 +26,7 @@ bool TalepManagerPage::updateTalepItem(TalepItem *item)
 
 void TalepManagerPage::find()
 {
-    auto val = this->findTalep (Talep());
+    auto val = this->findTalep (SerikBLDCore::Talep());
     this->clearModel ();
     for( auto item : val )
     {
@@ -39,7 +39,7 @@ void TalepManagerPage::find()
 
 TalepItem* TalepManagerPage::findOne(const QString &talepOid)
 {
-    Talep filter;
+    SerikBLDCore::Talep filter;
     filter.setOid (talepOid.toStdString ());
     auto val = this->findOneTalep (filter);
     TalepItem* item = new TalepItem();

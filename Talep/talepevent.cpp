@@ -1,5 +1,7 @@
 #include "talepevent.h"
 
+using namespace SerikBLDCore;
+
 TalepEvent::TalepEvent(QObject *parent) : QObject(parent)
 {
 

@@ -4,7 +4,7 @@
 #include <QObject>
 #include "Talep/talepsubitem.h"
 
-class TalepEvent : public QObject , public TalepSubItem
+class TalepEvent : public QObject , public SerikBLDCore::TalepSubItem
 {
     Q_OBJECT
     Q_PROPERTY(EventType Type READ eventType WRITE setEventType )

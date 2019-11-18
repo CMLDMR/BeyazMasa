@@ -11,7 +11,7 @@
 #include "Comman/managerpage.h"
 #include "talepevent.h"
 
-class TalepManagerPage : public ManagerPage<TalepItem> , public TalepManager
+class TalepManagerPage : public ManagerPage<TalepItem> , public SerikBLDCore::TalepManager
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<TalepItem> list READ list NOTIFY listChanged )

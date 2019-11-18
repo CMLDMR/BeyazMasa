@@ -3,7 +3,7 @@
 
 TCManagerPage::TCManagerPage(QObject *parent)
     : QObject(parent),
-      TCManager ()
+      SerikBLDCore::TCManager ()
 {
 
 }
@@ -11,14 +11,14 @@ TCManagerPage::TCManagerPage(QObject *parent)
 
 
 TCManagerPage::TCManagerPage(DataBase *_db)
-    : TCManager (static_cast<DB*>(_db))
+    : SerikBLDCore::TCManager (static_cast<SerikBLDCore::DB*>(_db))
 {
     std::cout << __LINE__ << " " << __FUNCTION__ << " " << "TCMananager DataBase*" << std::endl;
 }
 
 bool TCManagerPage::tcCheck(const QString &mTC)
 {
-        TC item;
+        SerikBLDCore::TC item;
         item.setTCNO (mTC);
         auto count = this->countItem (item);
 
@@ -35,7 +35,7 @@ bool TCManagerPage::tcCheck(const QString &mTC)
 
 bool TCManagerPage::cepTelefonuCheck(const QString &mCepTelefonu)
 {
-        TC item;
+        SerikBLDCore::TC item;
         item.setCepTelefonu (mCepTelefonu);
         auto count = this->countItem (item);
 

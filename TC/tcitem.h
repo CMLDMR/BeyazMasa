@@ -4,7 +4,7 @@
 #include <QObject>
 #include "tc.h"
 
-class TCItem : public QObject , public TC
+class TCItem : public QObject , public SerikBLDCore::TC
 {
     Q_OBJECT
     Q_PROPERTY(QString TCNO READ TCNO WRITE setTCNO)
@@ -19,7 +19,7 @@ public:
     explicit TCItem(QObject *parent = nullptr);
     TCItem( const TCItem &other);
     TCItem( TCItem&& other);
-    TCItem( TC* other);
+    TCItem( SerikBLDCore::TC* other);
 
     TCItem& operator=( const TCItem &other );
     TCItem& operator=( TCItem &&other);

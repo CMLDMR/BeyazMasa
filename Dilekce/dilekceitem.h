@@ -6,7 +6,7 @@
 #include "dilekce.h"
 #include <QJsonArray>
 
-class DilekceItem : public QObject , public Dilekce
+class DilekceItem : public QObject , public SerikBLDCore::Dilekce
 {
     Q_OBJECT
     Q_PROPERTY (int sayi READ sayi WRITE SetSayi)
@@ -30,8 +30,8 @@ public:
     DilekceItem(const DilekceItem&& dilekce);
     ~DilekceItem();
 
-    DilekceItem& operator=( const Dilekce &dilekce);
-    void operator=( Dilekce* dilekce);
+    DilekceItem& operator=( const SerikBLDCore::Dilekce &dilekce);
+    void operator=( SerikBLDCore::Dilekce* dilekce);
     DilekceItem& operator=( DilekceItem&& other );
     DilekceItem& operator=( const DilekceItem &other );
 

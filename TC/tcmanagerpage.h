@@ -6,7 +6,7 @@
 #include "Comman/database.h"
 #include "tcitem.h"
 
-class TCManagerPage : public QObject , public TCManager
+class TCManagerPage : public QObject , public SerikBLDCore::TCManager
 {
     Q_OBJECT
 public:

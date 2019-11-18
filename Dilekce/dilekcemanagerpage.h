@@ -11,7 +11,7 @@
 #include <QJsonObject>
 
 
-class DilekceManagerPage : public QObject , public DilekceManager
+class DilekceManagerPage : public QObject , public SerikBLDCore::DilekceManager
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<DilekceItem> dilekceList READ dilekceList NOTIFY dilekceListChanged )

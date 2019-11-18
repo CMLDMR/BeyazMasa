@@ -5,7 +5,7 @@
 #include "user.h"
 #include "Comman/database.h"
 
-class PUser : public QObject , public User
+class PUser : public QObject , public SerikBLDCore::User
 {
     Q_OBJECT
     Q_PROPERTY(QString adsoyad READ adSoyad)
