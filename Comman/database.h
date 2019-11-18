@@ -4,13 +4,17 @@
 #include <QObject>
 #include "db.h"
 
-class DataBase : public QObject , public DB
+class DataBase : public QObject , public SerikBLDCore::DB
 {
     Q_OBJECT
 public:
     explicit DataBase(QObject *parent = nullptr);
     DataBase( const DataBase &db );
 
+
+    static DataBase* createDataBase(SerikBLDCore::DB* _db ){
+        return static_cast<DataBase*>(_db);
+    }
 
 
 signals:
