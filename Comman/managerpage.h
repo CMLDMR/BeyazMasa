@@ -85,6 +85,7 @@ template<typename T>
 void ManagerPage<T>::clearModel()
 {
     mItemlist.clear ();
+    emit listChanged();
 }
 
 
