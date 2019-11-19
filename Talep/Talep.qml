@@ -51,7 +51,14 @@ Item {
 
                 onTcnoCompleted: {
                     print("TCNO Tamamlandı: "+tcno);
-                    talepManeger.find(tcno);
+                    if( tcno.length === 0 )
+                    {
+                        talepManeger.find();
+                    }else{
+                        talepManeger.find(tcno);
+                    }
+
+
                 }
             }
 
