@@ -51,6 +51,7 @@ Item {
 
                 onTcnoCompleted: {
                     print("TCNO Tamamlandı: "+tcno);
+                    talepManeger.find(tcno);
                 }
             }
 
