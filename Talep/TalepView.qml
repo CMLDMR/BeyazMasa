@@ -157,8 +157,9 @@ Item {
 
                         // Talep Bilgileri
                         Rectangle{
+                            id: talepMaininfoRectID
                             width: parent.width-parent.padding*2
-                            height: 150
+                            height: 250
                             color: "lightskyblue"
                             radius: 5
                             layer.enabled: true
@@ -172,6 +173,7 @@ Item {
                             Column{
                                 anchors.fill: parent
 
+                                // Talep/Şikayet Bilgileri Başlığı
                                 Rectangle{
                                     width: parent.width
                                     height: 30
@@ -192,6 +194,7 @@ Item {
                                     }
                                 }
 
+                                //Görevli Birim
                                 Rectangle{
                                     width: parent.width
                                     height: 30
@@ -260,10 +263,6 @@ Item {
                                         }
                                     }
                                 }
-
-
-
-
 
                                 // Tarih Saat Mahalle
                                 Rectangle{
@@ -360,8 +359,35 @@ Item {
                                     }
                                 }
 
+                                // Resim
+                                Rectangle{
+                                    id: resimRectID
+                                    width: parent.width
+                                    color: "transparent"
+
+                                    Image {
+                                        id: talepimgID
+                                        fillMode: Image.PreserveAspectFit
+                                        anchors.fill: parent
+                                    }
+
+                                    Component.onCompleted: {
+                                        if( talepItem.fotografOid.length == 0 )
+                                        {
+                                            visible = false;
+                                            resimRectID.height = 0;
+                                        }else{
+                                            var imgUrl = talepManager.downloadFileUrl(talepItem.fotografOid)
+                                            talepimgID.source = imgUrl;
+                                            resimRectID.height = 250;
+                                        }
+                                    }
+
+                                }
+
                                 // Konu
                                 Rectangle{
+                                    id: konuRectTextID
                                     width: parent.width
                                     Text {
                                         padding: 10
@@ -385,7 +411,31 @@ Item {
                                     color: "transparent"
                                 }
 
+
+
                             }
+                            Component.onCompleted: {
+
+                                if( talepItem.fotografOid.length == 0 )
+                                {
+                                    resimRectID.height = 5;
+                                    talepMaininfoRectID.height = 150 + konuRectTextID.height + resimRectID.height
+
+                                }else{
+                                    var imgUrl = talepManager.downloadFileUrl(talepItem.fotografOid)
+                                    talepimgID.source = imgUrl;
+                                    resimRectID.height = 250;
+                                    talepMaininfoRectID.height = 150 + konuRectTextID.height + resimRectID.height
+
+                                }
+
+
+
+                                console.log("img Source: " + talepimgID.source + " " + talepimgID.source.length );
+
+                                console.log("Height Of Konu ve Foto: " + talepMaininfoRectID.height );
+                            }
+
                         }
 
 
