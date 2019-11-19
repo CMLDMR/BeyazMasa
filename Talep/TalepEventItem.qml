@@ -17,9 +17,29 @@ Item {
         anchors.fill: parent
         color: "transparent"
 
+
+        Rectangle{
+            width: 20
+            height: 20
+            anchors.top: parent.top
+            anchors.right: parent.right
+
+            Component.onCompleted: {
+
+                if( talepEvent.userType == TalepEvent.TCUser )
+                {
+                    color = "red"
+                }else{
+                    visible = false;
+                }
+
+            }
+
+        }
+
         Text {
             id: logid
-            text: talepEvent.personelName + " / " + talepEvent.tarih + " " + talepEvent.saat +" -- " + talepEvent.TypeStr
+
             color: "white"
             font.bold: false
             font.family: "Tahoma"
@@ -33,6 +53,36 @@ Item {
                 radius: 3
                 samples: 5
             }
+
+            Component.onCompleted: {
+
+
+                console.log("user Type:  " + talepEvent.userType );
+                console.log("TalepEvent.TCUser:  " + TalepEvent.TCUser );
+                console.log("TalepEvent.PersonelUser:  " + TalepEvent.PersonelUser );
+                console.log("TalepEvent.NoUser:  " + TalepEvent.NoUser );
+
+                switch ( talepEvent.userType )
+                {
+                case TalepEvent.TCUser:
+                    text = talepEvent.tcName + " / " + talepEvent.tarih + " " + talepEvent.saat +" -- " + talepEvent.TypeStr
+                    break;
+
+                case TalepEvent.PersonelUser:
+                    text = talepEvent.personelName + " / " + talepEvent.tarih + " " + talepEvent.saat +" -- " + talepEvent.TypeStr
+                    break;
+
+                case TalepEvent.NoUser:
+                    text = "NoUser / " + talepEvent.tarih + " " + talepEvent.saat +" -- " + talepEvent.TypeStr
+                    break;
+
+                default:
+                    break;
+                }
+
+            }
+
+
         }
 
         Text {
