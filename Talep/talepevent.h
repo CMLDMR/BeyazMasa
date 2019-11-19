@@ -20,6 +20,9 @@ class TalepEvent : public QObject , public SerikBLDCore::TalepSubItem
     Q_PROPERTY (QString sms READ sms WRITE setSms )
     Q_PROPERTY (QString log READ log WRITE setLog )
     Q_PROPERTY (QString typeColor READ typeColor )
+    Q_PROPERTY (EventUserType userType READ eventUserType )
+    Q_PROPERTY (QString tcName READ tcName )
+    Q_PROPERTY (QString tcOid READ tcOid )
 
 public:
     explicit TalepEvent(QObject *parent = nullptr);
@@ -41,11 +44,25 @@ public:
     };
     Q_ENUM(EventType)
 
+
+    enum EventUserType
+    {
+        NoUser = 0,
+        PersonelUser,
+        TCUser
+    };
+
+    Q_ENUM(EventUserType)
+
     void setEventType( EventType type );
+
     EventType eventType() const;
+
     QString eventTypeStr() const;
 
+    EventUserType eventUserType() const;
 
+    QString userTypeStr() const;
 
 signals:
 
