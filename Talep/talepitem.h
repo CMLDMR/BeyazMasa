@@ -25,6 +25,8 @@ class TalepItem : public QObject , public SerikBLDCore::Talep
     Q_PROPERTY (QString Birim READ birim WRITE setBirim NOTIFY birimChanged )
     Q_PROPERTY (QString Ay WRITE setAy )
     Q_PROPERTY (int Yil WRITE setYil )
+    Q_PROPERTY (QString fotografOid READ fotoOid)
+
 
 public:
     explicit TalepItem(QObject *parent = nullptr);
