@@ -10,7 +10,7 @@ TalepManagerPage::TalepManagerPage(QObject *parent) : TalepManager()
 
 TalepManagerPage::TalepManagerPage(DataBase *_db) :  TalepManager (_db)
 {
-
+    mTCManager = new SerikBLDCore::TCManager(_db);
 }
 
 bool TalepManagerPage::insertTalepItem( TalepItem *item )
@@ -26,8 +26,8 @@ bool TalepManagerPage::updateTalepItem(TalepItem *item)
 
 void TalepManagerPage::find()
 {
-    auto val = this->findTalep (SerikBLDCore::Talep());
     this->clearModel ();
+    auto val = this->findTalep (SerikBLDCore::Talep());
     for( auto item : val )
     {
         TalepItem item_;
@@ -35,6 +35,22 @@ void TalepManagerPage::find()
         this->insertModel(item_);
     }
 
+}
+
+void TalepManagerPage::find(const QString &tcno)
+{
+    this->clearModel ();
+    auto valTC = mTCManager->Load_byTCNO (tcno.toStdString ());
+    if( valTC )
+    {
+        auto val = this->findTalep (SerikBLDCore::Talep().setTCOID (valTC.value ()->oid ().value ().to_string ().c_str ()));
+        for( auto item : val )
+        {
+            TalepItem item_;
+            item_.setDocumentView (item.view ());
+            this->insertModel(item_);
+        }
+    }
 }
 
 TalepItem* TalepManagerPage::findOne(const QString &talepOid)

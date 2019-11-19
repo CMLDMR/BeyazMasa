@@ -10,6 +10,7 @@
 #include "talepitem.h"
 #include "Comman/managerpage.h"
 #include "talepevent.h"
+#include "tcmanager.h"
 
 class TalepManagerPage : public ManagerPage<TalepItem> , public SerikBLDCore::TalepManager
 {
@@ -27,6 +28,8 @@ public:
     Q_INVOKABLE bool updateTalepItem( TalepItem* item );
 
     Q_INVOKABLE void find();
+
+    Q_INVOKABLE void find( const QString& tcno );
 
     Q_INVOKABLE TalepItem *findOne( const QString &talepOid );
 
@@ -48,6 +51,8 @@ signals:
 
 private:
     QList<TalepEvent*> mEventList_Ptr;
+
+    SerikBLDCore::TCManager* mTCManager;
 
 };
 
