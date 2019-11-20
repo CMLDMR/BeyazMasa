@@ -12,9 +12,6 @@ class PageSubClass : public QObject
 
 public:
     PageSubClass(QObject *parent = nullptr):QObject(parent){}
-
-
-
 signals:
     void listChanged();
 };
