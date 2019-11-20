@@ -18,6 +18,13 @@
 #include "Talep/talepmanagerpage.h"
 #include "Talep/talepitem.h"
 #include "Talep/talepevent.h"
+#include "SMS/smsmanager.h"
+#include "SMS/smsobject.h"
+
+
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -53,6 +60,11 @@ int main(int argc, char *argv[])
     qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
     qmlRegisterType <TalepEvent>("serik.bel.tr.TalepEvent",1,0,"TalepEvent");
     qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
+    qmlRegisterType <SMSManager>("serik.bel.tr.SMSManager",1,0,"SMSManager");
+
+    qRegisterMetaType<SMSObject*>("const SMSObject*");
+    qmlRegisterType <SMSObject>("serik.bel.tr.SMSObject",1,0,"SMSObject");
+//    qmlRegisterType <SMSObject*>("serik.bel.tr.SMSObject",1,0,"SMSObject");
 
 
     QGuiApplication app(argc, argv);
