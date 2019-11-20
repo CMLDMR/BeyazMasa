@@ -1,4 +1,4 @@
-QT += quick positioning location
+QT += quick positioning location xml network
 
 CONFIG += c++14
 
@@ -21,6 +21,8 @@ SOURCES += \
         Dilekce/dilekceitem.cpp \
         Dilekce/dilekcemanagerpage.cpp \
         Login/puser.cpp \
+        SMS/smsmanager.cpp \
+        SMS/smsobject.cpp \
         TC/tcitem.cpp \
         TC/tcmanagerpage.cpp \
         Talep/talepevent.cpp \
@@ -53,6 +55,8 @@ HEADERS += \
     Dilekce/dilekceitem.h \
     Dilekce/dilekcemanagerpage.h \
     Login/puser.h \
+    SMS/smsmanager.h \
+    SMS/smsobject.h \
     TC/tcitem.h \
     TC/tcmanagerpage.h \
     Talep/talepevent.h \
