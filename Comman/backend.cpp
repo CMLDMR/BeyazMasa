@@ -113,6 +113,11 @@ TalepManagerPage *Backend::createTalepManager()
     return new TalepManagerPage(this->mDB);
 }
 
+SMSManager *Backend::createSMSManager()
+{
+    return new SMSManager(this->mDB);
+}
+
 QString Backend::localFileUrl(const QString &filePath)
 {
     return QUrl::fromLocalFile (filePath).toString ();

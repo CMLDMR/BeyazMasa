@@ -7,6 +7,7 @@
 #include "Dilekce/dilekcemanagerpage.h"
 #include "TC/tcmanagerpage.h"
 #include "Talep/talepmanagerpage.h"
+#include "SMS/smsmanager.h"
 
 class Backend : public QObject
 {
@@ -38,6 +39,7 @@ public:
     Q_INVOKABLE DilekceManagerPage* createDilekceManager();
     Q_INVOKABLE TCManagerPage* createTCManager();
     Q_INVOKABLE TalepManagerPage* createTalepManager();
+    Q_INVOKABLE SMSManager* createSMSManager();
 
 
     Q_INVOKABLE QString localFileUrl( const QString &filePath );
