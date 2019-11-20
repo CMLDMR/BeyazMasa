@@ -3,6 +3,8 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.13
 import serik.bel.tr.DilekceItem 1.0
 import serik.bel.tr.DilekceManagerPage 1.0
+import serik.bel.tr.SMSManager 1.0
+import serik.bel.tr.SMSObject 1.0
 import "../TC"
 
 Item {
@@ -11,7 +13,9 @@ Item {
     anchors.fill: parent
     property string dilekceOid
     property DilekceManagerPage dilekceManager: Backend.createDilekceManager();
+    property SMSManager smsManager: Backend.createSMSManager();
 
+    property SMSObject smsObj : SMSObject{}
 
     Rectangle{
         anchors.leftMargin: 284
@@ -137,7 +141,9 @@ Item {
                                             anchors.fill: parent
                                             cursorShape: "PointingHandCursor"
                                             onClicked: {
-                                                Backend.message = "SMS Gönderme Shared Library Yazılacak";
+                                                smsObj.smsText = "tetetet";
+                                                console.log("SMS TEXT: " + smsObj.smsText);
+                                                smsManager.insertSendSMS(smsObj);
                                             }
                                         }
                                     }
