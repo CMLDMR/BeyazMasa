@@ -12,6 +12,8 @@ Item {
     property string tcoid: ""
     property TCManagerPage tcManager: Backend.createTCManager();
 
+    property string mTelefonNo
+
 
     // TC Bilgileri
     Rectangle{
@@ -79,7 +81,7 @@ Item {
                     Text {
                         id: telefonTextID
                         anchors.centerIn: parent
-                        text: qsTr("Telefon")
+                        text: "Cep Telefonu: " + mTelefonNo
                         color: "white"
                         font.bold: true
                         font.family: "Tahoma"
@@ -139,7 +141,7 @@ Item {
             {
                 tcnoTextID.text = "TCNO: " + tcitem.TCNO;
                 mahalleTextID.text = "Mahalle: " + tcitem.Mahalle;
-                telefonTextID.text = "Cep Telefonu: " + tcitem.CepTelefonu;
+                mTelefonNo = tcitem.CepTelefonu;
                 adsoyadTextID.text = "Ad Soyad: "+tcitem.AdSoyad;
             }else{
                 Backend.message = "TC Bilgileri Yüklenemedi";
