@@ -13,9 +13,19 @@ Item {
     anchors.fill: parent
     property string dilekceOid
     property DilekceManagerPage dilekceManager: Backend.createDilekceManager();
-    property SMSManager smsManager: Backend.createSMSManager();
 
+    property SMSManager smsManager: Backend.createSMSManager();
     property SMSObject smsObj : SMSObject{}
+    Connections {
+        target: smsManager
+        onNotify: {
+            Backend.message = notifyMSG;
+        }
+    }
+
+
+
+
 
     Rectangle{
         anchors.leftMargin: 284
@@ -141,8 +151,8 @@ Item {
                                             anchors.fill: parent
                                             cursorShape: "PointingHandCursor"
                                             onClicked: {
-                                                smsObj.smsText = "tetetet";
-                                                console.log("SMS TEXT: " + smsObj.smsText);
+                                                smsObj.smsText = dilekceSayiTextID.text + " Sayılı Dilekçenizi " + dilekceWebLink.text + " Linkinden Takip Edebilirsiniz. İyi Günler Dileriz";
+                                                smsObj.numaraText = tcRect.mTelefonNo
                                                 smsManager.insertSendSMS(smsObj);
                                             }
                                         }
