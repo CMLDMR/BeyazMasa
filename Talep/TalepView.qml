@@ -7,7 +7,8 @@ import serik.bel.tr.TalepItem 1.0
 import serik.bel.tr.TCManagerPage 1.0
 import serik.bel.tr.TCItem 1.0
 import serik.bel.tr.TalepEvent 1.0
-
+import serik.bel.tr.SMSManager 1.0
+import serik.bel.tr.SMSObject 1.0
 
 Item {
 
@@ -21,6 +22,16 @@ Item {
     property TCItem tcItem
     property TalepEvent talepEvent: TalepEvent{}
     signal updated();
+
+
+    property SMSManager smsManager: Backend.createSMSManager();
+    property SMSObject smsObj : SMSObject{}
+    Connections {
+        target: smsManager
+        onNotify: {
+            Backend.message = notifyMSG;
+        }
+    }
 
     Rectangle{
         gradient: Gradient {
@@ -154,6 +165,90 @@ Item {
                         }
 
 
+                        Rectangle{
+                            id: smsGonderRectID
+                            width: parent.width-parent.padding*2
+                            height: 30
+                            color: "skyblue"
+                            radius: 5
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                samples: 6
+                                radius: 3
+                                color: "black"
+                            }
+
+                            Row{
+                                anchors.fill: parent
+
+                                Rectangle{
+                                    width: parent.width/3*2
+                                    height: parent.height
+                                    Text {
+                                        id: linkTextID
+                                        text: "http://www.serik.bel.tr/?type=talep&_id="+talepItem.oid
+                                        color: "white"
+                                        font.bold: true
+                                        font.family: "Tahoma"
+                                        font.pointSize : 9
+                                        anchors.centerIn: parent
+                                        layer.enabled: true
+                                        layer.effect: DropShadow{
+                                            color: "black"
+                                            radius: 3
+                                            samples: 5
+                                        }
+                                    }
+                                }
+
+
+
+                                Rectangle{
+                                    width: parent.width/3
+                                    height: parent.height
+                                    color: "dimgray"
+                                    Text {
+                                        text: qsTr("Linki SMS olarak Gönder")
+                                        color: "white"
+                                        font.bold: true
+                                        font.family: "Tahoma"
+                                        font.pointSize : 9
+                                        anchors.centerIn: parent
+                                        layer.enabled: true
+                                        layer.effect: DropShadow{
+                                            color: "black"
+                                            radius: 3
+                                            samples: 5
+                                        }
+                                    }
+
+                                    MouseArea{
+                                        cursorShape: "PointingHandCursor"
+                                        anchors.fill: parent
+                                        onClicked: {
+                                            smsObj.smsText = "Talebinizi " + linkTextID.text + " Linkinden Takip Edebilirsiniz. İyi Günler Dileriz";
+                                            smsObj.numaraText = tcItem.CepTelefonu;
+
+                                            if( smsManager.insertSendSMS(smsObj) ){
+                                                talepEvent.Type = TalepEvent.Sms;
+                                                talepEvent.talepOid = talepItem.oid;
+                                                talepEvent.sms = smsObj.smsText;
+                                                talepEvent.personelName = User.adsoyad;
+                                                talepEvent.personelOid = User.UserOid;
+
+                                                if( talepManager.insertTalepEvent(talepEvent) )
+                                                {
+
+                                                }
+                                                talepManager.updateEventList(talepOid);
+                                                updated();
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
 
                         // Talep Bilgileri
                         Rectangle{
