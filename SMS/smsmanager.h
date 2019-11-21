@@ -6,12 +6,18 @@
 #include "Comman/managerpage.h"
 #include <QObject>
 #include "smsobject.h"
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+
 
 class SMSManager : public QObject , public SerikBLDCore::SMSAbstractManager
 {
     Q_OBJECT
+
+    QNetworkAccessManager* mNetworkAccessManager;
+    bool mSMSGonderiliyor;
 public:
-//    explicit SMSManager(QObject *parent = nullptr);
     SMSManager(DataBase *_db = nullptr );
     SMSManager(const DataBase *_db );
     SMSManager( const SMSManager& other );
@@ -21,9 +27,13 @@ public:
     SMSManager& operator=( SMSManager&& other );
 
 
-    SerikBLDCore::SMS::SMSItem & insertAndSendSMS(const SerikBLDCore::SMS::SMSItem &item) override;
+    bool insertAndSendSMS(const SerikBLDCore::SMS::SMSItem &item) override;
 
-    Q_INVOKABLE void insertSendSMS(const SMSObject *item );
+    Q_INVOKABLE bool insertSendSMS(const SMSObject *item );
+
+
+signals:
+    void notify(QString notifyMSG);
 };
 
 Q_DECLARE_METATYPE(SMSManager)
