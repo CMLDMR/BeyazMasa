@@ -4,7 +4,7 @@
 
 DilekceItem::DilekceItem(QObject *parent) : QObject(parent) , SerikBLDCore::Dilekce ()
 {
-    this->SetDurum (SerikBLDCore::DilekceDurum::Acik);
+    this->SetDurum (SerikBLDCore::DilekceDurum::Acik.c_str ());
 }
 
 DilekceItem::DilekceItem(const DilekceItem &dilekce)
@@ -66,7 +66,7 @@ bool DilekceItem::durum()
 {
     auto Durum = this->Durum ();
 
-    if( Durum == SerikBLDCore::DilekceDurum::Acik )
+    if( Durum.toStdString () == SerikBLDCore::DilekceDurum::Acik )
     {
         return false;
     }else{
@@ -76,8 +76,6 @@ bool DilekceItem::durum()
 
 QJsonArray DilekceItem::cevapEkList()
 {
-    std::cout << "dilekce Cevap Eklist Count: " << this->EkOidList ().count () << std::endl;
-
     QJsonArray array;
     for( auto item : this->EkOidList () )
     {
