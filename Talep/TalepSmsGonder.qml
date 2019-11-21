@@ -5,6 +5,9 @@ import "TalepScript.js" as TalepManager
 import serik.bel.tr.TalepManagerPage 1.0
 import serik.bel.tr.TalepItem 1.0
 import serik.bel.tr.TalepEvent 1.0
+import serik.bel.tr.SMSManager 1.0
+import serik.bel.tr.SMSObject 1.0
+
 
 Item {
 
@@ -15,6 +18,15 @@ Item {
     property TalepManagerPage talepManager: Backend.createTalepManager();
 
     signal updated()
+
+    property SMSManager smsManager: Backend.createSMSManager();
+    property SMSObject smsObj : SMSObject{}
+    Connections {
+        target: smsManager
+        onNotify: {
+            Backend.message = notifyMSG;
+        }
+    }
 
     Rectangle
     {
@@ -155,20 +167,26 @@ Item {
                             return;
                         }
 
-                        talepEvent.Type = TalepEvent.Sms;
-                        talepEvent.talepOid = talepOid;
-                        talepEvent.sms = aciklamainputTextID.text;
-                        talepEvent.personelName = User.adsoyad;
-                        talepEvent.personelOid = User.UserOid;
+                        smsObj.smsText = aciklamainputTextID.text;
+                        smsObj.numaraText = tcItem.CepTelefonu;
+                        if( smsManager.insertSendSMS(smsObj) ){
 
-                        if( talepManager.insertTalepEvent(talepEvent) )
-                        {
-                            Backend.message = "Sms Gönderildi";
-                            closeUpAciklamaEkleDialog.start();
-                            updated();
-                        }else{
-                            Backend.message = "! Sms Gönderilemedi";
+
+                            talepEvent.Type = TalepEvent.Sms;
+                            talepEvent.talepOid = talepOid;
+                            talepEvent.sms = aciklamainputTextID.text;
+                            talepEvent.personelName = User.adsoyad;
+                            talepEvent.personelOid = User.UserOid;
+
+                            if( talepManager.insertTalepEvent(talepEvent) )
+                            {
+                                updated();
+                            }
+
                         }
+
+
+
 
 
                     }
