@@ -6,9 +6,14 @@
 #include "Comman/database.h"
 #include "tcitem.h"
 
+
+
 class TCManagerPage : public QObject , public SerikBLDCore::TCManager
 {
     Q_OBJECT
+
+
+
 public:
     explicit TCManagerPage(QObject *parent = nullptr);
     TCManagerPage(DataBase* _db );

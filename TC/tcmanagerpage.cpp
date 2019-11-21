@@ -14,6 +14,7 @@ TCManagerPage::TCManagerPage(DataBase *_db)
     : SerikBLDCore::TCManager (static_cast<SerikBLDCore::DB*>(_db))
 {
     std::cout << __LINE__ << " " << __FUNCTION__ << " " << "TCMananager DataBase*" << std::endl;
+
 }
 
 bool TCManagerPage::tcCheck(const QString &mTC)
