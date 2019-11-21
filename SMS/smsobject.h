@@ -7,7 +7,8 @@
 class SMSObject : public QObject , public SerikBLDCore::SMS::SMSItem
 {
     Q_OBJECT
-    Q_PROPERTY(QString smsText READ smsText WRITE setSMS )
+    Q_PROPERTY ( QString smsText READ smsText WRITE setSMS )
+    Q_PROPERTY ( QString numaraText READ numaraText WRITE setNumara )
 public:
     SMSObject();
     SMSObject( const SMSObject& other );
