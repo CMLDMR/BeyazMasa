@@ -87,7 +87,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: "AdSoyad: " + tcItem.AdSoyad
+                                        text: "AdSoyad: " + ( talepItem.kisiGizli == true ? "Kişi Bilgisi Gizli": tcItem.AdSoyad )
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -106,7 +106,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: "Telefon: "+tcItem.CepTelefonu
+                                        text: "Telefon: "+ ( talepItem.kisiGizli == true ? "Kişi Bilgisi Gizli": tcItem.CepTelefonu)
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
@@ -125,7 +125,7 @@ Item {
                                     height: parent.height
                                     color: "transparent"
                                     Text {
-                                        text: "Mahalle: "+tcItem.Mahalle
+                                        text: "Mahalle: " + ( talepItem.kisiGizli == true ? "Kişi Bilgisi Gizli": tcItem.Mahalle)
                                         color: "white"
                                         font.bold: true
                                         font.family: "Tahoma"
