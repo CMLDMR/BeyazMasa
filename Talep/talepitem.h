@@ -26,6 +26,7 @@ class TalepItem : public QObject , public SerikBLDCore::Talep
     Q_PROPERTY (QString Ay WRITE setAy )
     Q_PROPERTY (int Yil WRITE setYil )
     Q_PROPERTY (QString fotografOid READ fotoOid)
+    Q_PROPERTY (bool kisiGizli READ kisiGizli )
 
 
 public:
