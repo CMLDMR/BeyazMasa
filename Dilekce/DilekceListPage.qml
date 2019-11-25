@@ -7,7 +7,7 @@ import "DilekceScripts.js" as Dilekce
 Item {
 
     anchors.fill: parent
-    anchors.topMargin: 30
+//    anchors.topMargin: 30
     id: dilekceListItem
 
     property DilekceManagerPage dilekceManager : Backend.createDilekceManager();
@@ -21,7 +21,7 @@ Item {
 
     Rectangle{
         color: "transparent"
-        anchors.leftMargin: 284
+//        anchors.leftMargin: 284
         anchors.fill: parent
 
         Rectangle{
