@@ -5,12 +5,16 @@ import QtGraphicalEffects 1.13
 import "Dilekce/DilekceScripts.js" as Dilekce
 import "Talep/TalepScript.js" as TalepManager
 
+import "ScriptFiles/MainMenuScript.js" as MenuManager
+
 Item {
 
+//    width: parent.width
+//    height: parent.height
 
-    anchors.fill: parent
-    anchors.topMargin: 50
-    anchors.leftMargin: 284
+//    anchors.fill: parent
+//    anchors.topMargin: 50
+//    anchors.leftMargin: 284
 
 
     Rectangle{
@@ -19,21 +23,21 @@ Item {
         height: parent.height
 
         color: "darkSlateGray"
-
         anchors.centerIn: parent
-
+        property int itemWidth: Backend.itemWidth(width,1,2,3,4,6);
 
 
         ScrollView{
             anchors.fill: parent
             clip: true
             Flow{
-                spacing: 20
+//                spacing: 20
                 width: menuroot.width
 
+                // Dilekçe Giriş
                 Rectangle{
                     id: dilekceGirisMenu
-                    width: 200
+                    width: menuroot.itemWidth
                     height: 100
                     color: "darkSlateGray"
                     radius: 5
@@ -45,29 +49,26 @@ Item {
                         color: "white"
                         font.bold: true
                     }
-
                     MouseArea{
                         cursorShape: "PointingHandCursor"
                         anchors.fill: parent
-
                         onPressed: {
                             parent.color = "white";
                             dilekceGirisMenuText.color = "black"
                         }
-
                         onReleased: {
                             parent.color = "darkSlateGray";
                             dilekceGirisMenuText.color = "white"
                             Dilekce.loadYeniDilekcePage();
                         }
                     }
-
-
                 }
+                // Dilekçe Giriş END
 
+                // Talep Giriş Kontrol
                 Rectangle{
                     id: sikayetGirisMenu
-                    width: 200
+                    width: menuroot.itemWidth
                     height: 100
                     color: "darkSlateGray"
                     radius: 5
@@ -108,10 +109,12 @@ Item {
                         }
                     }
                 }
+                // TALEP GIRIS END
 
+                // DILEKCE SORGULAMA
                 Rectangle{
                     id: dilekceList
-                    width: 200
+                    width: menuroot.itemWidth
                     height: 100
                     color: "darkSlateGray"
                     radius: 5
@@ -137,6 +140,38 @@ Item {
                         }
                     }
                 }
+                // DILEKCE SORGULAMA
+
+                // BILGI EDINME SORGULAMA
+                Rectangle{
+                    id: bilgiEdinmeMenuItem
+                    width: menuroot.itemWidth
+                    height: 100
+                    color: "darkSlateGray"
+                    radius: 5
+                    border.color: "white"
+                    Text {
+                        id: bilgiEdinmeMenuItemText
+                        text: qsTr("BilgiEdinme")
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.bold: true
+                    }
+                    MouseArea{
+                        cursorShape: "PointingHandCursor"
+                        anchors.fill: parent
+                        onPressed: {
+                            parent.color = "white";
+                            bilgiEdinmeMenuItemText.color = "black"
+                        }
+                        onReleased: {
+                            parent.color = "darkSlateGray";
+                            bilgiEdinmeMenuItemText.color = "white"
+                            MenuManager.loadBilgiEdinme();
+                        }
+                    }
+                }
+                // DILEKCE SORGULAMA
 
 
 
