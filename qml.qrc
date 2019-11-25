@@ -27,5 +27,8 @@
         <file>Talep/TalepPdfEkle.qml</file>
         <file>Talep/TalepKonumEkle.qml</file>
         <file>Talep/TalepSmsGonder.qml</file>
+        <file>ScriptFiles/MainMenuScript.js</file>
+        <file>BilgiEdinme/BilgiEdinmeMainPage.qml</file>
+        <file>BilgiEdinme/BilgiEdinmeValueListItem.qml</file>
     </qresource>
 </RCC>
