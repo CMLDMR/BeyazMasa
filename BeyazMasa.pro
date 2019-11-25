@@ -14,6 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        BilgiEdinme/bilgiedinmemanagerpage.cpp \
+        BilgiEdinme/bilgiedinmevalue.cpp \
         Comman/backend.cpp \
         Comman/database.cpp \
         Comman/managerpage.cpp \
@@ -48,6 +50,8 @@ win32:xml {
 }
 
 HEADERS += \
+    BilgiEdinme/bilgiedinmemanagerpage.h \
+    BilgiEdinme/bilgiedinmevalue.h \
     Comman/backend.h \
     Comman/database.h \
     Comman/managerpage.h \
