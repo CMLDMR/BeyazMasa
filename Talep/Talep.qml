@@ -9,8 +9,8 @@ Item {
 
     anchors.fill: parent
     id: talepitemID
-    anchors.leftMargin: 284
-    anchors.topMargin: 30
+//    anchors.leftMargin: 284
+//    anchors.topMargin: 30
 
     property TalepManagerPage talepManeger: Backend.createTalepManager();
 
