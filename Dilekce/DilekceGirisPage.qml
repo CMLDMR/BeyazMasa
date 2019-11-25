@@ -5,8 +5,8 @@ import "DilekceScripts.js" as Dilekce
 Item {
 
     anchors.fill: parent
-    anchors.topMargin: 30
-    anchors.leftMargin: 284
+//    anchors.topMargin: 30
+//    anchors.leftMargin: 284
 
 
     DilekceGirisBackend{
