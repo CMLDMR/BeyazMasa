@@ -5,7 +5,7 @@
 
 Backend::Backend(DataBase *_db, QObject *parent) : QObject(parent) , mDB(_db)
 {
-
+    mCurrentMode = Large;
 }
 
 QString Backend::message() const
@@ -118,7 +118,81 @@ SMSManager *Backend::createSMSManager()
     return new SMSManager(this->mDB);
 }
 
+BilgiEdinmeManagerPage *Backend::createBilgiEdinmeManager()
+{
+    return new BilgiEdinmeManagerPage(this->mDB);
+}
+
 QString Backend::localFileUrl(const QString &filePath)
 {
     return QUrl::fromLocalFile (filePath).toString ();
 }
+
+int Backend::bootWidth() const
+{
+    return mBootWidth;
+}
+
+void Backend::setBootWidth(int bootWidth)
+{
+    mBootWidth = bootWidth;
+    if( mBootWidth < 480 )
+    {
+        mCurrentMode = ExtraSmall;
+    }else if( mBootWidth < 768 )
+    {
+        mCurrentMode = Small;
+    }else if( mBootWidth < 990 )
+    {
+        mCurrentMode = Medium;
+    }else if( mBootWidth < 1200 )
+    {
+        mCurrentMode = Large;
+    }else{
+        mCurrentMode = ExtraLarge;
+    }
+    emit onScreenType();
+}
+
+
+
+int Backend::itemWidth(const qreal width, const int &extralargecol, const int &largecol, const int &mediumcol, const int &smallcol , const int &extraSmallcol)
+{
+
+    switch (mCurrentMode) {
+    case ExtraSmall:
+        return static_cast<int>(width / 12.0 * extraSmallcol);
+    case Small:
+        return static_cast<int>(width / 12.0 * smallcol);
+    case Medium:
+        return static_cast<int>(width / 12.0 * mediumcol);
+    case Large:
+        return static_cast<int>(width / 12.0 * largecol);
+    case ExtraLarge:
+        return static_cast<int>(width / 12.0 * extralargecol);
+    default:
+        break;
+    }
+
+}
+
+QString Backend::screenType() const
+{
+    switch (mCurrentMode) {
+    case ExtraSmall:
+        return "ExtraSmall";
+    case Small:
+        return "Small";
+    case Medium:
+        return "Medium";
+    case Large:
+        return "Large";
+    case ExtraLarge:
+        return "ExtraLarge";
+    default:
+
+        break;
+    }
+    return "NONESCREEN";
+}
+
