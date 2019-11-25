@@ -28,7 +28,7 @@ Item {
 
 
     Rectangle{
-        anchors.leftMargin: 284
+//        anchors.leftMargin: 284
         anchors.fill: parent
 
 
