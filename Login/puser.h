@@ -8,11 +8,11 @@
 class PUser : public QObject , public SerikBLDCore::User
 {
     Q_OBJECT
-    Q_PROPERTY(QString adsoyad READ adSoyad)
-    Q_PROPERTY(QString statu READ statu)
-    Q_PROPERTY(QString birimi READ birimi)
-    Q_PROPERTY(QString UserOid READ UserOid)
-
+    Q_PROPERTY(QString adsoyad READ adSoyad NOTIFY logined )
+    Q_PROPERTY(QString statu READ statu NOTIFY logined )
+    Q_PROPERTY(QString birimi READ birimi NOTIFY logined )
+    Q_PROPERTY(QString UserOid READ UserOid NOTIFY logined )
+    Q_PROPERTY(QString photoURL READ photoURL NOTIFY logined )
 
 
 public:
@@ -21,7 +21,7 @@ public:
 
     Q_INVOKABLE bool login( const QString &_mTel ,const QString &_mPassword );
 
-    Q_INVOKABLE QString photoURL();
+    QString photoURL();
 
     QString adSoyad();
     QString statu();
