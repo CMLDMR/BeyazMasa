@@ -8,16 +8,23 @@
 class BilgiEdinmeValue : public QObject , public SerikBLDCore::BilgiEdinme::BilgiEdinmeItem
 {
     Q_OBJECT
-    Q_PROPERTY (QString konu  READ konu WRITE setKonu)
+    Q_PROPERTY (QString konu  READ konu )
     Q_PROPERTY (QString tarih READ tarih )
     Q_PROPERTY (QString saat  READ saat )
-    Q_PROPERTY (QString birim READ birim )
+    Q_PROPERTY (QString birim READ birim WRITE setBirim )
+    Q_PROPERTY (QString oid READ basvuruOid )
+    Q_PROPERTY (QString tcoid READ tcOid )
+    Q_PROPERTY (QString mesaj READ mesaj )
+    Q_PROPERTY (bool cevaplandi READ cevaplandi )
 public:
     BilgiEdinmeValue();
     BilgiEdinmeValue( const BilgiEdinmeValue& other );
     BilgiEdinmeValue( BilgiEdinmeValue&& other );
-    BilgiEdinmeValue( const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem& other );
+    BilgiEdinmeValue( const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem& other ) ;
     BilgiEdinmeValue( SerikBLDCore::BilgiEdinme::BilgiEdinmeItem&& other );
+
+
+    QString basvuruOid() const;
 
 
 

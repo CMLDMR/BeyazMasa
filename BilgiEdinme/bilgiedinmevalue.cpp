@@ -27,6 +27,18 @@ BilgiEdinmeValue::BilgiEdinmeValue(SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &&
 }
 
 
+QString BilgiEdinmeValue::basvuruOid() const
+{
+    auto _oid = this->oid ();
+    if( _oid )
+    {
+        return QString::fromStdString (_oid.value ().to_string ());
+    }
+    return "";
+}
+
+
+
 
 BilgiEdinmeValue &BilgiEdinmeValue::operator=(const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &other)
 {
