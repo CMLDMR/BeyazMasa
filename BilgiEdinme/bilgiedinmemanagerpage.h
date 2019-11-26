@@ -14,7 +14,14 @@ public:
     explicit BilgiEdinmeManagerPage();
     BilgiEdinmeManagerPage(DB* db);
 
+    Q_INVOKABLE BilgiEdinmeValue *valueAt( const QString &byOid );
+
+    Q_INVOKABLE bool updateItem(BilgiEdinmeValue *item );
+
+    Q_INVOKABLE void refreshList();
 private:
+
+    void _refreshList();
 
 };
 
