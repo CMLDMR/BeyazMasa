@@ -1,6 +1,7 @@
 #include "backend.h"
 #include <QDate>
 #include <QUrl>
+#include <QRandomGenerator>
 
 
 Backend::Backend(DataBase *_db, QObject *parent) : QObject(parent) , mDB(_db)
@@ -18,6 +19,7 @@ void Backend::setMessage(const QString &message)
     mMessage = message;
     emit messageChanged (mMessage);
 }
+
 
 QJsonArray Backend::mahalleler() const
 {
@@ -173,26 +175,32 @@ int Backend::itemWidth(const qreal width, const int &extralargecol, const int &l
     default:
         break;
     }
-
+    return static_cast<int>(width);
 }
 
 QString Backend::screenType() const
 {
+    QString returnStr = "NONESCREEN";
     switch (mCurrentMode) {
     case ExtraSmall:
-        return "ExtraSmall";
+        returnStr = "ExtraSmall";
+        break;
     case Small:
-        return "Small";
+        returnStr = "Small";
+        break;
     case Medium:
-        return "Medium";
+        returnStr = "Medium";
+        break;
     case Large:
-        return "Large";
+        returnStr = "Large";
+        break;
     case ExtraLarge:
-        return "ExtraLarge";
+        returnStr = "ExtraLarge";
+    break;
     default:
 
         break;
     }
-    return "NONESCREEN";
+    return returnStr;
 }
 

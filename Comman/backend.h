@@ -32,7 +32,6 @@ public:
 
 
 
-
     QJsonArray mahalleler() const;
     QJsonArray birimler() const;
 
@@ -63,12 +62,12 @@ public:
     };
     Q_ENUMS(CurrentScreen)
     CurrentScreen mCurrentMode;
-    Q_INVOKABLE int itemWidth ( const qreal width ,
-                                const int& extralargecol = 2 ,
-                                const int& largecol = 3,
-                                const int& mediumcol = 4,
-                                const int& smallcol = 6,
-                                const int& extraSmallcol = 12);
+    Q_INVOKABLE int itemWidth(const qreal width ,
+                                const int &extralargecol = 2 ,
+                                const int &largecol = 3,
+                                const int &mediumcol = 4,
+                                const int &smallcol = 6,
+                                const int &extraSmallcol = 12);
 
     QString screenType() const;
 
