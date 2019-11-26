@@ -10,10 +10,11 @@ Item {
 
     property BilgiEdinmeValue value
 
+    signal bilgiEdinmeOid(string oid)
+
 
     Rectangle{
         anchors.fill: parent
-        color: "black"
         clip: true
         border.color: "dimgray"
         radius: 3
@@ -61,6 +62,9 @@ Item {
                         radius: 3
                         samples: 5
                     }
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
 
@@ -81,6 +85,9 @@ Item {
                         radius: 3
                         samples: 5
                     }
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
 
@@ -101,6 +108,9 @@ Item {
                         radius: 3
                         samples: 5
                     }
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
 
@@ -121,12 +131,28 @@ Item {
                         radius: 3
                         samples: 5
                     }
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
                 }
             }
 
         }
 
 
+        MouseArea{
+            cursorShape: "PointingHandCursor"
+            anchors.fill: parent
+            onClicked: {
+                console.log("Bilgi Edinme Log");
+                bilgiEdinmeOid(value.oid)
+            }
+        }
+
+
     }
+
+
+
 
 }
