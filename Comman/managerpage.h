@@ -32,11 +32,13 @@ public:
 
     void clearModel();
 
+    QList<T> ItemList() const{
+        return mItemlist;
+    }
 
 
 private:
     QList<T> mItemlist;
-
 
     static void appendList(QQmlListProperty<T> *property, T *note)
     {
@@ -84,8 +86,6 @@ void ManagerPage<T>::clearModel()
     mItemlist.clear ();
     emit listChanged();
 }
-
-
 
 
 #endif // MANAGERPAGE_H
