@@ -15,6 +15,8 @@ Item {
     property string mTelefonNo
 
 
+
+
     // TC Bilgileri
     Rectangle{
         width: parent.width

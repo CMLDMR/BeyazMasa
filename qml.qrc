@@ -30,5 +30,6 @@
         <file>ScriptFiles/MainMenuScript.js</file>
         <file>BilgiEdinme/BilgiEdinmeMainPage.qml</file>
         <file>BilgiEdinme/BilgiEdinmeValueListItem.qml</file>
+        <file>BilgiEdinme/BilgiEdinmeViewPage.qml</file>
     </qresource>
 </RCC>
