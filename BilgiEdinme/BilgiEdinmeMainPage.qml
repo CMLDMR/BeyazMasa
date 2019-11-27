@@ -52,7 +52,7 @@ Item {
             Rectangle {
                 id: itemID
                 width: parent.width
-                height: parent.height-80
+                height: parent.height-120
 
                 ScrollView {
                     anchors.fill : parent
@@ -82,6 +82,98 @@ Item {
                 }
             }
 
+
+            Rectangle{
+                width:parent.width
+                height: 40
+                layer.enabled: true
+                color: "#1f5684"
+                layer.effect: DropShadow{
+                    samples: 12
+                    radius: 6
+                    color: "black"
+                }
+
+                Row{
+                    anchors.fill: parent
+
+                    Rectangle{
+                        width: parent.width/3
+                        height: 40
+                        color: "transparent"
+                        Text {
+                            text: qsTr("Geri")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+
+                        MouseArea{
+                            anchors.fill: parent
+                            cursorShape: "PointingHandCursor"
+                            onClicked: {
+                                bilgiEdinmeManager.back();
+                            }
+                        }
+
+                    }
+
+                    Rectangle{
+                        width: parent.width/3
+                        height: 40
+                        color: "transparent"
+                        Text {
+                            text: bilgiEdinmeManager.currentPage
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                    }
+
+                    Rectangle{
+                        width: parent.width/3
+                        height: 40
+                        color: "transparent"
+                        Text {
+                            text: qsTr("İleri")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+                        MouseArea{
+                            anchors.fill: parent
+                            cursorShape: "PointingHandCursor"
+                            onClicked: {
+                                bilgiEdinmeManager.next();
+                            }
+                        }
+                    }
+                }
+            }
 
             // Kontrol Menü
             Rectangle{
