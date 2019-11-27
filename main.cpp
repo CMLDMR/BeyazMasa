@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 
 
     qmlRegisterType <SMSManager>("serik.bel.tr.SMSManager",1,0,"SMSManager");
-//    qRegisterMetaType<SMSObject*>("const SMSObject*");
+    qRegisterMetaType<SMSObject*>("const SMSObject*");
     qmlRegisterType <SMSObject>("serik.bel.tr.SMSObject",1,0,"SMSObject");
 
 
