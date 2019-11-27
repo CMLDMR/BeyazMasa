@@ -74,7 +74,7 @@ Window {
                     width : parent.parent.width
 
                     Rectangle{
-                        width: Backend.itemWidth(parent.width,1,1,2,2,3);
+                        width: 200
                         height: appWindow.height
                         color: "red"
                         PersonelQML{
@@ -83,7 +83,7 @@ Window {
                     }
 
                     Rectangle{
-                        width: Backend.itemWidth(parent.width,11,11,10,10,9);
+                        width: parent.width-200
                         height: appWindow.height
                         color: "green"
                         MainMenu{
