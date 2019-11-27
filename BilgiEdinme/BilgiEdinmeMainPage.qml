@@ -214,7 +214,7 @@ Item {
                             anchors.fill: parent
                             cursorShape: "PointingHandCursor"
                             onClicked: {
-
+                                bilgiEdinmeManager.bekleyenler();
                             }
                         }
 
@@ -242,7 +242,7 @@ Item {
                             anchors.fill: parent
                             cursorShape: "PointingHandCursor"
                             onClicked: {
-
+                                bilgiEdinmeManager.cevaplanmayanlar();
                             }
                         }
                     }
@@ -269,7 +269,7 @@ Item {
                             anchors.fill: parent
                             cursorShape: "PointingHandCursor"
                             onClicked: {
-
+                                bilgiEdinmeManager.cevaplananlar();
                             }
                         }
                     }
