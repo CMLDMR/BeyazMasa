@@ -1,4 +1,4 @@
-#ifndef BILGIEDINMEMANAGERPAGE_H
+﻿#ifndef BILGIEDINMEMANAGERPAGE_H
 #define BILGIEDINMEMANAGERPAGE_H
 
 #include "bilgiEdinme/bilgiedinmemanager.h"
@@ -9,7 +9,6 @@ class BilgiEdinmeManagerPage : public ManagerPage<BilgiEdinmeValue> , public Ser
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<BilgiEdinmeValue> list READ list NOTIFY listChanged )
-
     Q_PROPERTY (QString currentPage READ currentPage NOTIFY currentPageChanged )
 
 public:
@@ -24,6 +23,13 @@ public:
 
     Q_INVOKABLE void next();
     Q_INVOKABLE void back();
+
+    Q_INVOKABLE void bekleyenler();
+
+    Q_INVOKABLE void cevaplanmayanlar();
+
+    Q_INVOKABLE void cevaplananlar();
+
 
     QString currentPage();
 
@@ -40,6 +46,9 @@ private:
     int skip = 0 ;
 
     int mDocumentCount;
+
+
+    BilgiEdinmeValue mCurrentFilter;
 
 };
 

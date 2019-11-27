@@ -42,6 +42,31 @@ void BilgiEdinmeManagerPage::back()
     this->operator-- ();
 }
 
+void BilgiEdinmeManagerPage::bekleyenler()
+{
+    mCurrentFilter.clear ();
+    mCurrentFilter.setBirim ("NULL");
+    this->_refreshList ();
+}
+
+void BilgiEdinmeManagerPage::cevaplanmayanlar()
+{
+    mCurrentFilter.clear ();
+    SerikBLDCore::BilgiEdinme::BilgiEdinmeItem item;
+    item.append("$exists",false);
+    mCurrentFilter.append(SerikBLDCore::BilgiEdinme::Key::CevapOid,static_cast<SerikBLDCore::Item>(item));
+    this->_refreshList ();
+}
+
+void BilgiEdinmeManagerPage::cevaplananlar()
+{
+    mCurrentFilter.clear ();
+    SerikBLDCore::BilgiEdinme::BilgiEdinmeItem item;
+    item.append("$exists",true);
+    mCurrentFilter.append(SerikBLDCore::BilgiEdinme::Key::CevapOid,static_cast<SerikBLDCore::Item>(item));
+    this->_refreshList ();
+}
+
 QString BilgiEdinmeManagerPage::currentPage()
 {
     if( ( skip + limit ) > mDocumentCount )
@@ -74,8 +99,8 @@ void BilgiEdinmeManagerPage::operator--()
 
 void BilgiEdinmeManagerPage::_refreshList()
 {
-    this->mDocumentCount = this->countItem (SerikBLDCore::BilgiEdinme::BilgiEdinmeItem());
-    auto cursor = this->UpdateList (SerikBLDCore::BilgiEdinme::BilgiEdinmeItem(),limit,skip);
+    this->mDocumentCount = this->countItem (mCurrentFilter);
+    auto cursor = this->UpdateList (mCurrentFilter,limit,skip);
     this->clearModel ();
     for( auto item : cursor )
     {
