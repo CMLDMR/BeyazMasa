@@ -19,6 +19,10 @@ Item {
 
     property TCManagerPage tcManager: Backend.createTCManager();
 
+    MouseArea{
+        anchors.fill: parent
+    }
+
 
     DilekceItem{
         id: yeniDilekceID
