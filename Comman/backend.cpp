@@ -147,7 +147,7 @@ void Backend::setBootWidth(int bootWidth)
     }else if( mBootWidth < 990 )
     {
         mCurrentMode = Medium;
-    }else if( mBootWidth < 1200 )
+    }else if( mBootWidth < 1368 )
     {
         mCurrentMode = Large;
     }else{
