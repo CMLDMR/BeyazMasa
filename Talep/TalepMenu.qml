@@ -1,11 +1,13 @@
 import QtQuick 2.13
 import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.13
 
 Item {
 
 
     signal yeniTalepActivated();
     signal tcnoCompleted(string tcno);
+    signal filterChanged(string filter);
 
     Rectangle{
         width: parent.width
@@ -15,7 +17,7 @@ Item {
         Row{
             anchors.fill: parent
             Rectangle{
-                width: parent.width/2
+                width: parent.width/3
                 height: parent.height
                 Text {
                     text: qsTr("Yeni Talep")
@@ -34,8 +36,9 @@ Item {
                     }
                 }
             }
+
             Rectangle{
-                width: parent.width/2
+                width: parent.width/3
                 height: parent.height
 
                 TextInput{
@@ -66,6 +69,25 @@ Item {
 
 
             }
+
+
+            Rectangle{
+                width: parent.width/3
+                height: parent.height
+                color: "darkslategray"
+                ComboBox{
+                    model: ["Hepsi","DevamEdiyor","Tamamlandi","TeyitEdilmemis","Beklemede","RedEdildi"]
+                    anchors.fill: parent
+
+                    onActivated: {
+                        filterChanged(currentText);
+                    }
+                }
+
+
+            }
+
+
         }
 
         layer.enabled: true
