@@ -32,9 +32,19 @@ public:
 
     Q_INVOKABLE void find( const int& limit , const int &skip );
 
+    Q_INVOKABLE void find( const QString& filter , const int& limit , const int &skip );
+
     Q_INVOKABLE void find( const QString& tcno );
 
     Q_INVOKABLE int talepCount() ;
+
+    /**
+     * @brief talepCount:
+     * @param filter : QString Key
+     * @param filterCode : 0 Durumfilter , 1 KaynakKey
+     * @return
+     */
+    Q_INVOKABLE int talepCount( const QString& filter , const int& filterCode );
 
     Q_INVOKABLE int talepCount( const QString& tcno ) ;
 
