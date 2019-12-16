@@ -10,9 +10,10 @@ Item {
     anchors.fill: parent
     id: talepitemID
 
-    property int limit: 10
+    property int limit: 25
     property int skip: 0
     property int count: 0
+    property string durumFilter: "Hepsi"
 
     property TalepManagerPage talepManeger: Backend.createTalepManager();
 
@@ -36,10 +37,12 @@ Item {
 
 
         Column{
-            anchors.fill: parent
-            anchors.bottomMargin: 55
-            spacing: 5
 
+            anchors.fill: parent
+
+            anchors.bottomMargin: 150
+
+            spacing: 5
 
             TalepMenu{
                 width: parent.width
@@ -47,12 +50,16 @@ Item {
                 onYeniTalepActivated: {
                     var result = TalepManager.loadYeniTalepPage();
                     result.added.connect(function(){
-                        talepManeger.find();
+                        if( durumFilter !== "Hepsi" )
+                        {
+                            talepManeger.find(durumFilter,limit,skip);
+                        }else{
+                            talepManeger.find(limit,skip);
+                        }
                     });
                 }
 
                 onTcnoCompleted: {
-                    print("TCNO Tamamlandı: "+tcno);
                     if( tcno.length === 0 )
                     {
                         count = talepManeger.talepCount();
@@ -61,8 +68,18 @@ Item {
                         count = talepManeger.talepCount(tcno);
                         talepManeger.find(tcno);
                     }
+                }
 
-
+                onFilterChanged: {
+                    if( filter === "Hepsi" )
+                    {
+                        count = talepManeger.talepCount();
+                        talepManeger.find(limit,skip);
+                    }else{
+                        durumFilter = filter;
+                        count = talepManeger.talepCount(filter,0);
+                        talepManeger.find(filter,limit,skip);
+                    }
                 }
             }
 
@@ -81,7 +98,6 @@ Item {
                     Flow{
                         anchors.fill: parent
                         spacing: 5
-
                         Repeater{
                             id: talepListRepeaterID
                             model: talepManeger.list
@@ -91,7 +107,6 @@ Item {
                                 onClickTalep: {
                                     var result = TalepManager.loadTalepView(talepoid);
                                     result.updated.connect(function(){
-
                                         talepManeger.find();
                                     });
                                 }
@@ -108,9 +123,10 @@ Item {
         Rectangle{
             width: parent.width
             height: 50
-            color: "red"
+            color: "steelblue"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 50
+            opacity: 0.5
 
             Row{
                 anchors.fill: parent
@@ -144,7 +160,14 @@ Item {
                                 {
                                     skip = 0;
                                 }
-                                talepManeger.find(limit,skip);
+                                if( durumFilter === "Hepsi" )
+                                {
+                                    talepManeger.find(limit,skip);
+                                }else{
+                                    talepManeger.find(durumFilter,limit,skip);
+                                }
+
+
                             }
                         }
                     }
@@ -201,7 +224,12 @@ Item {
                                 {
                                     skip = count - limit;
                                 }
-                                talepManeger.find(limit,skip);
+                                if( durumFilter === "Hepsi" )
+                                {
+                                    talepManeger.find(limit,skip);
+                                }else{
+                                    talepManeger.find(durumFilter,limit,skip);
+                                }
                             }
                         }
                     }
@@ -242,9 +270,12 @@ Item {
 
     Component.onCompleted: {
         count = talepManeger.talepCount();
+
+        skip = 0;
+        talepManeger.find(limit,skip);
         if( limit + skip < count )
         {
-            talepManeger.find(limit,skip);
+
         }
     }
 
