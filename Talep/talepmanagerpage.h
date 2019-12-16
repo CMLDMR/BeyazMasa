@@ -19,6 +19,7 @@ class TalepManagerPage : public ManagerPage<TalepItem> , public SerikBLDCore::Ta
     Q_PROPERTY(QQmlListProperty<TalepEvent> eventList READ eventList NOTIFY eventListUpdated )
 
 
+
 public:
     explicit TalepManagerPage(QObject *parent = nullptr);
     TalepManagerPage(DataBase* _db);
@@ -29,7 +30,14 @@ public:
 
     Q_INVOKABLE void find();
 
+    Q_INVOKABLE void find( const int& limit , const int &skip );
+
     Q_INVOKABLE void find( const QString& tcno );
+
+    Q_INVOKABLE int talepCount() ;
+
+    Q_INVOKABLE int talepCount( const QString& tcno ) ;
+
 
     Q_INVOKABLE TalepItem *findOne( const QString &talepOid );
 

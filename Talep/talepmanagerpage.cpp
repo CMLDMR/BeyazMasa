@@ -37,6 +37,18 @@ void TalepManagerPage::find()
 
 }
 
+void TalepManagerPage::find(const int &limit, const int &skip)
+{
+    this->clearModel ();
+    auto val = this->findTalep (SerikBLDCore::Talep(),limit,skip);
+    for( auto item : val )
+    {
+        TalepItem item_;
+        item_.setDocumentView (item.view ());
+        this->insertModel(item_);
+    }
+}
+
 void TalepManagerPage::find(const QString &tcno)
 {
     this->clearModel ();
@@ -51,6 +63,21 @@ void TalepManagerPage::find(const QString &tcno)
             this->insertModel(item_);
         }
     }
+}
+
+int TalepManagerPage::talepCount()
+{
+    return static_cast<int>(TalepManager::talepCount ());
+}
+
+int TalepManagerPage::talepCount(const QString &tcno)
+{
+    auto valTC = mTCManager->Load_byTCNO (tcno.toStdString ());
+    if( valTC )
+    {
+        return static_cast<int>(TalepManager::talepCount (SerikBLDCore::Talep().setTCOID (valTC.value ()->oid ()->to_string ().c_str ())));
+    }
+    return 0;
 }
 
 TalepItem* TalepManagerPage::findOne(const QString &talepOid)
