@@ -5,7 +5,7 @@
 #include "bilgiEdinme/bilgiedinmeitem.h"
 
 
-class BilgiEdinmeValue : public QObject , public SerikBLDCore::BilgiEdinme::BilgiEdinmeItem
+class BilgiEdinmeValue : public QObject , public SerikBLDCore::BilgiEdinmeItem
 {
     Q_OBJECT
     Q_PROPERTY (QString konu  READ konu )
@@ -20,16 +20,16 @@ public:
     BilgiEdinmeValue();
     BilgiEdinmeValue( const BilgiEdinmeValue& other );
     BilgiEdinmeValue( BilgiEdinmeValue&& other );
-    BilgiEdinmeValue( const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem& other ) ;
-    BilgiEdinmeValue( SerikBLDCore::BilgiEdinme::BilgiEdinmeItem&& other );
+    BilgiEdinmeValue( const SerikBLDCore::BilgiEdinmeItem& other ) ;
+    BilgiEdinmeValue( SerikBLDCore::BilgiEdinmeItem&& other );
 
 
     QString basvuruOid() const;
 
 
 
-    BilgiEdinmeValue& operator=( const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem& other );
-    BilgiEdinmeValue& operator=( SerikBLDCore::BilgiEdinme::BilgiEdinmeItem&& other );
+    BilgiEdinmeValue& operator=( const SerikBLDCore::BilgiEdinmeItem& other );
+    BilgiEdinmeValue& operator=( SerikBLDCore::BilgiEdinmeItem&& other );
 };
 
 Q_DECLARE_METATYPE(BilgiEdinmeValue)

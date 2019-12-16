@@ -5,7 +5,7 @@
 #include "Comman/managerpage.h"
 #include "BilgiEdinme/bilgiedinmevalue.h"
 
-class BilgiEdinmeManagerPage : public ManagerPage<BilgiEdinmeValue> , public SerikBLDCore::BilgiEdinme::BilgiEdinmeManager
+class BilgiEdinmeManagerPage : public ManagerPage<BilgiEdinmeValue> , public SerikBLDCore::BilgiEdinmeManager
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<BilgiEdinmeValue> list READ list NOTIFY listChanged )
@@ -18,6 +18,10 @@ public:
     Q_INVOKABLE BilgiEdinmeValue *valueAt( const QString &byOid );
 
     Q_INVOKABLE bool updateItem(BilgiEdinmeValue *item );
+
+    virtual void onList(const QVector<SerikBLDCore::BilgiEdinmeItem> *mlist) override{
+
+    }
 
     Q_INVOKABLE void refreshList();
 

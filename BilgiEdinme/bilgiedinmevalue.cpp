@@ -1,7 +1,7 @@
 #include "bilgiedinmevalue.h"
 
 BilgiEdinmeValue::BilgiEdinmeValue()
-    :SerikBLDCore::BilgiEdinme::BilgiEdinmeItem (nullptr)
+    :SerikBLDCore::BilgiEdinmeItem (nullptr)
 {
 
 }
@@ -16,12 +16,12 @@ BilgiEdinmeValue::BilgiEdinmeValue(BilgiEdinmeValue &&other)
     this->setDocumentView (other.view ());
 }
 
-BilgiEdinmeValue::BilgiEdinmeValue(const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &other)
+BilgiEdinmeValue::BilgiEdinmeValue(const SerikBLDCore::BilgiEdinmeItem &other)
 {
     this->setDocumentView (other.view ());
 }
 
-BilgiEdinmeValue::BilgiEdinmeValue(SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &&other)
+BilgiEdinmeValue::BilgiEdinmeValue(SerikBLDCore::BilgiEdinmeItem &&other)
 {
     this->setDocumentView (other.view ());
 }
@@ -40,13 +40,13 @@ QString BilgiEdinmeValue::basvuruOid() const
 
 
 
-BilgiEdinmeValue &BilgiEdinmeValue::operator=(const SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &other)
+BilgiEdinmeValue &BilgiEdinmeValue::operator=(const SerikBLDCore::BilgiEdinmeItem &other)
 {
     this->setDocumentView (other.view ());
     return *this;
 }
 
-BilgiEdinmeValue &BilgiEdinmeValue::operator=(SerikBLDCore::BilgiEdinme::BilgiEdinmeItem &&other)
+BilgiEdinmeValue &BilgiEdinmeValue::operator=(SerikBLDCore::BilgiEdinmeItem &&other)
 {
     this->setDocumentView (other.view ());
     return *this;

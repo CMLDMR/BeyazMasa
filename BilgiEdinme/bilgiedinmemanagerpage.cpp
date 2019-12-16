@@ -1,13 +1,13 @@
 #include "bilgiedinmemanagerpage.h"
 
 BilgiEdinmeManagerPage::BilgiEdinmeManagerPage()
-    :SerikBLDCore::BilgiEdinme::BilgiEdinmeManager (new DB())
+    :SerikBLDCore::BilgiEdinmeManager (new DB())
 {
 
 }
 
 BilgiEdinmeManagerPage::BilgiEdinmeManagerPage(DB *db)
-    :SerikBLDCore::BilgiEdinme::BilgiEdinmeManager (db)
+    :SerikBLDCore::BilgiEdinmeManager (db)
 {
 
     this->refreshList ();
@@ -52,7 +52,7 @@ void BilgiEdinmeManagerPage::bekleyenler()
 void BilgiEdinmeManagerPage::cevaplanmayanlar()
 {
     mCurrentFilter.clear ();
-    SerikBLDCore::BilgiEdinme::BilgiEdinmeItem item;
+    SerikBLDCore::BilgiEdinmeItem item;
     item.append("$exists",false);
     mCurrentFilter.append(SerikBLDCore::BilgiEdinme::Key::CevapOid,static_cast<SerikBLDCore::Item>(item));
     this->_refreshList ();
@@ -61,7 +61,7 @@ void BilgiEdinmeManagerPage::cevaplanmayanlar()
 void BilgiEdinmeManagerPage::cevaplananlar()
 {
     mCurrentFilter.clear ();
-    SerikBLDCore::BilgiEdinme::BilgiEdinmeItem item;
+    SerikBLDCore::BilgiEdinmeItem item;
     item.append("$exists",true);
     mCurrentFilter.append(SerikBLDCore::BilgiEdinme::Key::CevapOid,static_cast<SerikBLDCore::Item>(item));
     this->_refreshList ();
