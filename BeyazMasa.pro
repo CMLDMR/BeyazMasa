@@ -34,6 +34,8 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
+RC_FILE = app.rc
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -75,21 +77,20 @@ windows{
         msvc{
             message ("Compiler MSVC")
 
-            win32: LIBS += -L$$PWD/../../../../Mongo/msvc2017x86/lib/ -lbsoncxx
+            win32: LIBS += -LC:/Mongo/msvc2017x86/lib/ -lbsoncxx
 
-            INCLUDEPATH += $$PWD/../../../../Mongo/msvc2017x86/include/bsoncxx/v_noabi
-            DEPENDPATH += $$PWD/../../../../Mongo/msvc2017x86/include/bsoncxx/v_noabi
-
-
-            win32: LIBS += -L$$PWD/../../../../Mongo/msvc2017x86/lib/ -lmongocxx
-
-            INCLUDEPATH += $$PWD/../../../../Mongo/msvc2017x86/include/mongocxx/v_noabi
-            DEPENDPATH += $$PWD/../../../../Mongo/msvc2017x86/include/mongocxx/v_noabi
+            INCLUDEPATH += C:/Mongo/msvc2017x86/include/bsoncxx/v_noabi
+            DEPENDPATH += C:/Mongo/msvc2017x86/include/bsoncxx/v_noabi
 
 
+            win32: LIBS += -LC:/Mongo/msvc2017x86/lib/ -lmongocxx
 
-            INCLUDEPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
-            DEPENDPATH += $$PWD/../../../../boost/msvcx86/boost_1_71_0
+            INCLUDEPATH += C:/Mongo/msvc2017x86/include/mongocxx/v_noabi
+            DEPENDPATH += C:/Mongo/msvc2017x86/include/mongocxx/v_noabi
+
+
+            INCLUDEPATH += C:/boost/msvcx86/boost_1_71_0
+            DEPENDPATH += C:/boost/msvcx86/boost_1_71_0
 
 
             win32: LIBS += -LC:/SerikBLDCoreRelease/MSVC2017X86/lib/ -lSerikBLDCore
@@ -98,19 +99,25 @@ windows{
             DEPENDPATH += C:/SerikBLDCoreRelease/MSVC2017X86/include
 
 
-#            LIBS += -L$$PWD/SerikBLDCore/lib/ -lSerikBLDCore
-
-#            INCLUDEPATH += $$PWD/SerikBLDCore/include
-#            DEPENDPATH += $$PWD/SerikBLDCore/include
         }
     }
 }
 
 
 
+
+
+
+
+
+
+
+
 DISTFILES += \
     docs/3D Logo2.png \
     docs/serik.html
+
+
 
 
 
