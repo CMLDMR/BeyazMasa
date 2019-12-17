@@ -52,13 +52,25 @@ void TalepManagerPage::find(const int &limit, const int &skip)
 void TalepManagerPage::find(const QString &filter, const int &limit, const int &skip)
 {
     this->clearModel ();
-    auto val = this->findTalep (SerikBLDCore::Talep().setDurum (filter),limit,skip);
-    for( auto item : val )
+    if( filter != "Hepsi" )
     {
-        TalepItem item_;
-        item_.setDocumentView (item.view ());
-        this->insertModel(item_);
+        auto val = this->findTalep (SerikBLDCore::Talep().setDurum (filter),limit,skip);
+        for( auto item : val )
+        {
+            TalepItem item_;
+            item_.setDocumentView (item.view ());
+            this->insertModel(item_);
+        }
+    }else{
+        auto val = this->findTalep (SerikBLDCore::Talep(),limit,skip);
+        for( auto item : val )
+        {
+            TalepItem item_;
+            item_.setDocumentView (item.view ());
+            this->insertModel(item_);
+        }
     }
+
 }
 
 void TalepManagerPage::find(const QString &tcno)
