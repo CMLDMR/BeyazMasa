@@ -40,13 +40,13 @@ Item {
 
             anchors.fill: parent
 
-            anchors.bottomMargin: 150
+            anchors.bottomMargin: 135
 
             spacing: 5
 
             TalepMenu{
                 width: parent.width
-                height: 50
+                height: 35
                 onYeniTalepActivated: {
                     var result = TalepManager.loadYeniTalepPage();
                     result.added.connect(function(){
@@ -71,10 +71,12 @@ Item {
                 }
 
                 onFilterChanged: {
+                    durumFilter = filter;
                     if( filter === "Hepsi" )
                     {
                         count = talepManeger.talepCount();
                         talepManeger.find(limit,skip);
+
                     }else{
                         durumFilter = filter;
                         count = talepManeger.talepCount(filter,0);
@@ -152,7 +154,14 @@ Item {
                         anchors.fill: parent
                         cursorShape: "PointingHandCursor"
                         onClicked: {
-                            count = talepManeger.talepCount();
+                            if( durumFilter !== "Hepsi" )
+                            {
+                                count = talepManeger.talepCount(durumFilter,0);
+                            }else{
+                                count = talepManeger.talepCount();
+                            }
+
+
                             if( skip > 0 )
                             {
                                 skip -= limit;
@@ -160,14 +169,7 @@ Item {
                                 {
                                     skip = 0;
                                 }
-                                if( durumFilter === "Hepsi" )
-                                {
-                                    talepManeger.find(limit,skip);
-                                }else{
-                                    talepManeger.find(durumFilter,limit,skip);
-                                }
-
-
+                                talepManeger.find(durumFilter,limit,skip);
                             }
                         }
                     }
@@ -216,7 +218,17 @@ Item {
                         anchors.fill: parent
                         cursorShape: "PointingHandCursor"
                         onClicked: {
-                            count = talepManeger.talepCount();
+
+                            print("İLeri");
+
+                            if( durumFilter !== "Hepsi" )
+                            {
+                                count = talepManeger.talepCount(durumFilter,0);
+                            }else{
+                                count = talepManeger.talepCount();
+                            }
+
+
                             if( count > ( skip + limit ) )
                             {
                                 skip += limit;
@@ -224,13 +236,11 @@ Item {
                                 {
                                     skip = count - limit;
                                 }
-                                if( durumFilter === "Hepsi" )
-                                {
-                                    talepManeger.find(limit,skip);
-                                }else{
-                                    talepManeger.find(durumFilter,limit,skip);
-                                }
+                                talepManeger.find(durumFilter,limit,skip);
                             }
+
+                            console.log("Print: " + count +" - " + (skip+limit) );
+
                         }
                     }
                 }
