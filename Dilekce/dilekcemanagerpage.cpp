@@ -188,6 +188,7 @@ QJsonArray DilekceManagerPage::cevapEkList(QJsonArray oidList)
 bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 {
     auto item = qobject_cast<DilekceItem*>(_item);
+
     for( auto doc : item->bilgiBirimList () )
     {
         item->AddBilgiBirim (doc.toString ());
@@ -205,6 +206,12 @@ bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
     return this->insertDilekce (item);
 
 }
+
+bool DilekceManagerPage::updateDilekce(DilekceItem *dilekce)
+{
+    return SerikBLDCore::DilekceManager::updateDilekce (dilekce);
+}
+
 
 bool DilekceManagerPage::insertYeniKategori(const QString &yeniKategori)
 {

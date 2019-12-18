@@ -42,6 +42,10 @@ public:
 
     Q_INVOKABLE bool saveDilekce(DilekceItem *_item );
 
+
+
+    Q_INVOKABLE bool updateDilekce(DilekceItem *dilekce);
+
     Q_INVOKABLE bool insertYeniKategori(const QString &yeniKategori) override;
     Q_INVOKABLE bool deleteKategori(const QString &kategoriName) override;
 
