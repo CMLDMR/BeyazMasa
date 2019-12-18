@@ -181,6 +181,7 @@ Item {
                             if( talepManager.insertTalepEvent(talepEvent) )
                             {
                                 updated();
+                                closeUpAciklamaEkleDialog.start();
                             }
 
                         }

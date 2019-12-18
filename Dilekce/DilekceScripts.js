@@ -1,4 +1,31 @@
 
+function loadDilekceKategoriPage()
+{
+    var component = Qt.createComponent("qrc:/Dilekce/DilekceKategoriPage.qml");
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(appWindow);
+        if (sprite === null) {
+            Backend.message = "Dilekçe Kategorilerine Erişilemiyor";
+        }
+    } else if (component.status === Component.Error) {
+        Backend.message = "Dilekçe Kategorilerine Erişilemiyor: " + component.errorString();
+    }
+}
+
+function loadDilekceAyarlarPage()
+{
+    var component = Qt.createComponent("qrc:/Dilekce/DilekceAyarlar.qml");
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(appWindow);
+        if (sprite === null) {
+            Backend.message = "Dilekçe Ayarlarına Erişilemiyor";
+        }
+    } else if (component.status === Component.Error) {
+        Backend.message = "Dilekçe Ayarlarına Erişilemiyor: " + component.errorString();
+    }
+}
+
+
 
 
 

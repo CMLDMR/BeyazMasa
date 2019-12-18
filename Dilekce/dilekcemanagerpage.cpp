@@ -206,6 +206,26 @@ bool DilekceManagerPage::saveDilekce( DilekceItem *_item)
 
 }
 
+bool DilekceManagerPage::insertYeniKategori(const QString &yeniKategori)
+{
+    if( DilekceManager::insertYeniKategori (yeniKategori) )
+    {
+        emit kategorilistChanged();
+        return true;
+    }
+    return false;
+}
+
+bool DilekceManagerPage::deleteKategori(const QString &kategoriName)
+{
+    if( DilekceManager::deleteKategori (kategoriName) )
+    {
+        emit kategorilistChanged();
+        return true;
+    }
+    return false;
+}
+
 void DilekceManagerPage::appendList(QQmlListProperty<DilekceItem> *property, DilekceItem *note)
 {
     Q_UNUSED(property)

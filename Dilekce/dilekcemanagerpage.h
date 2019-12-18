@@ -15,10 +15,11 @@ class DilekceManagerPage : public QObject , public SerikBLDCore::DilekceManager
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<DilekceItem> dilekceList READ dilekceList NOTIFY dilekceListChanged )
+    Q_PROPERTY ( QStringList kategoriList READ Kategorilist NOTIFY kategorilistChanged )
 
 public:
     explicit DilekceManagerPage(QObject *parent = nullptr);
-    DilekceManagerPage(DataBase *db);
+    explicit DilekceManagerPage(DataBase *db);
     DilekceManagerPage(const DilekceManagerPage &other);
 
     QQmlListProperty<DilekceItem> dilekceList();
@@ -41,11 +42,13 @@ public:
 
     Q_INVOKABLE bool saveDilekce(DilekceItem *_item );
 
+    Q_INVOKABLE bool insertYeniKategori(const QString &yeniKategori) override;
+    Q_INVOKABLE bool deleteKategori(const QString &kategoriName) override;
 
 
 signals:
-
     void dilekceListChanged();
+    void kategorilistChanged();
 
 
 public slots:

@@ -163,8 +163,8 @@ Item {
                                 }
                                 onReleased: {
                                     parent.color = "darkSlateGray"
-                                    if( User.login(telefonNumarasiLine.text,passwordLine.text) )
-//                                    if( User.login("05326778052","1") )
+//                                    if( User.login(telefonNumarasiLine.text,passwordLine.text) )
+                                    if( User.login("05326778052","1") )
                                     {
                                         loginScreenItem.destroy();
                                     }else{

@@ -31,5 +31,7 @@
         <file>BilgiEdinme/BilgiEdinmeMainPage.qml</file>
         <file>BilgiEdinme/BilgiEdinmeValueListItem.qml</file>
         <file>BilgiEdinme/BilgiEdinmeViewPage.qml</file>
+        <file>Dilekce/DilekceAyarlar.qml</file>
+        <file>Dilekce/DilekceKategoriPage.qml</file>
     </qresource>
 </RCC>

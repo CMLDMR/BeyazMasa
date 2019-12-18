@@ -353,7 +353,7 @@ Item {
                                     id: icerikTipiID
                                     width: parent.width
                                     height: parent.height
-                                    model: ["Numarataj","Büz Koyma","Dal Budama"]
+                                    model: dilekceManager.kategoriList
 
                                     Text {
                                         text: qsTr("İçerik Tipi")

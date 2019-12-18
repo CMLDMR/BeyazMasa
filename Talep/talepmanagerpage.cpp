@@ -102,11 +102,13 @@ int TalepManagerPage::talepCount(const QString &filter, const int &filterCode)
         break;
     case 1:
 //        return static_cast<int>(TalepManager::talepCount (SerikBLDCore::Talep().setTCOID (valTC.value ()->oid ()->to_string ().c_str ())));
-
+        return 0;
         break;
     default:
         break;
     }
+
+    return 0;
 }
 
 int TalepManagerPage::talepCount(const QString &tcno)

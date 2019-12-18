@@ -125,6 +125,11 @@ Item {
                         anchors.centerIn: parent
                         color: "white"
                         font.bold: true
+                        width: parent.width
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        padding: 3
                     }
                     MouseArea{
                         cursorShape: "PointingHandCursor"
@@ -137,6 +142,38 @@ Item {
                             parent.color = "darkSlateGray";
                             dilekceListMenuText.color = "white"
                             Dilekce.loadDilekceListPage();
+                        }
+                    }
+                }
+                // DILEKCE SORGULAMA
+
+
+                // DILEKCE KATEGORI AYARLARI
+                Rectangle{
+                    id: dilekceKategoriItem
+                    width: menuroot.itemWidth
+                    height: 100
+                    color: "darkSlateGray"
+                    radius: 5
+                    border.color: "white"
+                    Text {
+                        id: dilekceKategoriItemText
+                        text: qsTr("Dilekçe Ayarlar")
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.bold: true
+                    }
+                    MouseArea{
+                        cursorShape: "PointingHandCursor"
+                        anchors.fill: parent
+                        onPressed: {
+                            parent.color = "white";
+                            dilekceKategoriItemText.color = "black"
+                        }
+                        onReleased: {
+                            parent.color = "darkSlateGray";
+                            dilekceKategoriItemText.color = "white"
+                            Dilekce.loadDilekceAyarlarPage();
                         }
                     }
                 }
