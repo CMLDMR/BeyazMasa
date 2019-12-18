@@ -35,6 +35,8 @@ Item {
                 font.family: "Tahoma"
                 font.pointSize: 11
                 anchors.centerIn: parent
+                width: parent.width
+                wrapMode: Text.WordWrap
             }
 
 
