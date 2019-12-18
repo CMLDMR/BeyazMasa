@@ -30,13 +30,16 @@ Item {
             anchors.centerIn: parent
 
             Text {
+                padding: 5
                 text: message
-                font.bold: true
+                font.bold: false
                 font.family: "Tahoma"
                 font.pointSize: 11
                 anchors.centerIn: parent
                 width: parent.width
                 wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
 
 
@@ -60,7 +63,7 @@ Item {
                     anchors.fill: parent
                     cursorShape: "PointingHandCursor"
                     onClicked: {
-                        messageDialogID.destroy();
+                        messageDialogRectIDAnimationClose.start();
                     }
                 }
             }
@@ -72,6 +75,18 @@ Item {
                 from:0
                 to:200
                 duration: 250
+            }
+
+            PropertyAnimation{
+                id: messageDialogRectIDAnimationClose
+                target: messageDialogRectID
+                property: "height"
+                from:200
+                to:0
+                duration: 150
+                onStopped: {
+                    messageDialogID.destroy();
+                }
             }
         }
 
