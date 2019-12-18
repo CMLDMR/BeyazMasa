@@ -28,11 +28,7 @@ Item {
 
 
     Rectangle{
-//        anchors.leftMargin: 284
         anchors.fill: parent
-
-
-
 
         TCComponent{
             id: tcRect
@@ -170,19 +166,30 @@ Item {
                                 width: parent.width
                                 height: 30
                                 color: "lightcoral"
-                                Text {
-                                    id: dilekceBirimText
-                                    text: qsTr("Birim")
-                                    color: "white"
-                                    font.bold: false
-                                    font.family: "Tahoma"
-                                    font.pointSize : 11
-                                    anchors.centerIn: parent
-                                    layer.enabled: true
-                                    layer.effect: DropShadow{
-                                        color: "black"
-                                        radius: 3
-                                        samples: 5
+
+
+                                ComboBox{
+                                    id: birimlerComboBoxID
+                                    width: parent.width
+                                    height: parent.height
+                                    model: Backend.birimler
+
+                                    property int current_Index: currentIndex
+
+                                    onActivated: {
+
+
+                                        var dilekceitem = dilekceManager.loadByOid(dilekceOid);
+
+                                        dilekceitem.birim = model[index];
+
+                                        if( dilekceManager.updateDilekce(dilekceitem) ){
+                                            Backend.message = "Birim Değiştirildi";
+                                        }else{
+                                            Backend.message = "Birim Değiştirilemedi";
+                                            currentIndex = current_Index;
+                                        }
+
                                     }
                                 }
                             }// Birim END
@@ -837,8 +844,14 @@ Item {
     }
 
     Component.onCompleted: {
+        reloadDilekceItem(dilekceOid);
+    }
 
-        var dilekceitem = dilekceManager.loadByOid(dilekceOid);
+
+
+    function reloadDilekceItem(_dilekceOid)
+    {
+        var dilekceitem = dilekceManager.loadByOid(_dilekceOid);
 
         if( dilekceitem )
         {
@@ -846,7 +859,21 @@ Item {
             tcRect.tcoid = dilekceitem.tcoid;
             tcRect.initTCComponent();
             dilekceKonuTextID.text = dilekceitem.konu;
-            dilekceBirimText.text = dilekceitem.birim;
+
+
+            for( var x in birimlerComboBoxID.model )
+            {
+
+                if( birimlerComboBoxID.model[x] === dilekceitem.birim )
+                {
+                    birimlerComboBoxID.currentIndex = x;
+                }
+            }
+
+//            dilekceBirimText.text = dilekceitem.birim;
+
+
+
             dilekceSayiTextID.text = dilekceitem.sayi;
             dilekceTarihTextID.text = dilekceitem.tarihText;
             dilekceIcerikTipID.text = dilekceitem.icerikTipi;
@@ -890,10 +917,10 @@ Item {
                     cevapEklistRepeater.model = dilekceManager.cevapEkList(eklist);
                 }
 
-                for( var x in eklist )
-                {
-                    console.log("Cevap Eklieri: " + eklist[x]);
-                }
+//                for( var x in eklist )
+//                {
+//                    console.log("Cevap Eklieri: " + eklist[x]);
+//                }
 
 
             }else{
