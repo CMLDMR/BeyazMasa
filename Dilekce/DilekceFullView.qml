@@ -265,23 +265,25 @@ Item {
                                 width: parent.width/12*3
                                 height: 40
                                 color: "steelblue"
-                                Text {
-                                    id: dilekceIcerikTipID
-                                    text: qsTr("İçerik Tipi")
-                                    color: "white"
-                                    font.bold: true
-                                    font.family: "Tahoma"
-                                    font.pointSize : 9
-                                    anchors.centerIn: parent
-                                    layer.enabled: true
-                                    layer.effect: DropShadow{
-                                        color: "black"
-                                        radius: 3
-                                        samples: 5
+
+                                ComboBox{
+                                    id: icerikComboBoxID
+                                    width: parent.width
+                                    height: parent.height
+                                    model: dilekceManager.kategoriList
+                                    property int current_Index: currentIndex
+                                    onActivated: {
+                                        var dilekceitem = dilekceManager.loadByOid(dilekceOid);
+                                        dilekceitem.icerikTipi = model[index];
+                                        if( dilekceManager.updateDilekce(dilekceitem) ){
+                                            Backend.message = "İçerik Değiştirildi";
+                                        }else{
+                                            Backend.message = "İçerik Değiştirilemedi";
+                                            currentIndex = current_Index;
+                                        }
                                     }
                                 }
                             }// icerik tipi END
-
                         }
                     } // dilekceHeader END
 
@@ -870,13 +872,20 @@ Item {
                 }
             }
 
-//            dilekceBirimText.text = dilekceitem.birim;
-
-
-
             dilekceSayiTextID.text = dilekceitem.sayi;
             dilekceTarihTextID.text = dilekceitem.tarihText;
-            dilekceIcerikTipID.text = dilekceitem.icerikTipi;
+
+
+            for( var x in icerikComboBoxID.model )
+            {
+                if( icerikComboBoxID.model[x] === dilekceitem.icerikTipi )
+                {
+                    icerikComboBoxID.currentIndex = x;
+                }
+            }
+
+//            dilekceIcerikTipID.text = dilekceitem.icerikTipi;
+
             dilekceIcerikTextID.text = dilekceitem.icerik;
             taranmisdilekcerectID.dilekceorjinalevrakid = dilekceManager.downloadFilePath(dilekceitem.taranmisDilekceOid());
             eklistrepeaterID.model = dilekceManager.ekFilePathList(dilekceitem);
