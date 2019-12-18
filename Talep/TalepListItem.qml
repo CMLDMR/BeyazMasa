@@ -27,12 +27,12 @@ Item {
                 color: "#80946666";
             }
         }
-        layer.enabled: true
-        layer.effect: DropShadow{
-            samples: 6
-            radius: 3
-            color: "black"
-        }
+//        layer.enabled: true
+//        layer.effect: DropShadow{
+//            samples: 6
+//            radius: 3
+//            color: "black"
+//        }
 
         Row{
             anchors.fill: parent
@@ -48,12 +48,12 @@ Item {
                     font.family: "Tahoma"
                     font.pointSize : 9
                     anchors.centerIn: parent
-                    layer.enabled: true
-                    layer.effect: DropShadow{
-                        color: "black"
-                        radius: 3
-                        samples: 5
-                    }
+//                    layer.enabled: true
+//                    layer.effect: DropShadow{
+//                        color: "black"
+//                        radius: 3
+//                        samples: 5
+//                    }
                     opacity: 1.0
                 }
             }
@@ -69,12 +69,12 @@ Item {
                     font.family: "Tahoma"
                     font.pointSize : 9
                     anchors.centerIn: parent
-                    layer.enabled: true
-                    layer.effect: DropShadow{
-                        color: "black"
-                        radius: 3
-                        samples: 5
-                    }
+//                    layer.enabled: true
+//                    layer.effect: DropShadow{
+//                        color: "black"
+//                        radius: 3
+//                        samples: 5
+//                    }
                     opacity: 1.0
                 }
             }
@@ -85,12 +85,12 @@ Item {
                 height: parent.height
                 id: durumRectID
                 radius: 3
-                layer.enabled: true
-                layer.effect: DropShadow{
-                    color: "black"
-                    radius: 1
-                    samples: 3
-                }
+//                layer.enabled: true
+//                layer.effect: DropShadow{
+//                    color: "black"
+//                    radius: 1
+//                    samples: 3
+//                }
                 opacity: 0.85
                 Text {
                     text: talepItem.DurumStr

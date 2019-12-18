@@ -13,7 +13,7 @@ class BilgiEdinmeManagerPage : public ManagerPage<BilgiEdinmeValue> , public Ser
 
 public:
     explicit BilgiEdinmeManagerPage();
-    BilgiEdinmeManagerPage(DB* db);
+    explicit BilgiEdinmeManagerPage(DB* db);
 
     Q_INVOKABLE BilgiEdinmeValue *valueAt( const QString &byOid );
 

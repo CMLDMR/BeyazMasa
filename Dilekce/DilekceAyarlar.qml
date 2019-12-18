@@ -61,6 +61,36 @@ Item {
                     }
 
 
+                    Rectangle{
+                        width: dilekceayarRoot.itemWidth
+                        height: 50
+                        color: "crimson"
+
+                        Text {
+                            text: qsTr("Kapat")
+                            color: "white"
+                            font.bold: true
+                            font.family: "Tahoma"
+                            font.pointSize : 9
+                            anchors.centerIn: parent
+                            layer.enabled: true
+                            layer.effect: DropShadow{
+                                color: "black"
+                                radius: 3
+                                samples: 5
+                            }
+                        }
+
+                        MouseArea{
+                            anchors.fill: parent
+                            cursorShape: "PointingHandCursor"
+                            onClicked: {
+                                dilekceayarRoot.destroy();
+                            }
+                        }
+                    }
+
+
                 }
             }
         }
