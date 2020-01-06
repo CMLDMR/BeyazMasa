@@ -44,6 +44,16 @@ Item {
                     opacity: 0
                 }
 
+                Text {
+                    text: qsTr("Build:300")
+                    color: "dimgray"
+                    font.bold: false
+                    font.family: "Tahoma"
+                    font.pointSize: 9
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                }
+
                 PropertyAnimation { id: beyazMasaTitleTextAnimation;
                     target: beyazMasaTitleText;
                     property: "opacity";
@@ -168,6 +178,7 @@ Item {
                                 onReleased: {
                                     parent.color = "darkSlateGray"
                                     if( User.login(telefonNumarasiLine.text,passwordLine.text) )
+//                                    Backend.message = "Giriş Bilgilerini Değiştir";
 //                                    if( User.login("05326778052","1") )
                                     {
                                         loginScreenItem.destroy();
