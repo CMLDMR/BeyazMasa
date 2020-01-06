@@ -33,5 +33,6 @@
         <file>BilgiEdinme/BilgiEdinmeViewPage.qml</file>
         <file>Dilekce/DilekceAyarlar.qml</file>
         <file>Dilekce/DilekceKategoriPage.qml</file>
+        <file>TC/TCManagerPage.qml</file>
     </qresource>
 </RCC>
