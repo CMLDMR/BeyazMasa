@@ -267,6 +267,22 @@ Item {
                 anchors.bottomMargin: 5
                 flat: false
                 onClicked: {
+
+                    if( textInputTC.text.length !== 0 )
+                    {
+                        if( textInputTC.text.length !== 11 )
+                        {
+                            Backend.message = "TC No Boş Bırabilirsiniz Yada 11 Haneli Olmak Zorunda";
+                            return;
+                        }else{
+                            if( tcManager.tcCheck(textInputTC.text) )
+                            {
+                                Backend.message = "Bu TC Kayıtlı";
+                                return;
+                            }
+                        }
+                    }
+
                     tcItem.TCNO = textInputTC.text
                     tcItem.AdSoyad = textInputAdSoyad.text
                     tcItem.CepTelefonu = textInputTelefon.text
@@ -274,26 +290,20 @@ Item {
                     tcItem.TamAdres = textInputAdres.text
                     tcItem.Password = tcManager.generatePassword();
                     tcItem.CalismaSMS = switchSMSGonderID.checked
-                    var a = tcManager.tcCheck(textInputTC.text);
-                    if( a )
+
+                    var b  = tcManager.cepTelefonuCheck(textInputTelefon.text)
+                    if( b )
                     {
-                        Backend.message = "Bu TC Kayıtlı";
+                        Backend.message = "Bu Telefon Numarası Kayıtlı";
                     }else{
-                        var b  = tcManager.cepTelefonuCheck(textInputTelefon.text)
-                        if( b )
-                        {
-                            Backend.message = "Bu Telefon Numarası Kayıtlı";
+                        if( tcManager.saveTCItem(tcItem) ){
+                            Backend.message = "TC Bilgileri Başarılı Bir Şekilde Kayıt Edildi.\nŞifre: " + tcItem.Password;
+                            yeniTCKaydetID.destroy();
                         }else{
-//                            console.log("testView");
-//                            tcItem.testView();
-                            if( tcManager.saveTCItem(tcItem) ){
-                                Backend.message = "TC Bilgileri Başarılı Bir Şekilde Kayıt Edildi.\nŞifre: " + tcItem.Password;
-                                yeniTCKaydetID.destroy();
-                            }else{
-                                Backend.message = "TC Bilgileri Kayıt Edilemedi";
-                            }
+                            Backend.message = "TC Bilgileri Kayıt Edilemedi";
                         }
                     }
+
                 }
             }
 
