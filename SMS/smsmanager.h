@@ -29,11 +29,16 @@ public:
 
     bool insertAndSendSMS(const SerikBLDCore::SMS::SMSItem &item) override;
 
+    bool checkRapor(const SerikBLDCore::SMS::SMSItem &item) override;
+
     Q_INVOKABLE bool insertSendSMS(const SMSObject *item );
 
 
 signals:
     void notify(QString notifyMSG);
+
+private:
+    QString mLastCheckItemOid;
 };
 
 Q_DECLARE_METATYPE(SMSManager)
