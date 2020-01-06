@@ -20,6 +20,11 @@ TCItem::TCItem(TC *other)
     this->setDocumentView(other->view());
 }
 
+TCItem::TCItem(SerikBLDCore::TC &other)
+{
+    this->setDocumentView(other.view());
+}
+
 TCItem &TCItem::operator=(const TCItem &other)
 {
     this->setDocumentView (other.view ());
@@ -30,6 +35,18 @@ TCItem &TCItem::operator=(TCItem &&other)
 {
     this->setDocumentView (other.view ());
     return *this;}
+
+TCItem &TCItem::operator=(const SerikBLDCore::TC &other)
+{
+    this->setDocumentView (other.view ());
+    return *this;
+}
+
+TCItem &TCItem::operator=(SerikBLDCore::TC &other)
+{
+    this->setDocumentView (other.view ());
+    return *this;
+}
 
 
 QString TCItem::tcOid()

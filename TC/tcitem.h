@@ -19,10 +19,15 @@ public:
     explicit TCItem(QObject *parent = nullptr);
     TCItem( const TCItem &other);
     TCItem( TCItem&& other);
-    TCItem( SerikBLDCore::TC* other);
+    explicit TCItem( SerikBLDCore::TC* other);
+    explicit TCItem( SerikBLDCore::TC &other );
 
     TCItem& operator=( const TCItem &other );
     TCItem& operator=( TCItem &&other);
+
+    TCItem& operator=( const SerikBLDCore::TC &other );
+    TCItem& operator=( SerikBLDCore::TC &other );
+
 
 
     Q_INVOKABLE QString tcOid();
