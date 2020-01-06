@@ -35,5 +35,6 @@
         <file>Dilekce/DilekceKategoriPage.qml</file>
         <file>TC/TCManagerPage.qml</file>
         <file>TC/TCListItem.qml</file>
+        <file>TC/TCQml.qml</file>
     </qresource>
 </RCC>
