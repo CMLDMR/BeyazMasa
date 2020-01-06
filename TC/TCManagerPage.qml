@@ -1,13 +1,14 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import serik.bel.tr.TCManagerPageV2 1.0
+import "../TC/TCScript.js" as TCView
 
 Item {
 
 
     id: tcManagerRoot
     anchors.fill: parent
-    property int itemWidth: Backend.itemWidth(tcManagerRoot.width,4,4,4,12,12)
+    property int itemWidth: Backend.itemWidth(tcManagerRoot.width,3,3,3,6,12)
     property TCManagerPageV2 tcManager: Backend.createTCManagerV2();
 
 
@@ -138,6 +139,35 @@ Item {
                             }
                         }
 
+                        Rectangle{
+                            width: itemWidth
+                            height: 30
+                            border.color: "black"
+                            radius: 4
+                            border.width: 1
+                            color: "#12c49e"
+
+                            Text {
+                                text: qsTr("Yeni Kayıt Yap")
+                                color: "white"
+                                font.bold: true
+                                font.family: "Tahoma"
+                                font.pointSize : 9
+                                anchors.centerIn: parent
+                            }
+
+                            MouseArea{
+                                anchors.fill: parent
+                                cursorShape: "PointingHandCursor"
+                                onClicked: {
+                                    TCView.loadTCView();
+                                }
+                            }
+
+
+
+                        }
+
                     }
                 }
             }
@@ -146,7 +176,7 @@ Item {
             Rectangle {
                 id: contentItemID
                 width: parent.width
-                height: parent.height-60-controllerID.height
+                height: parent.height-70-controllerID.height
                 color: "transparent"
 
                 ScrollView {
@@ -163,9 +193,16 @@ Item {
                                 tcItem: modelData
                                 width: Backend.itemWidth(contentItemID.width,4,4,4,6,12)
                                 height: 50
+                                onTcclicked: {
+                                    var tcQML = TCView.loadTCQML(tcoid);
+                                    if( tcQML !== null )
+                                    {
+                                        tcQML.onGuncelle.connect(function(guncelle){
+                                            tcManager.updatelist();
+                                        });
+                                    }
+                                }
                             }
-
-
                         }
                     }
                 }
