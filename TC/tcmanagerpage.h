@@ -16,7 +16,7 @@ class TCManagerPage : public QObject , public SerikBLDCore::TCManager
 
 public:
     explicit TCManagerPage(QObject *parent = nullptr);
-    TCManagerPage(DataBase* _db );
+    explicit TCManagerPage(DataBase* _db );
 
 
     Q_INVOKABLE bool tcCheck( const QString& mTC );
@@ -37,5 +37,8 @@ signals:
 
 public slots:
 };
+
+
+
 
 #endif // TCMANAGERPAGE_H
