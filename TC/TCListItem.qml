@@ -7,7 +7,7 @@ Item {
 
 
     property TCItem tcItem
-
+    signal tcclicked(string tcoid);
 
     Rectangle{
         width: parent.width
@@ -18,6 +18,14 @@ Item {
             anchors.fill: parent
             anchors.margins: 1
             color: "steelblue"
+
+            MouseArea{
+                anchors.fill: parent
+                cursorShape: "PointingHandCursor"
+                onClicked: {
+                    tcclicked(tcItem.tcOid());
+                }
+            }
 
             Column{
                 anchors.fill: parent
@@ -30,6 +38,13 @@ Item {
                     font.pointSize : 8
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
+                    Component.onCompleted: {
+                        if( text.length === 0 )
+                        {
+                            text = "<b>TC NO YOK</b>";
+                            color = "red";
+                        }
+                    }
                 }
 
                 Text {
