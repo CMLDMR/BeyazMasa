@@ -24,6 +24,8 @@
 
 
 
+void RegisterType();
+
 
 
 int main(int argc, char *argv[])
@@ -51,26 +53,7 @@ int main(int argc, char *argv[])
     auto backend = new Backend(db);
     auto user = new PUser(db);
 
-    qmlRegisterType <DataBase>();
-    qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
-    qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
-    qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
-    qmlRegisterType <DilekceManagerPage>("serik.bel.tr.DilekceManagerPage",1,0,"DilekceManagerPage");
-    qmlRegisterType <TCManagerPage>("serik.bel.tr.TCManagerPage",1,0,"TCManagerPage");
-
-    qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
-    qmlRegisterType <TalepEvent>("serik.bel.tr.TalepEvent",1,0,"TalepEvent");
-    qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
-
-
-    qmlRegisterType <SMSManager>("serik.bel.tr.SMSManager",1,0,"SMSManager");
-    qRegisterMetaType<SMSObject*>("const SMSObject*");
-    qmlRegisterType <SMSObject>("serik.bel.tr.SMSObject",1,0,"SMSObject");
-
-
-    qmlRegisterType <BilgiEdinmeManagerPage>("serik.bel.tr.BilgiEdinmeManagerPage",1,0,"BilgiEdinmeManagerPage");
-    qmlRegisterType <BilgiEdinmeValue>("serik.bel.tr.BilgiEdinmeValue",1,0,"BilgiEdinmeValue");
-
+    RegisterType ();
 
     QGuiApplication app(argc, argv);
 
@@ -94,4 +77,33 @@ int main(int argc, char *argv[])
 
 
     return app.exec();
+}
+
+
+
+void RegisterType(){
+
+    qmlRegisterType <DataBase>();
+    qmlRegisterType <DilekceGirisPage>("serik.bel.tr.DilekceGirisPage",1,0,"DilekceGirisBackend");
+    qmlRegisterType <DilekceItem>("serik.bel.tr.DilekceItem",1,0,"DilekceItem");
+    qmlRegisterType <TCItem>("serik.bel.tr.TCItem",1,0,"TCItem");
+    qmlRegisterType <DilekceManagerPage>("serik.bel.tr.DilekceManagerPage",1,0,"DilekceManagerPage");
+    qmlRegisterType <TCManagerPage>("serik.bel.tr.TCManagerPage",1,0,"TCManagerPage");
+    qmlRegisterType <TCManagerPageV2>("serik.bel.tr.TCManagerPageV2",1,0,"TCManagerPageV2");
+
+    qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
+    qmlRegisterType <TalepEvent>("serik.bel.tr.TalepEvent",1,0,"TalepEvent");
+    qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
+
+
+    qmlRegisterType <SMSManager>("serik.bel.tr.SMSManager",1,0,"SMSManager");
+    qRegisterMetaType<SMSObject*>("const SMSObject*");
+    qmlRegisterType <SMSObject>("serik.bel.tr.SMSObject",1,0,"SMSObject");
+
+
+    qmlRegisterType <BilgiEdinmeManagerPage>("serik.bel.tr.BilgiEdinmeManagerPage",1,0,"BilgiEdinmeManagerPage");
+    qmlRegisterType <BilgiEdinmeValue>("serik.bel.tr.BilgiEdinmeValue",1,0,"BilgiEdinmeValue");
+
+
+
 }
