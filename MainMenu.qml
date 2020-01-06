@@ -9,13 +9,6 @@ import "ScriptFiles/MainMenuScript.js" as MenuManager
 
 Item {
 
-//    width: parent.width
-//    height: parent.height
-
-//    anchors.fill: parent
-//    anchors.topMargin: 50
-//    anchors.leftMargin: 284
-
 
     Rectangle{
         id: menuroot
@@ -24,14 +17,13 @@ Item {
 
         color: "darkSlateGray"
         anchors.centerIn: parent
-        property int itemWidth: Backend.itemWidth(width,1,2,3,4,6);
+        property int itemWidth: Backend.itemWidth(width,2,3,4,6,12);
 
 
         ScrollView{
             anchors.fill: parent
             clip: true
             Flow{
-//                spacing: 20
                 width: menuroot.width
 
                 // Dilekçe Giriş
@@ -211,18 +203,40 @@ Item {
                 // DILEKCE SORGULAMA
 
 
+                // TC Veritabanı
+                Rectangle{
+                    id: tcVeriTabaniItem
+                    width: menuroot.itemWidth
+                    height: 100
+                    color: "darkSlateGray"
+                    radius: 5
+                    border.color: "white"
+                    Text {
+                        id: tcVeriTabaniItemText
+                        text: qsTr("TC Verileri")
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.bold: true
+                    }
+                    MouseArea{
+                        cursorShape: "PointingHandCursor"
+                        anchors.fill: parent
+                        onPressed: {
+                            parent.color = "white";
+                            tcVeriTabaniItemText.color = "black"
+                        }
+                        onReleased: {
+                            parent.color = "darkSlateGray";
+                            tcVeriTabaniItemText.color = "white"
+                            MenuManager.loadTCVeriTabani();
+                        }
+                    }
+                }
+                // TC Veritabanı END
+
 
             }
-
-
         }
-
-
-
-
-
-
-
     }
 
 }
