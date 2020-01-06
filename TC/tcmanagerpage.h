@@ -69,6 +69,17 @@ public:
 
     QString currentPage();
 
+    Q_INVOKABLE TCItem* loadByOid( const QString &mOid );
+
+    Q_INVOKABLE bool updateTCItem(TCItem *item );
+
+
+    Q_INVOKABLE bool tcCheck( const QString& mTC );
+
+    Q_INVOKABLE bool cepTelefonuCheck( const QString& mCepTelefonu );
+
+
+
 
 
 signals:

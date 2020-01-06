@@ -126,7 +126,6 @@ void TCManagerPageV2::errorOccured(const std::string &errorText)
 
 void TCManagerPageV2::updatelist()
 {
-    filter.clear ();
     this->UpdateList (filter);
     emit currentPageNotify ();
 }
@@ -175,4 +174,55 @@ QString TCManagerPageV2::currentPage()
 {
     QString str = QString(" %1 / %2 ").arg (TCManagerV2::currentPage (filter)).arg (TCManagerV2::totalPage (filter));
     return str;
+}
+
+TCItem *TCManagerPageV2::loadByOid(const QString &mOid)
+{
+    auto val = this->Load_byOID (mOid.toStdString ());
+
+    if( val )
+    {
+        return new TCItem(val.value());
+    }else{
+        return nullptr;
+    }
+}
+
+bool TCManagerPageV2::updateTCItem(TCItem *item)
+{
+    return this->UpdateItem (*item);
+}
+
+bool TCManagerPageV2::tcCheck(const QString &mTC)
+{
+    SerikBLDCore::TC item;
+    item.setTCNO (mTC);
+    auto count = this->countItem (item);
+
+    if( count == -1 )
+    {
+        std::cout << "mTC DataBase Count Error: " << __LINE__ << __FUNCTION__ << std::endl;
+        return false;
+    }else if (count == 0 ) {
+        return false;
+    }else{
+        return true;
+    }
+}
+
+bool TCManagerPageV2::cepTelefonuCheck(const QString &mCepTelefonu)
+{
+    SerikBLDCore::TC item;
+    item.setCepTelefonu (mCepTelefonu);
+    auto count = this->countItem (item);
+
+    if( count == -1 )
+    {
+        std::cout << "mCepTelefonu DataBase Count Error: " << __LINE__ << __FUNCTION__ << std::endl;
+        return false;
+    }else if (count == 0 ) {
+        return false;
+    }else{
+        return true;
+    }
 }
