@@ -125,6 +125,11 @@ BilgiEdinmeManagerPage *Backend::createBilgiEdinmeManager()
     return new BilgiEdinmeManagerPage(this->mDB);
 }
 
+TCManagerPageV2 *Backend::createTCManagerV2()
+{
+    return new TCManagerPageV2(this->mDB);
+}
+
 QString Backend::localFileUrl(const QString &filePath)
 {
     return QUrl::fromLocalFile (filePath).toString ();

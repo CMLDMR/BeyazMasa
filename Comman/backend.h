@@ -45,6 +45,7 @@ public:
     Q_INVOKABLE TalepManagerPage* createTalepManager();
     Q_INVOKABLE SMSManager* createSMSManager();
     Q_INVOKABLE BilgiEdinmeManagerPage* createBilgiEdinmeManager();
+    Q_INVOKABLE TCManagerPageV2* createTCManagerV2();
 
 
     Q_INVOKABLE QString localFileUrl( const QString &filePath );
@@ -54,10 +55,10 @@ public:
     int bootWidth() const;
     void setBootWidth(int bootWidth);
     enum CurrentScreen{
-        ExtraSmall,
-        Small,
-        Medium,
-        Large,
+        ExtraSmall ,
+        Small ,
+        Medium ,
+        Large ,
         ExtraLarge
     };
     Q_ENUMS(CurrentScreen)
@@ -69,6 +70,8 @@ public:
                                 const int &smallcol = 6,
                                 const int &extraSmallcol = 12);
 
+
+
     QString screenType() const;
 
 
@@ -76,6 +79,8 @@ public:
 signals:
     void messageChanged(QString _message);
     void onScreenType();
+
+
 public slots:
 
 
