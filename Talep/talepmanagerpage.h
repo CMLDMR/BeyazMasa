@@ -21,8 +21,8 @@ class TalepManagerPage : public ManagerPage<TalepItem> , public SerikBLDCore::Ta
 
 
 public:
-    explicit TalepManagerPage(QObject *parent = nullptr);
-    TalepManagerPage(DataBase* _db);
+    explicit TalepManagerPage( QObject *parent = nullptr );
+    explicit TalepManagerPage( DataBase* _db );
 
     Q_INVOKABLE bool insertTalepItem( TalepItem* item );
 

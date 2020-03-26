@@ -29,6 +29,8 @@ SOURCES += \
         TC/tcmanagerpage.cpp \
         Talep/talepevent.cpp \
         Talep/talepitem.cpp \
+        Talep/talepkategoriitem.cpp \
+        Talep/talepkateogorimanagerpage.cpp \
         Talep/talepmanagerpage.cpp \
         main.cpp
 
@@ -67,6 +69,8 @@ HEADERS += \
     TC/tcmanagerpage.h \
     Talep/talepevent.h \
     Talep/talepitem.h \
+    Talep/talepkategoriitem.h \
+    Talep/talepkateogorimanagerpage.h \
     Talep/talepmanagerpage.h
 
 
@@ -104,6 +108,7 @@ windows{
 }
 
 DISTFILES += \
+    Talep/TalepKategoriManagerPage.qml \
     docs/3D Logo2.png \
     docs/serik.html
 

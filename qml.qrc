@@ -36,5 +36,7 @@
         <file>TC/TCManagerPage.qml</file>
         <file>TC/TCListItem.qml</file>
         <file>TC/TCQml.qml</file>
+        <file>Talep/Kategoriler/KategoriList.qml</file>
+        <file>Talep/Kategoriler/KategoriListItem.qml</file>
     </qresource>
 </RCC>

@@ -8,6 +8,7 @@
 #include "TC/tcmanagerpage.h"
 #include "Talep/talepmanagerpage.h"
 #include "BilgiEdinme/bilgiedinmemanagerpage.h"
+#include "Talep/talepkateogorimanagerpage.h"
 #include "SMS/smsmanager.h"
 #include <QScreen>
 #include <QGuiApplication>
@@ -46,6 +47,7 @@ public:
     Q_INVOKABLE SMSManager* createSMSManager();
     Q_INVOKABLE BilgiEdinmeManagerPage* createBilgiEdinmeManager();
     Q_INVOKABLE TCManagerPageV2* createTCManagerV2();
+    Q_INVOKABLE TalepKateogoriManagerPage* createTalepKategoriManager();
 
 
     Q_INVOKABLE QString localFileUrl( const QString &filePath );

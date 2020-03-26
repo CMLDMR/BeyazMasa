@@ -6,6 +6,7 @@ Item {
 
 
     signal yeniTalepActivated();
+    signal kategorilerActivated();
     signal tcnoCompleted(string tcno);
     signal filterChanged(string filter);
 
@@ -15,9 +16,13 @@ Item {
         color: "cornflowerblue"
 
         Row{
+
+
             anchors.fill: parent
+
+
             Rectangle{
-                width: parent.width/3
+                width: parent.width/4
                 height: parent.height
                 Text {
                     text: qsTr("Yeni Talep")
@@ -37,8 +42,9 @@ Item {
                 }
             }
 
+
             Rectangle{
-                width: parent.width/3
+                width: parent.width/4
                 height: parent.height
 
                 TextInput{
@@ -72,19 +78,38 @@ Item {
 
 
             Rectangle{
-                width: parent.width/3
+                width: parent.width/4
                 height: parent.height
                 color: "darkslategray"
                 ComboBox{
                     model: ["Hepsi","DevamEdiyor","Tamamlandi","TeyitEdilmemis","Beklemede","RedEdildi"]
                     anchors.fill: parent
-
                     onActivated: {
                         filterChanged(currentText);
                     }
                 }
+            }
 
 
+            Rectangle{
+                width: parent.width/4
+                height: parent.height
+                Text {
+                    text: qsTr("Kategoriler")
+                    color: "orange"
+                    font.bold: false
+                    font.family: "Tahoma"
+                    font.pointSize : 11
+                    anchors.centerIn: parent
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    cursorShape: "PointingHandCursor"
+                    onClicked: {
+                        kategorilerActivated();
+                    }
+                }
             }
 
 

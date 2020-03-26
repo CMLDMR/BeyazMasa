@@ -130,6 +130,11 @@ TCManagerPageV2 *Backend::createTCManagerV2()
     return new TCManagerPageV2(this->mDB);
 }
 
+TalepKateogoriManagerPage *Backend::createTalepKategoriManager()
+{
+    return new TalepKateogoriManagerPage(this->mDB);
+}
+
 QString Backend::localFileUrl(const QString &filePath)
 {
     return QUrl::fromLocalFile (filePath).toString ();

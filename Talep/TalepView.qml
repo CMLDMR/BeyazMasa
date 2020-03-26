@@ -15,6 +15,7 @@ Item {
 
     id: talepViewID
     anchors.fill: parent
+    width: parent.width > 1024 ? 1024 : parent.width
     property string talepOid
     property TalepItem talepItem
     property TalepManagerPage talepManager: Backend.createTalepManager();

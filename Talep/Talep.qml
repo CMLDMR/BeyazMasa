@@ -83,6 +83,10 @@ Item {
                         talepManeger.find(filter,limit,skip);
                     }
                 }
+
+                onKategorilerActivated: {
+                    var result = TalepManager.loadKategorilist();
+                }
             }
 
             Rectangle{

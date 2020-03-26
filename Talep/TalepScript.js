@@ -64,8 +64,7 @@ function loadYeniTalepPage(){
 }
 
 
-function loadTalepView(talepoid)
-{
+function loadTalepView(talepoid){
     var component = Qt.createComponent("qrc:/Talep/TalepView.qml");
 
     if (component.status === Component.Ready) {
@@ -156,6 +155,25 @@ function loadSmsGonderScreen(talepoid)
 
     if (component.status === Component.Ready) {
         var sprite = component.createObject(talepitemID,{talepOid:talepoid});
+        if (sprite === null) {
+            return null;
+        }else{
+            return sprite;
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+        return null;
+    }
+}
+
+
+function loadKategorilist()
+{
+    var component = Qt.createComponent("qrc:/Talep/Kategoriler/KategoriList.qml");
+
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(talepitemID);
         if (sprite === null) {
             return null;
         }else{

@@ -21,7 +21,7 @@
 #include "SMS/smsmanager.h"
 #include "SMS/smsobject.h"
 #include "BilgiEdinme/bilgiedinmemanagerpage.h"
-
+#include "Talep/talepkategoriitem.h"
 
 
 void RegisterType();
@@ -94,6 +94,8 @@ void RegisterType(){
     qmlRegisterType <TalepItem>("serik.bel.tr.TalepItem",1,0,"TalepItem");
     qmlRegisterType <TalepEvent>("serik.bel.tr.TalepEvent",1,0,"TalepEvent");
     qmlRegisterType <TalepManagerPage>("serik.bel.tr.TalepManagerPage",1,0,"TalepManagerPage");
+    qmlRegisterType <TalepKateogoriManagerPage>("serik.bel.tr.TalepKateogoriManagerPage",1,0,"TalepKateogoriManagerPage");
+    qmlRegisterType <TalepKategoriItem>("serik.bel.tr.TalepKategoriItem",1,0,"TalepKategoriItem");
 
 
     qmlRegisterType <SMSManager>("serik.bel.tr.SMSManager",1,0,"SMSManager");

@@ -20,7 +20,12 @@ public:
     Q_INVOKABLE bool updateItem(BilgiEdinmeValue *item );
 
     virtual void onList(const QVector<SerikBLDCore::BilgiEdinmeItem> *mlist) override{
-
+        for( auto item : *mlist )
+        {
+            BilgiEdinmeValue item_;
+            item_.setDocumentView (item.view ());
+            this->insertModel (item_);
+        }
     }
 
     Q_INVOKABLE void refreshList();
