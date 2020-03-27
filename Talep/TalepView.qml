@@ -393,7 +393,7 @@ Item {
                                                 function updateKategoriComboBox(){
                                                     for( var i = 0 ; i < count ; i++ )
                                                     {
-                                                        if( textAt(i) === talepKategoriManeger.kategoriName(Item.kategoriOid) )
+                                                        if( textAt(i) === talepKategoriManeger.kategoriName(talepItem.kategoriOid) )
                                                         {
                                                             currentIndex = i;
                                                             changedProperty = true;
