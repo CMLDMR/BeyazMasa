@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QQmlListProperty>
+#include <QJsonArray>
 #include "Comman/database.h"
 #include "Talep/talepkategoriitem.h"
 #include "Talep/talepkategorimanager.h"
@@ -30,6 +31,12 @@ public:
     Q_INVOKABLE int countItem( const QString& kategoriName );
 
     Q_INVOKABLE bool insertOne( const QString& kategoriName );
+
+    Q_INVOKABLE QJsonArray listName() const;
+
+    Q_INVOKABLE QString kategoriOid( const QString& kategoriName );
+
+    Q_INVOKABLE QString kategoriName( const QString& kategoriOid );
 
     virtual void errorOccured(const std::string &errorText) override;
 

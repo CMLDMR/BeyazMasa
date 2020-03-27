@@ -66,6 +66,45 @@ bool TalepKateogoriManagerPage::insertOne(const QString &kategoriName)
     }
 }
 
+QJsonArray TalepKateogoriManagerPage::listName() const
+{
+    QJsonArray array;
+    array.append (QString("Belirtilmemiş"));
+    for( auto item : this->List () )
+    {
+        array.append (item.KategoriName ());
+    }
+    return array;
+}
+
+QString TalepKateogoriManagerPage::kategoriOid(const QString &kategoriName)
+{
+    QString oid;
+    for( auto item : this->List () )
+    {
+        if( item.KategoriName () == kategoriName )
+        {
+            oid = item.oid ().value ().to_string ().c_str ();
+            break;
+        }
+    }
+    return oid;
+}
+
+QString TalepKateogoriManagerPage::kategoriName(const QString &kategoriOid)
+{
+    QString kategoriName;
+    for( auto item : this->List () )
+    {
+        if( item.oid ().value ().to_string ().c_str () == kategoriOid )
+        {
+            kategoriName = item.KategoriName ();
+            break;
+        }
+    }
+    return kategoriName;
+}
+
 void TalepKateogoriManagerPage::errorOccured(const std::string &errorText)
 {
 

@@ -119,15 +119,10 @@ Item {
                                     talepKategoriManeger.updateKategoriList();
                                 }else{
                                     Backend.message = "Uyarı: Bu Kategori Adı Eklenemedi!";
-
                                 }
-
                             }
                         });
                     }
-
-
-
                 }
             }
         }

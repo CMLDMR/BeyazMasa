@@ -9,6 +9,9 @@ import serik.bel.tr.TCItem 1.0
 import serik.bel.tr.TalepEvent 1.0
 import serik.bel.tr.SMSManager 1.0
 import serik.bel.tr.SMSObject 1.0
+import serik.bel.tr.TalepKateogoriManagerPage 1.0
+import serik.bel.tr.TalepKategoriItem 1.0
+
 
 Item {
 
@@ -20,6 +23,8 @@ Item {
     property TalepItem talepItem
     property TalepManagerPage talepManager: Backend.createTalepManager();
     property TCManagerPage tcManager: Backend.createTCManager();
+    property TalepKateogoriManagerPage talepKategoriManeger: Backend.createTalepKategoriManager();
+
     property TCItem tcItem
     property TalepEvent talepEvent: TalepEvent{}
     signal updated();
@@ -299,7 +304,7 @@ Item {
                                     Row{
                                         anchors.fill: parent
                                         Rectangle{
-                                            width: parent.width * 0.35
+                                            width: parent.width * 0.20
                                             height: parent.height
                                             color: "transparent"
                                             Text {
@@ -318,7 +323,7 @@ Item {
                                             }
                                         }
                                         Rectangle{
-                                            width: parent.width * 0.65
+                                            width: parent.width * 0.40
                                             height: parent.height
                                             ComboBox{
                                                 id: gorevliBirimComboBox
@@ -348,6 +353,47 @@ Item {
                                                     for( var i = 0 ; i < count ; i++ )
                                                     {
                                                         if( textAt(i) === talepItem.Birim )
+                                                        {
+                                                            currentIndex = i;
+                                                            changedProperty = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        Rectangle{
+                                            width: parent.width * 0.40
+                                            height: parent.height
+                                            ComboBox{
+                                                id: kategoriComboBox
+                                                anchors.fill: parent
+                                                model: talepKategoriManeger.listName()
+                                                property bool changedProperty: false
+                                                Component.onCompleted: {
+                                                    updateKategoriComboBox();
+                                                    changedProperty = true;
+                                                }
+
+                                                onCurrentTextChanged: {
+                                                    if( changedProperty )
+                                                    {
+                                                        var kategoriOid = talepKategoriManeger.kategoriOid(currentText)
+                                                        talepItem.kategoriOid = kategoriOid;
+                                                        if( talepManager.updateTalepItem(talepItem) )
+                                                        {
+                                                            Backend.message = "Kategori Değiştirildi."
+                                                            updateKategoriComboBox();
+                                                        }else{
+                                                            Backend.message = "! Kategori Değiştirilemedi";
+                                                        }
+                                                    }
+                                                }
+
+                                                function updateKategoriComboBox(){
+                                                    for( var i = 0 ; i < count ; i++ )
+                                                    {
+                                                        if( textAt(i) === talepKategoriManeger.kategoriName(Item.kategoriOid) )
                                                         {
                                                             currentIndex = i;
                                                             changedProperty = true;
