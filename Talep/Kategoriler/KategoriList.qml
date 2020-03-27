@@ -3,12 +3,14 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.12
 import serik.bel.tr.TalepKateogoriManagerPage 1.0
 import "../TalepScript.js" as TalepScript
+import serik.bel.tr.TalepManagerPage 1.0
 
 Item {
 
     id: kategoriListID
 
     property TalepKateogoriManagerPage talepKategoriManeger: Backend.createTalepKategoriManager();
+    property TalepManagerPage talepManeger: Backend.createTalepManager();
 
 
     anchors.fill: parent
@@ -65,14 +67,28 @@ Item {
                             height: 50
                             item: modelData
                             onDeleteClicked: {
-                                var deleted = talepKategoriManeger.deleteOne(oid);
-                                if( deleted )
+
+                                var kategoriUsedCount = talepManeger.talepKategoriUsed(oid);
+
+
+                                if( kategoriUsedCount === 0 )
                                 {
-                                    Backend.message = "Silindi";
-                                    talepKategoriManeger.updateKategoriList();
+                                    var deleted = talepKategoriManeger.deleteOne(oid);
+                                    if( deleted )
+                                    {
+                                        Backend.message = "Silindi";
+                                        talepKategoriManeger.updateKategoriList();
+                                    }else{
+                                        Backend.message = "Silme Başarısız";
+                                    }
                                 }else{
-                                    Backend.message = "Silme Başarısız";
+                                    Backend.message = "Bu Kategori " + kategoriUsedCount+ " Adet Talepte Kullanılıyor";
                                 }
+
+
+
+
+
                             }
                         }
                     }

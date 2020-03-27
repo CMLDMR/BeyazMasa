@@ -40,6 +40,8 @@ public:
 
     Q_INVOKABLE int talepCount( const QString& filter , const int& filterCode );
 
+    Q_INVOKABLE int talepKategoriUsed( const QString& kategoriOid );
+
     Q_INVOKABLE int talepCount( const QString& tcno ) ;
 
     Q_INVOKABLE TalepItem *findOne( const QString &talepOid );

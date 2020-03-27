@@ -111,6 +111,16 @@ int TalepManagerPage::talepCount(const QString &filter, const int &filterCode)
     return 0;
 }
 
+int TalepManagerPage::talepKategoriUsed(const QString &kategoriOid)
+{
+    TalepItem item;
+    item.setKategoriOid (kategoriOid);
+
+    auto count = static_cast<int>(this->countItem (item));
+    return count;
+
+}
+
 int TalepManagerPage::talepCount(const QString &tcno)
 {
     auto valTC = mTCManager->Load_byTCNO (tcno.toStdString ());

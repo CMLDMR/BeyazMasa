@@ -45,7 +45,7 @@ Item {
                 }
 
                 Text {
-                    text: qsTr("Build:309")
+                    text: qsTr("Build:315")
                     color: "dimgray"
                     font.bold: false
                     font.family: "Tahoma"
