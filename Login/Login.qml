@@ -99,6 +99,7 @@ Item {
                             font.family: "Tahoma"
                             font.pointSize: 14
                             font.underline: true
+                            text: "05055977567"
 
                             Text {
                                 text: qsTr("Telefon Numarası Giriniz")
@@ -134,6 +135,7 @@ Item {
                             font.pointSize: 14
                             font.underline: true
                             echoMode: TextInput.Password
+                            text: "87840"
 
                             Text {
                                 text: qsTr("Şifrenizi Giriniz")

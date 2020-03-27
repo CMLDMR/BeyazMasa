@@ -35,14 +35,11 @@ function loadTalepManager(){
             // Error Handling
             console.log("Error creating object");
         }else{
-
         }
     } else if (component.status === Component.Error) {
         // Error Handling
         console.log("Error loading component:", component.errorString());
     }
-
-
 }
 
 
@@ -184,5 +181,26 @@ function loadKategorilist()
         console.log("Error loading component:", component.errorString());
         return null;
     }
+}
+
+
+
+function loadComponent(url){
+    var component = Qt.createComponent(url);
+    if (component.status === Component.Ready) {
+        var sprite = component.createObject(appWindow);
+        if (sprite === null) {
+            // Error Handling
+            console.log("Error creating object");
+            Backend.message = "Component Oluşturulamadı";
+        }else{
+            return sprite;
+        }
+    } else if (component.status === Component.Error) {
+        // Error Handling
+        console.log("Error loading component:", component.errorString());
+        Backend.message = "Component Yüklenemedi. " + component.errorString();
+    }
+    return null;
 }
 

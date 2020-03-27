@@ -38,16 +38,9 @@ public:
 
     Q_INVOKABLE int talepCount() ;
 
-    /**
-     * @brief talepCount:
-     * @param filter : QString Key
-     * @param filterCode : 0 Durumfilter , 1 KaynakKey
-     * @return
-     */
     Q_INVOKABLE int talepCount( const QString& filter , const int& filterCode );
 
     Q_INVOKABLE int talepCount( const QString& tcno ) ;
-
 
     Q_INVOKABLE TalepItem *findOne( const QString &talepOid );
 

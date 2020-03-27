@@ -138,7 +138,6 @@ bool TalepManagerPage::insertTalepEvent(TalepEvent *event)
 
 void TalepManagerPage::updateEventList(const QString &talepOid)
 {
-//    mEventList.clear ();
     mEventList_Ptr.clear ();
     auto cursor = this->findTalepSubItem (talepOid);
     for( auto item : cursor )

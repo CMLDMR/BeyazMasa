@@ -70,7 +70,6 @@ Item {
                             anchors.fill: parent
                             cursorShape: "PointingHandCursor"
                             onClicked: {
-                                console.log("Kategori Ekle");
                                 dilekceManager.insertYeniKategori(yeniKategoriTextinputID.text);
                             }
                         }
@@ -152,11 +151,7 @@ Item {
                                             }
                                         }
                                     }
-
-
                                 }
-
-
                                 color: "transparent"
                             }
                         }
@@ -198,17 +193,6 @@ Item {
                     }
                 }
             }
-
         }
-
-
     }
-
-
-
-
-
-
-
-
 }

@@ -50,6 +50,8 @@ public:
     Q_INVOKABLE TalepKateogoriManagerPage* createTalepKategoriManager();
 
 
+
+
     Q_INVOKABLE QString localFileUrl( const QString &filePath );
 
 

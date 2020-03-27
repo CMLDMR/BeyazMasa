@@ -7,6 +7,8 @@
 class TalepKategoriItem : public QObject , public SerikBLDCore::TalepKategori
 {
     Q_OBJECT
+    Q_PROPERTY (QString KategoriAdi READ KategoriName WRITE setKategoriName )
+    Q_PROPERTY (QString Oid READ Oid )
 public:
     explicit TalepKategoriItem();
 
@@ -19,6 +21,9 @@ public:
 
     TalepKategoriItem& operator=( const TalepKategoriItem& other );
     TalepKategoriItem& operator=( TalepKategoriItem&& other );
+
+
+    QString Oid() const;
 
 signals:
 
