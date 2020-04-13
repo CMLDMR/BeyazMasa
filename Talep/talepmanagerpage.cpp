@@ -73,6 +73,32 @@ void TalepManagerPage::find(const QString &filter, const int &limit, const int &
 
 }
 
+void TalepManagerPage::findByBirim(const QString &birim, const int &limit, const int &skip)
+{
+    this->clearModel ();
+
+    auto val = this->findTalep (SerikBLDCore::Talep().setBirim (birim),limit,skip);
+    for( auto item : val )
+    {
+        TalepItem item_;
+        item_.setDocumentView (item.view ());
+        this->insertModel(item_);
+    }
+
+//    if( filter != "Hepsi" )
+//    {
+
+//    }else{
+//        auto val = this->findTalep (SerikBLDCore::Talep(),limit,skip);
+//        for( auto item : val )
+//        {
+//            TalepItem item_;
+//            item_.setDocumentView (item.view ());
+//            this->insertModel(item_);
+//        }
+//    }
+}
+
 void TalepManagerPage::find(const QString &tcno)
 {
     this->clearModel ();
@@ -101,7 +127,7 @@ int TalepManagerPage::talepCount(const QString &filter, const int &filterCode)
         return static_cast<int>(TalepManager::talepCount (SerikBLDCore::Talep().setDurum (filter)));
         break;
     case 1:
-//        return static_cast<int>(TalepManager::talepCount (SerikBLDCore::Talep().setTCOID (valTC.value ()->oid ()->to_string ().c_str ())));
+        return static_cast<int>(TalepManager::talepCount (SerikBLDCore::Talep().setBirim (filter)));
         return 0;
         break;
     default:

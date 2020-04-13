@@ -9,6 +9,7 @@ Item {
     signal kategorilerActivated();
     signal tcnoCompleted(string tcno);
     signal filterChanged(string filter);
+    signal birimChanged( string birimfilter )
 
     Rectangle{
         width: parent.width
@@ -22,7 +23,7 @@ Item {
 
 
             Rectangle{
-                width: parent.width/4
+                width: parent.width/5
                 height: parent.height
                 Text {
                     text: qsTr("Yeni Talep")
@@ -44,7 +45,7 @@ Item {
 
 
             Rectangle{
-                width: parent.width/4
+                width: parent.width/5
                 height: parent.height
 
                 TextInput{
@@ -78,7 +79,7 @@ Item {
 
 
             Rectangle{
-                width: parent.width/4
+                width: parent.width/5
                 height: parent.height
                 color: "darkslategray"
                 ComboBox{
@@ -90,9 +91,28 @@ Item {
                 }
             }
 
+            Rectangle{
+                width: parent.width/5
+                height: parent.height
+                color: "darkslategray"
+                ComboBox{
+                    model: ["Hepsi"]+Backend.birimler
+                    anchors.fill: parent
+                    onActivated: {
+                        birimChanged(currentText);
+                    }
+
+                    Component.onCompleted: {
+                        var arr = Backend.birimler;
+                        arr.unshift("Hepsi");
+                        model = arr;
+                    }
+                }
+            }
+
 
             Rectangle{
-                width: parent.width/4
+                width: parent.width/5
                 height: parent.height
                 Text {
                     text: qsTr("Kategoriler")

@@ -13,7 +13,10 @@ Item {
     property int limit: 25
     property int skip: 0
     property int count: 0
+
+    property int filterType: 0
     property string durumFilter: "Hepsi"
+    property string birimFilter: "Hepsi"
 
     property TalepManagerPage talepManeger: Backend.createTalepManager();
 
@@ -71,6 +74,7 @@ Item {
                 }
 
                 onFilterChanged: {
+                    filterType = 0;
                     durumFilter = filter;
                     if( filter === "Hepsi" )
                     {
@@ -82,6 +86,21 @@ Item {
                         count = talepManeger.talepCount(filter,0);
                         talepManeger.find(filter,limit,skip);
                     }
+                }
+
+                onBirimChanged: {
+                    filterType = 1;
+                    birimFilter = birimfilter
+                    if( birimFilter === "Hepsi" )
+                    {
+                        count = talepManeger.talepCount();
+                        talepManeger.find(limit,skip);
+                    }else{
+                        count = talepManeger.talepCount(birimFilter,1);
+                        talepManeger.findByBirim(birimFilter,limit,skip);
+                    }
+
+
                 }
 
                 onKategorilerActivated: {
@@ -158,23 +177,50 @@ Item {
                         anchors.fill: parent
                         cursorShape: "PointingHandCursor"
                         onClicked: {
-                            if( durumFilter !== "Hepsi" )
-                            {
-                                count = talepManeger.talepCount(durumFilter,0);
-                            }else{
-                                count = talepManeger.talepCount();
-                            }
 
-
-                            if( skip > 0 )
+                            if( filterType == 0 )
                             {
-                                skip -= limit;
-                                if( skip < 0 )
+
+                                if( durumFilter !== "Hepsi" )
                                 {
-                                    skip = 0;
+                                    count = talepManeger.talepCount(durumFilter,0);
+                                }else{
+                                    count = talepManeger.talepCount();
                                 }
-                                talepManeger.find(durumFilter,limit,skip);
+
+
+                                if( skip > 0 )
+                                {
+                                    skip -= limit;
+                                    if( skip < 0 )
+                                    {
+                                        skip = 0;
+                                    }
+                                    talepManeger.find(durumFilter,limit,skip);
+                                }
+
+                            }else{
+
+                                if( birimFilter !== "Hepsi" )
+                                {
+                                    count = talepManeger.talepCount(birimFilter,1);
+                                }else{
+                                    count = talepManeger.talepCount();
+                                }
+
+                                if( skip > 0 )
+                                {
+                                    skip -= limit;
+                                    if( skip < 0 )
+                                    {
+                                        skip = 0;
+                                    }
+                                    talepManeger.findByBirim(birimFilter,limit,skip);
+                                }
+
                             }
+
+
                         }
                     }
                 }
@@ -223,27 +269,46 @@ Item {
                         cursorShape: "PointingHandCursor"
                         onClicked: {
 
-                            print("İLeri");
-
-                            if( durumFilter !== "Hepsi" )
+                            if( filterType == 0 )
                             {
-                                count = talepManeger.talepCount(durumFilter,0);
-                            }else{
-                                count = talepManeger.talepCount();
-                            }
-
-
-                            if( count > ( skip + limit ) )
-                            {
-                                skip += limit;
-                                if( skip > count )
+                                if( durumFilter !== "Hepsi" )
                                 {
-                                    skip = count - limit;
+                                    count = talepManeger.talepCount(durumFilter,0);
+                                }else{
+                                    count = talepManeger.talepCount();
                                 }
-                                talepManeger.find(durumFilter,limit,skip);
-                            }
 
-                            console.log("Print: " + count +" - " + (skip+limit) );
+
+                                if( count > ( skip + limit ) )
+                                {
+                                    skip += limit;
+                                    if( skip > count )
+                                    {
+                                        skip = count - limit;
+                                    }
+                                    talepManeger.find(durumFilter,limit,skip);
+                                }
+                            }else{
+
+                                if( birimFilter !== "Hepsi" )
+                                {
+                                    count = talepManeger.talepCount(birimFilter,1);
+                                }else{
+                                    count = talepManeger.talepCount();
+                                }
+
+                                if( count > ( skip + limit ) )
+                                {
+                                    skip += limit;
+                                    if( skip > count )
+                                    {
+                                        skip = count - limit;
+                                    }
+                                    talepManeger.findByBirim(birimFilter,limit,skip);
+                                }
+
+
+                            }
 
                         }
                     }

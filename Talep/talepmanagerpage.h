@@ -34,6 +34,8 @@ public:
 
     Q_INVOKABLE void find( const QString& filter , const int& limit , const int &skip );
 
+    Q_INVOKABLE void findByBirim( const QString& birim , const int& limit , const int &skip );
+
     Q_INVOKABLE void find( const QString& tcno );
 
     Q_INVOKABLE int talepCount() ;
